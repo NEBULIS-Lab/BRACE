@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import List, Optional, Tuple
 
 
-# Small, deterministic “memory” snippets to make RAG auditable in Domain B.
+# Small, deterministic “memory” snippets to make RAG auditable in RoboFactory.
 # This is intentionally lightweight: it provides a stable retrieval payload that
 # (i) increases context length and (ii) can be pruned under budget, while
 # remaining easy to reproduce across environments.

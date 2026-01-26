@@ -1,8 +1,8 @@
 <div align="center">
   <h1 style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 0; vertical-align: middle;">
     <picture style="display: inline-block; vertical-align: middle; line-height: 1;">
-      <source media="(prefers-color-scheme: dark)" srcset="docs/site/static/images/logo_dark.svg">
-      <img src="docs/site/static/images/logo.svg" alt="BRACE logo" width="50" style="display: block; vertical-align: middle; margin: 0;">
+      <source media="(prefers-color-scheme: dark)" srcset="docs/static/images/logo_dark.svg">
+      <img src="docs/static/images/logo.svg" alt="BRACE logo" width="50" style="display: block; vertical-align: middle; margin: 0;">
     </picture>
     <span style="display: inline-block; vertical-align: middle; line-height: 1.2;">When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</span>
   </h1>
@@ -18,21 +18,21 @@ BRACE treats **high-frequency replanning** as a **systems bottleneck** for embod
 
 ## Showcases (representative frames)
 
-| Habitat (Domain A) | RoboFactory (Domain B) | AirSim (Domain C) |
+| Habitat (navigation) | RoboFactory (manipulation) | AirSim (vehicles/drones) |
 |---|---|---|
-| ![](docs/site/static/images/habitat_demo_frame.png) | ![](docs/site/static/images/robofactory_demo_frame.png) | ![](docs/site/static/images/airsim_demo_panel.png) |
+| ![](docs/static/images/habitat_demo_frame.png) | ![](docs/static/images/robofactory_demo_frame.png) | ![](docs/static/images/airsim_demo_panel.png) |
 
 ## Showcases (short video loops)
 
 | Habitat (tail/SLO) | RoboFactory (coordination) | AirSim (cinematic) |
 |---|---|---|
-| ![](docs/site/static/images/habitat_compare.gif) | ![](docs/site/static/images/robofactory_compare.gif) | ![](docs/site/static/images/airsim_compare.gif) |
+| ![](docs/static/images/habitat_compare.gif) | ![](docs/static/images/robofactory_compare.gif) | ![](docs/static/images/airsim_compare.gif) |
 
-Full MP4 clips (for the website) live in `docs/site/static/videos/`.
+Full MP4 clips (for the website) live in `docs/static/videos/`.
 
 ## Quick links
 
-- Website (static template): `docs/site/index.html`
+- Website (static template): `docs/index.html`
 - Docs (single guide): `docs/README.md`
 - Scripts (runnable entrypoints): `scripts/`
 

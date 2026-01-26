@@ -1108,7 +1108,7 @@ def _build_multidrone_episode(
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", required=True, help="Path to a Domain C (AirSim) config JSON.")
+    ap.add_argument("--config", required=True, help="Path to an AirSim config JSON.")
     ap.add_argument("--runs_root", default="runs")
     ap.add_argument("--run_name", default="airsim_domainc")
     ap.add_argument(
@@ -2246,7 +2246,7 @@ def main() -> int:
 
                     if global_png and chase_png:
                         overlay_lines: List[OverlayLine] = []
-                        overlay_lines.append(OverlayLine(f"DomainC AirSim | {env_name} | K={len(vehicles)} | {scenario}", (255, 255, 255)))
+                        overlay_lines.append(OverlayLine(f"AirSim | {env_name} | K={len(vehicles)} | {scenario}", (255, 255, 255)))
                         trigger_hint = "-"
                         if unsafe_near_miss or any_collision:
                             trigger_hint = "unsafe"

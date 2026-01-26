@@ -161,7 +161,7 @@ def serialize_context(
             target_prunable = min(target_prunable, target_prunable_budget)
 
         # Approximate pruning on the history region with strategy-dependent selection.
-        # (History dominates the prunable region for Domain B.)
+        # (History dominates the prunable region for RoboFactory.)
         header = "[E] HISTORY"
         content_lines = hist_lines[:] if hist_lines else ["none"]
 

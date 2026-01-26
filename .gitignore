@@ -33,9 +33,9 @@ icml2026/artifacts/
 *.7z
 
 # Allow small showcase media for README/website
-!docs/site/static/videos/**/*.mp4
-!docs/site/static/images/**/*.gif
-!docs/site/static/images/**/*.webp
+!docs/static/videos/**/*.mp4
+!docs/static/images/**/*.gif
+!docs/static/images/**/*.webp
 
 # Model weights / caches
 assets/models/**

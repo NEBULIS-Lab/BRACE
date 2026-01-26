@@ -1,7 +1,7 @@
 {
   "domain": "robofactory",
   "task": "LiftBarrier-table",
-  "task_text": "WS4 smoke: compare budget-matched baselines (recency/random/structured_summary) in RoboFactory Domain B with auditable structured-summary overhead.",
+  "task_text": "WS4 smoke: compare budget-matched baselines (recency/random/structured_summary) in RoboFactory with auditable structured-summary overhead.",
   "policy": "random",
   "random_seed": 0,
   "episodes": 1,
@@ -65,4 +65,3 @@
     }
   ]
 }
-

@@ -1,7 +1,7 @@
 {
   "domain": "robofactory",
   "task": "PassShoe-table",
-  "task_text": "WS4 paper table: Domain B budget-matched baselines (random/recency/structured_summary) with auditable summary overhead; same seeds and replanning schedule across variants.",
+  "task_text": "WS4 paper table: RoboFactory budget-matched baselines (random/recency/structured_summary) with auditable summary overhead; same seeds and replanning schedule across variants.",
   "policy": "motion_planning",
   "random_seed": 0,
   "episodes": 10,
@@ -67,4 +67,3 @@
     }
   ]
 }
-

@@ -230,7 +230,7 @@ def _maybe_wrap_recording(env: Any, *, output_dir: str, base_cfg: Dict[str, Any]
         video_fps=video_fps,
         avoid_overwriting_video=True,
         source_type="brace_domainb",
-        source_desc="BRACE Domain B demo recording",
+        source_desc="BRACE RoboFactory demo recording",
     )
 
 
