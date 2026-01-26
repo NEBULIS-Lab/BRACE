@@ -4,7 +4,7 @@
       <source media="(prefers-color-scheme: dark)" srcset="docs/site/static/images/logo_dark.svg">
       <img src="docs/site/static/images/logo.svg" alt="BRACE logo" width="50" style="display: block; vertical-align: middle; margin: 0;">
     </picture>
-    <span style="display: inline-block; vertical-align: middle; line-height: 1.2;">BRACE: When Replanning Becomes the Bottleneck</span>
+    <span style="display: inline-block; vertical-align: middle; line-height: 1.2;">When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</span>
   </h1>
 </div>
 
