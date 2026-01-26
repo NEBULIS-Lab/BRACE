@@ -1,7 +1,9 @@
 <div align="center">
   <h1 style="display: inline-flex; align-items: center; gap: 10px; margin: 0;">
-    <img src="docs/site/static/images/logo.svg#gh-light-mode-only" alt="BRACE logo" width="50" style="vertical-align: middle;">
-    <img src="docs/site/static/images/logo_dark.svg#gh-dark-mode-only" alt="BRACE logo" width="50" style="vertical-align: middle;">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/site/static/images/logo_dark.svg">
+      <img src="docs/site/static/images/logo.svg" alt="BRACE logo" width="50" style="vertical-align: middle;">
+    </picture>
     BRACE: When Replanning Becomes the Bottleneck
   </h1>
 </div>
