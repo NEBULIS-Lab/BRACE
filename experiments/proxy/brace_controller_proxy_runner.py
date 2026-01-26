@@ -641,7 +641,7 @@ def _render_table(run_id: str, rows: List[Dict[str, Any]]) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="configs/brace_controller_proxy_smoke.json")
+    ap.add_argument("--config", default="configs/smoke/proxy_controller.json")
     ap.add_argument("--runs_root", default="runs")
     ap.add_argument("--run_name", default="brace_controller_proxy_smoke")
     args = ap.parse_args()

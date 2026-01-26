@@ -1,50 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>BRACE — When Replanning Becomes the Bottleneck</title>
-    <meta name="description" content="BRACE: Budgeted Embodied Agent Replanning with auditable replanning logs, tail latency / SLO reporting, and multi-domain demos."/>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Reference style: UAV/HATTO-UFog (static Bulma website). We use CDN to keep this repo lightweight. -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"/>
-    <link rel="stylesheet" href="./static/css/index.css"/>
-    <link rel="icon" href="./static/images/logo.svg"/>
-  </head>
+  <!-- Double-blind project page (ICML submission): do not include author identities. -->
+  <meta name="title" content="BRACE: When Replanning Becomes the Bottleneck">
+  <meta name="description" content="BRACE treats high-frequency replanning as a systems bottleneck: budgeted replanning control, auditable logs, tail latency &amp; SLO reporting, and multi-domain demos.">
+  <meta name="keywords" content="embodied AI, replanning, latency, SLO, systems, VLA, VLM, RoboFactory, Habitat, AirSim">
+  <meta name="author" content="Anonymous">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
 
-  <body>
-    <section class="hero brace-hero">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="BRACE (ICML submission)">
+  <meta property="og:title" content="BRACE: When Replanning Becomes the Bottleneck">
+  <meta property="og:description" content="Budgeted replanning as a systems control problem, with auditable logs and multi-domain demos (Habitat, RoboFactory, AirSim).">
+  <meta property="og:image" content="static/images/airsim_demo_panel.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BRACE demos overview">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BRACE: When Replanning Becomes the Bottleneck">
+  <meta name="twitter:description" content="Budgeted replanning as a systems bottleneck, with auditable logging and multi-domain demos.">
+  <meta name="twitter:image" content="static/images/airsim_demo_panel.png">
+  <meta name="twitter:image:alt" content="BRACE demos overview">
+
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>BRACE | Project Page</title>
+
+  <link rel="icon" type="image/png" href="static/images/logo.png">
+  <link rel="apple-touch-icon" href="static/images/logo.png">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+    <section class="hero">
       <div class="hero-body">
-        <div class="container">
-          <div class="columns is-vcentered">
-            <div class="column is-narrow">
-              <img src="./static/images/logo.svg" alt="BRACE logo" width="84" height="84"/>
-            </div>
-            <div class="column">
-              <p class="brace-kicker">BRACE (ICML draft)</p>
-              <h1 class="title is-2" style="color: var(--brace-text);">
-                When Replanning Becomes the Bottleneck
-              </h1>
-              <p class="subtitle is-5" style="color: rgba(229,231,235,.92);">
-                Budgeted replanning as a systems control problem, with auditable logs, tail latency &amp; SLO reporting,
-                and multi-domain demos (Habitat, RoboFactory, AirSim) + VLA executor track (OpenMARL).
-              </p>
-
-              <div class="brace-badges">
-                <img src="https://img.shields.io/badge/Paper-ICML%202026-6366F1.svg" alt="Paper"/>
-                <img src="https://img.shields.io/badge/Demos-Video%20%2B%20Screenshots-FF6B35.svg" alt="Demos"/>
-                <img src="https://img.shields.io/badge/Schema-Auditable-22C55E.svg" alt="Schema"/>
-                <img src="https://img.shields.io/badge/PRs-Welcome-blue.svg" alt="PRs welcome"/>
+        <div class="container is-max-widescreen">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <div class="title-with-logo">
+                <img src="static/images/logo.png" alt="Logo" class="publication-logo">
+                <h1 class="title is-1 publication-title">When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</h1>
               </div>
 
-              <div class="buttons">
-                <a class="button is-link" href="#">Paper (coming soon)</a>
-                <a class="button is-light" href="https://github.com/NEBULIS-Lab/shuaijun-icml26-code">Code</a>
-                <a class="button is-light" href="https://github.com/NEBULIS-Lab/shuaijun-icml26-code#readme">README</a>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Anonymous authors</span>
               </div>
 
-              <p style="color: rgba(229,231,235,.7); margin-top: 12px;">
-                Note: some paper-scale runs are still running; this site shows the current best available demos.
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="#bibtex" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                      <span>Paper (coming soon)</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://github.com/NEBULIS-Lab/shuaijun-icml26-code" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fab fa-github"></i></span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="#demos" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fas fa-play-circle"></i></span>
+                      <span>Demos</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://github.com/NEBULIS-Lab/shuaijun-icml26-code#readme" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fas fa-book"></i></span>
+                      <span>README</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+
+              <p class="is-size-6" style="margin-top: 14px; color: var(--text-secondary);">
+                Note: some paper-scale runs are still running; this page shows current best available demos.
               </p>
             </div>
           </div>
@@ -52,68 +123,165 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="columns is-multiline">
-          <div class="column is-4">
-            <div class="brace-card p-5">
-              <p class="title is-5">Habitat (navigation)</p>
-              <p class="subtitle is-6">Tail latency / SLO bottleneck (main evidence)</p>
-              <video class="brace-thumb" controls muted loop playsinline poster="./static/images/habitat_demo_frame.png">
-                <source src="./static/videos/habitat_compare.mp4" type="video/mp4"/>
-              </video>
-              <div class="content mt-3">
-                <ul>
-                  <li>Main run: <code>20260125_142125__..._spnoise</code></li>
-                  <li>Demo: oracle visualization + frames</li>
-                </ul>
-              </div>
+    <section class="section hero is-light">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">Abstract</h2>
+            <div class="content">
+              <p class="has-text-justified">
+                Embodied agents increasingly rely on frequent replanning to recover from uncertainty, partial observability, and
+                multi-agent coordination. However, as context grows (history, perception summaries, retrieved memory), replanning
+                latency develops a heavy tail and becomes a systems bottleneck: tighter SLOs saturate violations, while looser SLOs hide
+                meaningful improvements. We propose BRACE, a budgeted replanning controller that (i) allocates per-replan budgets,
+                (ii) enforces commitment/cooldown to stabilize behavior, and (iii) produces auditable phase logs for fair cost accounting.
+                We evaluate BRACE across multiple domains (Habitat navigation, RoboFactory manipulation, AirSim vehicles/drones) and
+                include a VLA executor track (OpenMARL). Demos below illustrate baseline vs BRACE behavior and tail/SLO effects.
+              </p>
+
+              <ul class="has-text-left">
+                <li><strong>Controller:</strong> budget assignment + commitment/cooldown for stable high-frequency replanning.</li>
+                <li><strong>Auditable logging:</strong> phase breakdown (context construction, compression, planner call, VLA policy call).</li>
+                <li><strong>Efficiency modules:</strong> E-RECAP-style context pruning, and RAG/memory ablations (optional).</li>
+                <li><strong>Evidence:</strong> tail latency / SLO improvements and qualitative demos across three domains.</li>
+              </ul>
             </div>
           </div>
-
-          <div class="column is-4">
-            <div class="brace-card p-5">
-              <p class="title is-5">RoboFactory (manipulation)</p>
-              <p class="subtitle is-6">Multi-agent coordination (deadlock/wait) + demos</p>
-              <video class="brace-thumb" controls muted loop playsinline poster="./static/images/robofactory_demo_frame.png">
-                <source src="./static/videos/robofactory_compare.mp4" type="video/mp4"/>
-              </video>
-              <div class="content mt-3">
-                <ul>
-                  <li>Main run: <code>20260125_191824__..._ws7</code></li>
-                  <li>VLA executor track: OpenVLA / DP (WS10)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="column is-4">
-            <div class="brace-card p-5">
-              <p class="title is-5">AirSim (vehicles/drones)</p>
-              <p class="subtitle is-6">High-frequency replanning in another domain (cinematic demos)</p>
-              <video class="brace-thumb" controls muted loop playsinline poster="./static/images/airsim_demo_panel.png">
-                <source src="./static/videos/airsim_compare.mp4" type="video/mp4"/>
-              </video>
-              <div class="content mt-3">
-                <ul>
-                  <li>Showcase run: <code>20260126_130117__..._v19</code></li>
-                  <li>Includes baseline vs BRACE compare clip</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="brace-footer">
-          <p class="title is-5" style="color: var(--brace-text);">Reproducibility</p>
-          <p>
-            See <code>docs/README.md</code> for the single consolidated guide (run commands, postprocessing, and asset rules).
-          </p>
-          <p class="mt-2">
-            This website is a lightweight, static template inspired by <code>UAV/HATTO-UFog/docs</code>.
-          </p>
         </div>
       </div>
     </section>
-  </body>
+
+    <section class="section" id="overview">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">System Overview</h2>
+            <div class="columns is-vcentered">
+              <div class="column is-8">
+                <div class="content">
+                  <p class="has-text-justified">
+                    BRACE sits on the replanning call path. On each step, the agent decides whether to replan (periodic + event triggers),
+                    then BRACE allocates a compute/latency budget and optionally applies efficiency modules (pruning, memory/RAG) before
+                    calling the planner or VLM. The controller enforces stability via commitment windows and cooldowns, and logs phase costs
+                    in a unified run schema for auditing.
+                  </p>
+                  <ul class="has-text-left">
+                    <li><strong>Budget axis:</strong> tokens/budget assigned to replanning calls (cost control).</li>
+                    <li><strong>Frequency axis:</strong> replanning interval/triggers (throughput control).</li>
+                    <li><strong>Stability axis:</strong> commitment/cooldown/deadlock knobs (behavior control).</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column is-4">
+                <figure class="image hf-figure">
+                  <img class="hf-media" src="static/images/airsim_demo_panel.png" alt="BRACE demo panel" loading="lazy">
+                </figure>
+                <p class="hf-caption">Figure: demo montage (baseline vs BRACE).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="demos">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">Demos</h2>
+            <div class="content">
+              <p class="has-text-justified">
+                Below are lightweight MP4 clips suitable for GitHub Pages. Full-resolution artifacts live outside this repo.
+              </p>
+            </div>
+
+            <div class="columns is-multiline">
+              <div class="column is-4">
+                <div class="card hf-card">
+                  <div class="card-content">
+                    <p class="title is-5">Habitat (navigation)</p>
+                    <p class="subtitle is-6">Tail latency / SLO bottleneck</p>
+                    <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/habitat_compare.mp4" poster="static/images/habitat_demo_frame.png"></video>
+                  </div>
+                </div>
+              </div>
+
+              <div class="column is-4">
+                <div class="card hf-card">
+                  <div class="card-content">
+                    <p class="title is-5">RoboFactory (manipulation)</p>
+                    <p class="subtitle is-6">Coordination (deadlock/wait)</p>
+                    <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/robofactory_compare.mp4" poster="static/images/robofactory_demo_frame.png"></video>
+                  </div>
+                </div>
+              </div>
+
+              <div class="column is-4">
+                <div class="card hf-card">
+                  <div class="card-content">
+                    <p class="title is-5">AirSim (vehicles/drones)</p>
+                    <p class="subtitle is-6">High-frequency replanning (cinematic)</p>
+                    <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/airsim_compare.mp4" poster="static/images/airsim_demo_panel.png"></video>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="repro">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">Reproducibility</h2>
+            <div class="content">
+              <p class="has-text-justified">Start from the repository root:</p>
+              <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# smoke entrypoints (require local domain dependencies)
+scripts/smoke_all.sh</code></pre>
+              <p class="has-text-justified">
+                See <code>docs/README.md</code> for environment variables, run scripts, and postprocessing into markdown tables.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="bibtex">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">BibTeX</h2>
+            <div class="content">
+              <p class="has-text-justified">Citation will be updated after acceptance.</p>
+            </div>
+            <div class="bibtex-container">
+              <div class="bibtex-header">
+                <span class="bibtex-title">Citation</span>
+                <button class="copy-bibtex-btn" onclick="copyBibTeX()">
+                  <span class="copy-icon"><i class="fas fa-copy"></i></span>
+                  <span class="copy-text">Copy</span>
+                </button>
+              </div>
+              <pre><code id="bibtex-code">@inproceedings{brace2026,
+  title     = {When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning},
+  author    = {Anonymous},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2026}
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
 </html>

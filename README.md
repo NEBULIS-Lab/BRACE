@@ -16,24 +16,20 @@
 
 BRACE treats **high-frequency replanning** as a **systems bottleneck** for embodied agents: repeated replanning under context growth leads to tail latency and SLO violations. We integrate a budgeted replanning controller (BRACE) with auditable logging (phase cost breakdown) and composable efficiency modules (E-RECAP pruning, RAG/memory, budget-matched baselines), evaluated across multiple domains (Habitat, RoboFactory, AirSim) and a VLA executor track (OpenMARL).
 
-## Showcases (representative frames)
-
-| Habitat (navigation) | RoboFactory (manipulation) | AirSim (vehicles/drones) |
-|---|---|---|
-| ![](docs/static/images/habitat_demo_frame.png) | ![](docs/static/images/robofactory_demo_frame.png) | ![](docs/static/images/airsim_demo_panel.png) |
-
 ## Showcases (short video loops)
 
 | Habitat (tail/SLO) | RoboFactory (coordination) | AirSim (cinematic) |
 |---|---|---|
 | ![](docs/static/images/habitat_compare.gif) | ![](docs/static/images/robofactory_compare.gif) | ![](docs/static/images/airsim_compare.gif) |
 
-Full MP4 clips (for the website) live in `docs/static/videos/`.
+Full MP4 clips (for the website) live in `docs/static/videos/` and are embedded in `docs/index.html`.
 
 ## Quick links
 
 - Website (static template): `docs/index.html`
 - Docs (single guide): `docs/README.md`
+- Configs: `configs/smoke/` (defaults) and `configs/paper/` (paper/demos)
+- E-RECAP module (lightweight subset): `erecap/`
 - Scripts (runnable entrypoints): `scripts/`
 
 ## Repo policy (open-source)

@@ -37,20 +37,24 @@ pip install -r requirements.txt
 
 These scripts are thin wrappers around the python entrypoints under `experiments/`.
 
+Configs are intentionally curated to keep this repo small:
+- `configs/smoke/`: fast sanity checks (default paths for scripts/CLI)
+- `configs/paper/`: paper-scale and demo configs (representative; extend as needed)
+
 ### Habitat (navigation)
 
 Requires your own `habitat-setup/` checkout + a working Habitat env.
 
 ```bash
-scripts/run_domain_a_habitat.sh --config configs/habitat_setup_smoke.json --run-name habitat_smoke
+scripts/run_domain_a_habitat.sh --config configs/smoke/habitat_setup.json --run-name habitat_smoke
 ```
 
 ### RoboFactory (manipulation / multi-agent)
 
-Requires your own RoboFactory workspace + assets; see `configs/robofactory/*.json` for expected knobs.
+Requires your own RoboFactory workspace + assets; see `configs/smoke/` / `configs/paper/` for expected knobs.
 
 ```bash
-scripts/run_domain_b_robofactory.sh --config configs/robofactory/rf_table_lift_barrier_smoke.json --run-name rf_smoke
+scripts/run_domain_b_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name rf_smoke
 ```
 
 ### AirSim (vehicles / drones)
@@ -59,7 +63,7 @@ Requires local AirSim UE binaries and `BRACE_AIRSIM_ENVS_ROOT` set.
 
 ```bash
 export BRACE_AIRSIM_ENVS_ROOT=/path/to/AirSim/envs
-scripts/run_domain_c_airsim.sh --config configs/airsim/domainc_multidrone_demo.json --run-name airsim_demo --ue-env airsimnh
+scripts/run_domain_c_airsim.sh --config configs/smoke/airsim_multidrone_demo.json --run-name airsim_demo --ue-env airsimnh
 ```
 
 ---

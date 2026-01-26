@@ -56,7 +56,7 @@ def select_history_tokens(
             meta={"strategy": strategy, "history_len": history_len, "target_keep": target_keep},
         )
 
-    if strategy in ("recency", "recent", "tail"):
+    if strategy in ("recency", "recent", "tail", "erecap", "erecap_like"):
         start = max(0, history_len - target_keep)
         kept = list(range(start, history_len))
         return SelectionResult(
@@ -105,4 +105,3 @@ def select_history_tokens(
         )
 
     raise ValueError(f"Unknown context compression strategy: {strategy}")
-

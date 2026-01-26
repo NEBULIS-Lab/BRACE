@@ -1074,7 +1074,7 @@ def run_variant(ctx: RunContext, env: Any, variant: Dict[str, Any], base_cfg: Di
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="configs/robofactory/rf_table_lift_barrier_smoke.json")
+    ap.add_argument("--config", default="configs/smoke/robofactory_lift_barrier.json")
     ap.add_argument("--runs_root", default="runs")
     ap.add_argument("--run_name", default="robofactory_domainB_smoke")
     args = ap.parse_args()

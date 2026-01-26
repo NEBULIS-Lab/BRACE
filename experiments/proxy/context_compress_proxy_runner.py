@@ -411,7 +411,7 @@ def _render_tables(run_id: str, rows: List[Dict[str, Any]], report_budget: int, 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="configs/context_compress_proxy_ws4_smoke.json")
+    ap.add_argument("--config", default="configs/smoke/proxy_context_compress.json")
     ap.add_argument("--runs_root", default="runs")
     ap.add_argument("--run_name", default="context_compress_proxy_ws4_smoke")
     args = ap.parse_args()
@@ -442,4 +442,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

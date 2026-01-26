@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-CONFIG="configs/habitat_setup_smoke.json"
+CONFIG="configs/smoke/habitat_setup.json"
 RUNS_ROOT="runs"
 RUN_NAME="habitat_smoke"
 HABITAT_SETUP_ROOT="${HABITAT_SETUP_ROOT:-habitat-setup}"
@@ -34,4 +34,3 @@ python experiments/habitat/run_habitat_setup_real.py \
   --runs_root "$RUNS_ROOT" \
   --run_name "$RUN_NAME" \
   --habitat_setup_root "$HABITAT_SETUP_ROOT"
-

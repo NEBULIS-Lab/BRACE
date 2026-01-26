@@ -596,7 +596,7 @@ def run_variant(ctx: RunContext, env: Any, variant: Dict[str, Any], base_cfg: Di
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="configs/habitat_brace_smoke.json")
+    ap.add_argument("--config", default="configs/smoke/habitat_brace.json")
     ap.add_argument("--runs_root", default="runs")
     ap.add_argument("--run_name", default="habitat_brace_smoke")
     args = ap.parse_args()

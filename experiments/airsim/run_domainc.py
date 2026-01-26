@@ -1176,7 +1176,7 @@ def main() -> int:
         if not envs_root_raw or "$" in envs_root_raw:
             msg = (
                 "Missing AirSim UE envs root. Set BRACE_AIRSIM_ENVS_ROOT or set ue_envs_root in the config JSON "
-                "(e.g., configs/airsim/*.json)."
+                "(e.g., configs/smoke/*.json or configs/paper/*.json)."
             )
             print(f"ERROR: {msg}")
             ctx.write_summary({"status": "error", "error": "missing_ue_envs_root", "hint": msg})

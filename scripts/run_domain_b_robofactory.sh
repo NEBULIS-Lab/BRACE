@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-CONFIG="configs/robofactory/rf_table_lift_barrier_smoke.json"
+CONFIG="configs/smoke/robofactory_lift_barrier.json"
 RUNS_ROOT="runs"
 RUN_NAME="robofactory_smoke"
 
@@ -31,4 +31,3 @@ python experiments/robofactory/run_tasks.py \
   --config "$CONFIG" \
   --runs_root "$RUNS_ROOT" \
   --run_name "$RUN_NAME"
-

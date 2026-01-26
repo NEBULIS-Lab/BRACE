@@ -1323,7 +1323,7 @@ def _run_v2(cfg: Dict[str, Any], ctx: RunContext, habitat_setup_root: Path) -> N
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="configs/habitat_setup_smoke.json")
+    ap.add_argument("--config", default="configs/smoke/habitat_setup.json")
     ap.add_argument("--runs_root", default="runs")
     ap.add_argument("--run_name", default="habitat_setup_smoke")
     ap.add_argument("--habitat_setup_root", default="habitat-setup")

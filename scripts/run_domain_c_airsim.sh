@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-CONFIG="configs/airsim/domainc_multidrone_demo.json"
+CONFIG="configs/smoke/airsim_multidrone_demo.json"
 RUNS_ROOT="runs"
 RUN_NAME="airsim_demo"
 UE_ENV="airsimnh"
@@ -32,4 +32,3 @@ python experiments/airsim/run_domainc.py \
   --runs_root "$RUNS_ROOT" \
   --run_name "$RUN_NAME" \
   --ue_env "$UE_ENV"
-
