@@ -1,10 +1,10 @@
 <div align="center">
-  <h1 style="display: inline-flex; align-items: center; gap: 10px; margin: 0;">
-    <picture>
+  <h1 style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 0; vertical-align: middle;">
+    <picture style="display: inline-block; vertical-align: middle; line-height: 1;">
       <source media="(prefers-color-scheme: dark)" srcset="docs/site/static/images/logo_dark.svg">
-      <img src="docs/site/static/images/logo.svg" alt="BRACE logo" width="50" style="vertical-align: middle;">
+      <img src="docs/site/static/images/logo.svg" alt="BRACE logo" width="50" style="display: block; vertical-align: middle; margin: 0;">
     </picture>
-    BRACE: When Replanning Becomes the Bottleneck
+    <span style="display: inline-block; vertical-align: middle; line-height: 1.2;">BRACE: When Replanning Becomes the Bottleneck</span>
   </h1>
 </div>
 
