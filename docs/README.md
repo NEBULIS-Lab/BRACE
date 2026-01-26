@@ -7,6 +7,10 @@ This repository is **code-only**. It does **not** ship:
 
 You generate outputs locally and keep large assets outside git.
 
+Website demo page:
+- Open `docs/site/index.html` locally, or host `docs/site/` via GitHub Pages.
+- Short MP4 clips are stored in `docs/site/static/videos/` (kept intentionally small).
+
 ---
 
 ## 0) Quick start (analysis-only)

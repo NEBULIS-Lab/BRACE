@@ -22,6 +22,14 @@ BRACE treats **high-frequency replanning** as a **systems bottleneck** for embod
 |---|---|---|
 | ![](docs/site/static/images/habitat_demo_frame.png) | ![](docs/site/static/images/robofactory_demo_frame.png) | ![](docs/site/static/images/airsim_demo_panel.png) |
 
+## Showcases (short video loops)
+
+| Habitat (tail/SLO) | RoboFactory (coordination) | AirSim (cinematic) |
+|---|---|---|
+| ![](docs/site/static/images/habitat_compare.gif) | ![](docs/site/static/images/robofactory_compare.gif) | ![](docs/site/static/images/airsim_compare.gif) |
+
+Full MP4 clips (for the website) live in `docs/site/static/videos/`.
+
 ## Quick links
 
 - Website (static template): `docs/site/index.html`

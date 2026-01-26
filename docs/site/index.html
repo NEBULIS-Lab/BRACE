@@ -38,13 +38,13 @@
               </div>
 
               <div class="buttons">
-                <a class="button is-link" href="../../BRACE-paper/icml2026/main.pdf">Paper PDF</a>
-                <a class="button is-light" href="../../BRACE-paper/icml2026/artifacts/INDEX.md">Artifacts index</a>
-                <a class="button is-light" href="../../BRACE-code/README.md">Code README</a>
+                <a class="button is-link" href="#">Paper (coming soon)</a>
+                <a class="button is-light" href="../../README.md">Code README</a>
+                <a class="button is-light" href="../README.md">Docs</a>
               </div>
 
               <p style="color: rgba(229,231,235,.7); margin-top: 12px;">
-                Note: WS9 paper-scale (AirSim), WS10 π0 paper-scale, and ReconVLA n=500 are still running and are integrated as placeholders.
+                Note: some paper-scale runs are still running; this site shows the current best available demos.
               </p>
             </div>
           </div>
@@ -59,7 +59,9 @@
             <div class="brace-card p-5">
               <p class="title is-5">Habitat (Domain A)</p>
               <p class="subtitle is-6">Tail latency / SLO bottleneck (main evidence)</p>
-              <img class="brace-thumb" src="./static/images/habitat_demo_frame.png" alt="Habitat demo frame"/>
+              <video class="brace-thumb" controls muted loop playsinline poster="./static/images/habitat_demo_frame.png">
+                <source src="./static/videos/habitat_compare.mp4" type="video/mp4"/>
+              </video>
               <div class="content mt-3">
                 <ul>
                   <li>Main run: <code>20260125_142125__..._spnoise</code></li>
@@ -73,7 +75,9 @@
             <div class="brace-card p-5">
               <p class="title is-5">RoboFactory (Domain B)</p>
               <p class="subtitle is-6">Multi-agent coordination (deadlock/wait) + demos</p>
-              <img class="brace-thumb" src="./static/images/robofactory_demo_frame.png" alt="RoboFactory demo frame"/>
+              <video class="brace-thumb" controls muted loop playsinline poster="./static/images/robofactory_demo_frame.png">
+                <source src="./static/videos/robofactory_compare.mp4" type="video/mp4"/>
+              </video>
               <div class="content mt-3">
                 <ul>
                   <li>Main run: <code>20260125_191824__..._ws7</code></li>
@@ -87,11 +91,13 @@
             <div class="brace-card p-5">
               <p class="title is-5">AirSim (Domain C)</p>
               <p class="subtitle is-6">High-frequency replanning in another domain (cinematic demos)</p>
-              <img class="brace-thumb" src="./static/images/airsim_demo_panel.png" alt="AirSim demo panel"/>
+              <video class="brace-thumb" controls muted loop playsinline poster="./static/images/airsim_demo_panel.png">
+                <source src="./static/videos/airsim_compare.mp4" type="video/mp4"/>
+              </video>
               <div class="content mt-3">
                 <ul>
-                  <li>Placeholder run: <code>20260126_071938__..._v16</code></li>
-                  <li>Will be replaced by paper-scale WS9 result</li>
+                  <li>Showcase run: <code>20260126_130117__..._v19</code></li>
+                  <li>Includes baseline vs BRACE compare clip</li>
                 </ul>
               </div>
             </div>

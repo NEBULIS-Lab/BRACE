@@ -32,6 +32,11 @@ icml2026/artifacts/
 *.tgz
 *.7z
 
+# Allow small showcase media for README/website
+!docs/site/static/videos/**/*.mp4
+!docs/site/static/images/**/*.gif
+!docs/site/static/images/**/*.webp
+
 # Model weights / caches
 assets/models/**
 !assets/models/.gitkeep
@@ -59,3 +64,6 @@ assets/datasets/**
 *.fls
 *.out
 *.synctex.gz
+
+# Local-only docs
+README.zh.md
