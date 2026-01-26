@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 style="display: inline-flex; align-items: center; gap: 10px; margin: 0;">
+  <h1 style="display: inline-flex; align-items: center; gap: 15px; margin: 0;">
     <img src="docs/site/static/images/logo.svg#gh-light-mode-only" alt="BRACE logo" width="40" style="vertical-align: middle;">
     <img src="docs/site/static/images/logo_dark.svg#gh-dark-mode-only" alt="BRACE logo" width="40" style="vertical-align: middle;">
     BRACE: When Replanning Becomes the Bottleneck
