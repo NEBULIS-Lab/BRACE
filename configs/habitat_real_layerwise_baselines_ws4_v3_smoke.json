@@ -1,0 +1,42 @@
+{
+  "domain": "habitat",
+  "runner": "habitat_real_v2",
+  "seed": 0,
+  "episodes": 3,
+  "max_steps": 25,
+  "replan_interval_steps": 10,
+  "min_replan_cycles": 3,
+  "trigger_cooldown_steps": 0,
+  "use_env_triggers": false,
+  "num_agents": 4,
+  "executor": "llm_patch_actions",
+  "clarification_budget_turns": 0,
+  "slo_ms": 2500,
+  "keep_ratio": 0.7,
+  "variants": [
+    {
+      "name": "none",
+      "pruning_enabled": false,
+      "context_strategy": "none"
+    },
+    {
+      "name": "erecap",
+      "pruning_enabled": true,
+      "context_strategy": "erecap",
+      "keep_ratio": 0.7
+    },
+    {
+      "name": "random_layerwise",
+      "pruning_enabled": true,
+      "context_strategy": "random_layerwise",
+      "keep_ratio": 0.7
+    },
+    {
+      "name": "recency_layerwise",
+      "pruning_enabled": true,
+      "context_strategy": "recency_layerwise",
+      "keep_ratio": 0.7
+    }
+  ]
+}
+

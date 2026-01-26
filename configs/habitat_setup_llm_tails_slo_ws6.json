@@ -1,0 +1,20 @@
+{
+  "domain": "habitat",
+  "task": "pointnav",
+  "runner": "habitat_setup.run_real_erecap_experiment",
+
+  "num_episodes": 30,
+  "num_agents": 1,
+  "max_steps": 60,
+  "replan_interval": 10,
+  "min_replan_cycles": 3,
+
+  "slo_ms": 2500,
+  "cuda_visible_devices": 4,
+
+  "configs": [
+    {"name": "baseline", "keep_ratio": 1.0, "use_pruning": false},
+    {"name": "erecap", "keep_ratio": 0.7, "use_pruning": true}
+  ]
+}
+

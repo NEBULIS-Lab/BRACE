@@ -1,0 +1,73 @@
+{
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "ViewMode": "NoDisplay",
+  "ClockSpeed": 1.0,
+  "LocalHostIp": "127.0.0.1",
+  "ApiServerPort": 41451,
+  "RpcEnabled": true,
+  "Wind": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
+  "Vehicles": {
+    "Drone1": {
+      "VehicleType": "SimpleFlight",
+      "AutoCreate": true,
+      "Cameras": {
+        "0": {
+          "X": 0.2,
+          "Y": 0.0,
+          "Z": 0.0,
+          "Pitch": 0.0,
+          "Roll": 0.0,
+          "Yaw": 0.0,
+          "CaptureSettings": [
+            {
+              "ImageType": 0,
+              "Width": 1280,
+              "Height": 720,
+              "FOV_Degrees": 90,
+              "Compress": true
+            }
+          ]
+        },
+        "1": {
+          "X": -6.0,
+          "Y": 0.0,
+          "Z": -2.0,
+          "Pitch": 0.0,
+          "Roll": 0.0,
+          "Yaw": 0.0,
+          "CaptureSettings": [
+            {
+              "ImageType": 0,
+              "Width": 1280,
+              "Height": 720,
+              "FOV_Degrees": 90,
+              "Compress": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Recording": {
+    "Enabled": false,
+    "RecordInterval": 0.05,
+    "RecordOnMove": false,
+    "Cameras": [
+      {
+        "CameraName": "0",
+        "ImageType": 0,
+        "PixelsAsFloat": false,
+        "VehicleName": "Drone1",
+        "Compress": true
+      },
+      {
+        "CameraName": "1",
+        "ImageType": 0,
+        "PixelsAsFloat": false,
+        "VehicleName": "Drone1",
+        "Compress": true
+      }
+    ]
+  }
+}

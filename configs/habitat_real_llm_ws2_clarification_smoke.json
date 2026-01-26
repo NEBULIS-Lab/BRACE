@@ -1,0 +1,87 @@
+{
+  "domain": "habitat",
+  "task": "PointNav",
+  "runner": "experiments/habitat/run_habitat_setup_real.py:v2",
+  "seed": 42,
+  "episodes": 10,
+  "num_agents": 1,
+  "executor": "oracle_shortest_path",
+  "max_steps": 60,
+  "replan_interval": 20,
+  "min_replan_cycles": 3,
+  "trigger_cooldown_steps": 0,
+  "use_env_triggers": false,
+  "slo_ms": 2500,
+  "clarification_budget_turns": 0,
+  "clarification_overhead_ms": 0.0,
+  "clarification_ms_per_token": 0.0,
+  "variants": [
+    {
+      "name": "oracle_cl0",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "oracle",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 0
+    },
+    {
+      "name": "oracle_cl1",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "oracle",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 1
+    },
+    {
+      "name": "oracle_cl2",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "oracle",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 2
+    },
+    {
+      "name": "coarsened_cl0",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "coarsened",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 0
+    },
+    {
+      "name": "coarsened_cl1",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "coarsened",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 1
+    },
+    {
+      "name": "coarsened_cl2",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "coarsened",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 2
+    }
+  ]
+}
+

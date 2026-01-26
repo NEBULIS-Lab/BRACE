@@ -1,0 +1,22 @@
+{
+  "domain": "habitat",
+  "runner": "brace_pointnav_runner",
+  "episodes": 2,
+  "max_steps": 80,
+  "replan_interval": 20,
+  "min_replans": 3,
+  "trigger_cooldown_steps": 0,
+  "slo_ms": 250,
+  "token_budget": 0,
+  "num_agents": 1,
+  "variants": [
+    {"name": "oracle_cl0", "instruction_style": "oracle", "clarification_budget_turns": 0, "brace_enabled": false, "pruning_enabled": false, "keep_ratio": 1.0},
+    {"name": "oracle_cl1", "instruction_style": "oracle", "clarification_budget_turns": 1, "brace_enabled": false, "pruning_enabled": false, "keep_ratio": 1.0},
+    {"name": "oracle_cl2", "instruction_style": "oracle", "clarification_budget_turns": 2, "brace_enabled": false, "pruning_enabled": false, "keep_ratio": 1.0},
+
+    {"name": "coarsened_cl0", "instruction_style": "coarsened", "clarification_budget_turns": 0, "brace_enabled": false, "pruning_enabled": false, "keep_ratio": 1.0},
+    {"name": "coarsened_cl1", "instruction_style": "coarsened", "clarification_budget_turns": 1, "brace_enabled": false, "pruning_enabled": false, "keep_ratio": 1.0},
+    {"name": "coarsened_cl2", "instruction_style": "coarsened", "clarification_budget_turns": 2, "brace_enabled": false, "pruning_enabled": false, "keep_ratio": 1.0}
+  ]
+}
+

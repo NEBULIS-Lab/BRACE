@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>BRACE — When Replanning Becomes the Bottleneck</title>
+    <meta name="description" content="BRACE: Budgeted Embodied Agent Replanning with auditable replanning logs, tail latency / SLO reporting, and multi-domain demos."/>
+
+    <!-- Reference style: UAV/HATTO-UFog (static Bulma website). We use CDN to keep this repo lightweight. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"/>
+    <link rel="stylesheet" href="./static/css/index.css"/>
+    <link rel="icon" href="./static/images/logo.svg"/>
+  </head>
+
+  <body>
+    <section class="hero brace-hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column is-narrow">
+              <img src="./static/images/logo.svg" alt="BRACE logo" width="84" height="84"/>
+            </div>
+            <div class="column">
+              <p class="brace-kicker">BRACE (ICML draft)</p>
+              <h1 class="title is-2" style="color: var(--brace-text);">
+                When Replanning Becomes the Bottleneck
+              </h1>
+              <p class="subtitle is-5" style="color: rgba(229,231,235,.92);">
+                Budgeted replanning as a systems control problem, with auditable logs, tail latency &amp; SLO reporting,
+                and multi-domain demos (Habitat, RoboFactory, AirSim) + VLA executor track (OpenMARL).
+              </p>
+
+              <div class="brace-badges">
+                <img src="https://img.shields.io/badge/Paper-ICML%202026-6366F1.svg" alt="Paper"/>
+                <img src="https://img.shields.io/badge/Demos-Video%20%2B%20Screenshots-FF6B35.svg" alt="Demos"/>
+                <img src="https://img.shields.io/badge/Schema-Auditable-22C55E.svg" alt="Schema"/>
+                <img src="https://img.shields.io/badge/PRs-Welcome-blue.svg" alt="PRs welcome"/>
+              </div>
+
+              <div class="buttons">
+                <a class="button is-link" href="../../BRACE-paper/icml2026/main.pdf">Paper PDF</a>
+                <a class="button is-light" href="../../BRACE-paper/icml2026/artifacts/INDEX.md">Artifacts index</a>
+                <a class="button is-light" href="../../BRACE-code/README.md">Code README</a>
+              </div>
+
+              <p style="color: rgba(229,231,235,.7); margin-top: 12px;">
+                Note: WS9 paper-scale (AirSim), WS10 π0 paper-scale, and ReconVLA n=500 are still running and are integrated as placeholders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns is-multiline">
+          <div class="column is-4">
+            <div class="brace-card p-5">
+              <p class="title is-5">Habitat (Domain A)</p>
+              <p class="subtitle is-6">Tail latency / SLO bottleneck (main evidence)</p>
+              <img class="brace-thumb" src="./static/images/habitat_demo_frame.png" alt="Habitat demo frame"/>
+              <div class="content mt-3">
+                <ul>
+                  <li>Main run: <code>20260125_142125__..._spnoise</code></li>
+                  <li>Demo: oracle visualization + frames</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-4">
+            <div class="brace-card p-5">
+              <p class="title is-5">RoboFactory (Domain B)</p>
+              <p class="subtitle is-6">Multi-agent coordination (deadlock/wait) + demos</p>
+              <img class="brace-thumb" src="./static/images/robofactory_demo_frame.png" alt="RoboFactory demo frame"/>
+              <div class="content mt-3">
+                <ul>
+                  <li>Main run: <code>20260125_191824__..._ws7</code></li>
+                  <li>VLA executor track: OpenVLA / DP (WS10)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-4">
+            <div class="brace-card p-5">
+              <p class="title is-5">AirSim (Domain C)</p>
+              <p class="subtitle is-6">High-frequency replanning in another domain (cinematic demos)</p>
+              <img class="brace-thumb" src="./static/images/airsim_demo_panel.png" alt="AirSim demo panel"/>
+              <div class="content mt-3">
+                <ul>
+                  <li>Placeholder run: <code>20260126_071938__..._v16</code></li>
+                  <li>Will be replaced by paper-scale WS9 result</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brace-footer">
+          <p class="title is-5" style="color: var(--brace-text);">Reproducibility</p>
+          <p>
+            See <code>docs/README.md</code> for the single consolidated guide (run commands, postprocessing, and asset rules).
+          </p>
+          <p class="mt-2">
+            This website is a lightweight, static template inspired by <code>UAV/HATTO-UFog/docs</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

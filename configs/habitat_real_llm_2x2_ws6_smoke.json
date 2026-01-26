@@ -1,0 +1,63 @@
+{
+  "domain": "habitat",
+  "task": "PointNav",
+  "runner": "experiments/habitat/run_habitat_setup_real.py:v2",
+  "seed": 42,
+  "episodes": 2,
+  "num_agents": 1,
+  "max_steps": 30,
+  "replan_interval": 20,
+  "min_replan_cycles": 3,
+  "trigger_cooldown_steps": 0,
+  "use_env_triggers": false,
+  "slo_ms": 2500,
+  "clarification_budget_turns": 0,
+  "brace_hparams": {
+    "slo_guard_ratio": 0.95,
+    "cooldown_steps": 0,
+    "partial_budget_ratio": 1.0,
+    "max_consecutive_defers": 0
+  },
+  "variants": [
+    {
+      "name": "nobrace_noprune",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0
+    },
+    {
+      "name": "nobrace_prune_r0.7",
+      "brace_enabled": false,
+      "pruning_enabled": true,
+      "keep_ratio": 0.7,
+      "context_strategy": "erecap",
+      "token_budget": 0
+    },
+    {
+      "name": "brace_noprune",
+      "brace_enabled": true,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 64
+    },
+    {
+      "name": "brace_prune_r0.7",
+      "brace_enabled": true,
+      "pruning_enabled": true,
+      "keep_ratio": 0.7,
+      "context_strategy": "erecap",
+      "token_budget": 64
+    },
+    {
+      "name": "nobrace_recency_B20",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "recency",
+      "token_budget": 20
+    }
+  ]
+}

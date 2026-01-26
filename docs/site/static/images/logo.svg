@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#22C55E"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="18" width="204" height="204" rx="36" fill="#0B1020"/>
+  <path d="M64 70c-18 14-28 31-28 50s10 36 28 50" fill="none" stroke="url(#g)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M176 70c18 14 28 31 28 50s-10 36-28 50" fill="none" stroke="url(#g)" stroke-width="14" stroke-linecap="round"/>
+  <text x="120" y="142" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="54" font-weight="700" fill="#E5E7EB">BRACE</text>
+</svg>
+

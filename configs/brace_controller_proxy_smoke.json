@@ -1,0 +1,41 @@
+{
+  "domain": "proxy",
+  "runner": "brace_controller_proxy_runner",
+  "episodes": 25,
+  "max_steps": 200,
+  "replan_interval": 10,
+  "trigger_cooldown_steps": 0,
+  "slo_ms": 250,
+  "token_budget": 800,
+  "ms_per_token": 0.3,
+  "overhead_ms": 5.0,
+  "random_seed": 0,
+  "dist_start": 1.0,
+  "dist_goal_threshold": 0.05,
+  "base_progress": 0.02,
+  "failure_prob": 0.05,
+  "progress_deadlock_epsilon": 0.005,
+  "sim_deadlock_window_steps": 12,
+  "env_step_ms": 50.0,
+  "max_frozen_steps": 250,
+  "tokens_protected": 200,
+  "tokens_base": 900,
+  "tokens_growth_per_step": 10,
+  "brace_hparams": {
+    "partial_budget_ratio": 0.6,
+    "slo_guard_ratio": 0.95,
+    "cooldown_steps": 3,
+    "min_commit_window": 2,
+    "deadlock_window": 3,
+    "progress_epsilon": 0.02,
+    "churn_threshold": 0.35,
+    "churn_ema_alpha": 0.2,
+    "max_consecutive_defers": 2
+  },
+  "variant_grid": {
+    "brace_enabled": [false, true],
+    "pruning_enabled": [false, true],
+    "keep_ratio": [0.7],
+    "token_budget": [800]
+  }
+}

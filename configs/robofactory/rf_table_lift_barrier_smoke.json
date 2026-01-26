@@ -1,0 +1,57 @@
+{
+  "domain": "robofactory",
+  "task": "LiftBarrier-table",
+  "task_text": "Two Panda arms must cooperatively grasp and lift the barrier on a table. Avoid deadlock and wasted waiting; replan periodically under budget.",
+  "cuda_visible_devices": "5",
+  "random_seed": 0,
+  "episodes": 10,
+  "max_steps": 60,
+  "max_history": 20,
+  "slo_ms": 20,
+  "token_budget": 450,
+  "clarification_budget_turns": 0,
+  "num_agents": 2,
+  "deadlock_window_steps": 40,
+  "stall_obs_delta_epsilon": 1e-6,
+  "replan_interval_steps": 10,
+  "trigger_cooldown_steps": 0,
+  "brace_hparams": {
+    "cooldown_steps": 0,
+    "min_commit_window": 0,
+    "partial_budget_ratio": 1.0,
+    "progress_epsilon": 0.02,
+    "deadlock_window": 5,
+    "slo_guard_ratio": 0.95
+  },
+  "robofactory": {
+    "repo_dir": "RoboFactory_workspace/RoboFactory",
+    "run_dir": "RoboFactory_workspace/RoboFactory__run",
+    "env_id": "LiftBarrier-rf",
+    "config_path": "RoboFactory_workspace/RoboFactory/robofactory/configs/table/lift_barrier.yaml",
+    "obs_mode": "state",
+    "control_mode": "pd_joint_pos",
+    "render_mode": "rgb_array",
+    "reward_mode": "dense",
+    "sim_backend": "cpu",
+    "shader": "default"
+  },
+  "variant_grid": {
+    "brace_enabled": [
+      false,
+      true
+    ],
+    "pruning_enabled": [
+      false,
+      true
+    ],
+    "keep_ratio": [
+      0.7
+    ],
+    "token_budget": [
+      450
+    ],
+    "replan_interval_steps": [
+      10
+    ]
+  }
+}

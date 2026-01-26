@@ -1,0 +1,17 @@
+{
+  "domain": "habitat",
+  "runner": "brace_pointnav_runner",
+  "episodes": 2,
+  "max_steps": 80,
+  "replan_interval": 20,
+  "min_replans": 3,
+  "slo_ms": 250,
+  "token_budget": 400,
+  "num_agents": 1,
+  "variants": [
+    {"name": "nobrace_noprune", "brace_enabled": false, "pruning_enabled": false, "keep_ratio": 1.0, "clarification_turns": 0},
+    {"name": "nobrace_prune", "brace_enabled": false, "pruning_enabled": true, "keep_ratio": 0.7, "clarification_turns": 0},
+    {"name": "brace_noprune", "brace_enabled": true, "pruning_enabled": false, "keep_ratio": 1.0, "clarification_turns": 0},
+    {"name": "brace_prune", "brace_enabled": true, "pruning_enabled": true, "keep_ratio": 0.7, "clarification_turns": 0}
+  ]
+}

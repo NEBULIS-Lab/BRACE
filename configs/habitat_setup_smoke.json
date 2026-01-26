@@ -1,0 +1,21 @@
+{
+  "domain": "habitat",
+  "runner": "habitat_setup.run_real_erecap_experiment",
+  "num_episodes": 1,
+  "num_agents": 4,
+  "max_steps": 60,
+  "replan_interval": 15,
+  "min_replan_cycles": 1,
+  "configs": [
+    {
+      "name": "baseline",
+      "keep_ratio": 1.0,
+      "use_pruning": false
+    },
+    {
+      "name": "erecap",
+      "keep_ratio": 0.7,
+      "use_pruning": true
+    }
+  ]
+}

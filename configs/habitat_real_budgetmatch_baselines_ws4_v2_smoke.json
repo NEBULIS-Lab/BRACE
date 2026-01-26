@@ -1,0 +1,40 @@
+{
+  "domain": "habitat",
+  "runner": "habitat_real_v2",
+  "seed": 0,
+  "episodes": 1,
+  "max_steps": 30,
+  "replan_interval_steps": 10,
+  "min_replan_cycles": 2,
+  "trigger_cooldown_steps": 0,
+  "num_agents": 1,
+  "slo_ms": 2500,
+  "token_budget": 256,
+  "keep_ratio": 0.7,
+  "variants": [
+    {
+      "name": "erecap__B256",
+      "pruning_enabled": true,
+      "context_strategy": "erecap",
+      "token_budget": 256,
+      "keep_ratio": 0.7
+    },
+    {
+      "name": "random__B256",
+      "pruning_enabled": false,
+      "context_strategy": "random",
+      "token_budget": 256,
+      "keep_ratio": 1.0
+    },
+    {
+      "name": "structured_summary__B256",
+      "pruning_enabled": false,
+      "context_strategy": "structured_summary",
+      "token_budget": 256,
+      "summary_head_tokens": 40,
+      "summary_tail_tokens": 80,
+      "keep_ratio": 1.0
+    }
+  ]
+}
+

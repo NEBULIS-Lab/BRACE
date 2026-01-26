@@ -1,0 +1,78 @@
+{
+  "domain": "proxy",
+  "runner": "brace_controller_proxy_runner",
+
+  "episodes": 50,
+  "max_steps": 200,
+  "replan_interval": 10,
+  "trigger_cooldown_steps": 0,
+
+  "slo_ms": 250,
+  "token_budget": 400,
+
+  "ms_per_token": 0.20,
+  "overhead_ms": 5.0,
+  "summary_overhead_ms": 15.0,
+
+  "random_seed": 0,
+
+  "dist_start": 1.6,
+  "dist_goal_threshold": 0.05,
+  "base_progress": 0.018,
+  "failure_prob": 0.05,
+  "progress_deadlock_epsilon": 0.005,
+  "sim_deadlock_window_steps": 12,
+  "env_step_ms": 150.0,
+  "max_frozen_steps": 250,
+
+  "tokens_protected": 200,
+  "tokens_base": 900,
+  "tokens_growth_per_step": 10,
+
+  "variants": [
+    {
+      "name": "none_fullctx",
+      "brace_enabled": false,
+      "context_compress_method": "none",
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "token_budget": 0
+    },
+
+    {
+      "name": "erecap_budget400",
+      "brace_enabled": false,
+      "context_compress_method": "erecap",
+      "pruning_enabled": true,
+      "keep_ratio": 0.9,
+      "token_budget": 400
+    },
+
+    {
+      "name": "random_budget400",
+      "brace_enabled": false,
+      "context_compress_method": "random",
+      "pruning_enabled": true,
+      "keep_ratio": 1.0,
+      "token_budget": 400
+    },
+
+    {
+      "name": "recency_budget400",
+      "brace_enabled": false,
+      "context_compress_method": "recency",
+      "pruning_enabled": true,
+      "keep_ratio": 1.0,
+      "token_budget": 400
+    },
+
+    {
+      "name": "structured_summary_budget400",
+      "brace_enabled": false,
+      "context_compress_method": "structured_summary",
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "token_budget": 400
+    }
+  ]
+}

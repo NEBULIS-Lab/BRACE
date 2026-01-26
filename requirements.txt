@@ -1,0 +1,9 @@
+numpy>=1.24
+pandas>=2.0
+tqdm>=4.66
+matplotlib>=3.8
+msgpack>=1.0
+msgpack-rpc-python>=0.4
+opencv-python>=4.9
+imageio-ffmpeg>=0.4
+

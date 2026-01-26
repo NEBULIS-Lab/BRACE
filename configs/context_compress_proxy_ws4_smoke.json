@@ -1,0 +1,43 @@
+{
+  "domain": "proxy",
+  "task": "context_compress_proxy",
+  "random_seed": 0,
+
+  "episodes": 30,
+  "max_steps": 180,
+  "replan_interval": 10,
+  "trigger_cooldown_steps": 0,
+
+  "dist_start": 1.0,
+  "dist_goal_threshold": 0.05,
+  "base_progress": 0.02,
+  "failure_prob": 0.03,
+
+  "slo_ms": 250,
+  "ms_per_token": 0.8,
+  "overhead_ms": 3.0,
+  "ms_per_compress_token": 0.0,
+  "ms_per_summary_token": 0.05,
+
+  "tokens_protected": 200,
+  "tokens_base": 800,
+  "tokens_growth_per_step": 8,
+
+  "tokens_task": 80,
+  "tokens_state": 60,
+  "tokens_safety": 40,
+  "tokens_coord": 20,
+
+  "report_budget": 400,
+  "report_target_success": 0.6,
+
+  "variant_grid": {
+    "compress_strategy": ["random", "recency", "structured_summary"],
+    "token_budget": [300, 400, 500],
+    "summary_head_tokens": [40],
+    "summary_tail_tokens": [80],
+    "summary_quality": [0.8],
+    "summary_efficiency": [3.0]
+  }
+}
+

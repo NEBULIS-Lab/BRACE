@@ -1,0 +1,56 @@
+:root{
+  --brace-bg:#0b1020;
+  --brace-card:#121a33;
+  --brace-text:#e5e7eb;
+  --brace-muted:#a5b4fc;
+}
+
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+.brace-hero{
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(99,102,241,.35), transparent 60%),
+              radial-gradient(900px 500px at 80% 30%, rgba(34,197,94,.25), transparent 60%),
+              var(--brace-bg);
+  color: var(--brace-text);
+}
+
+.brace-hero a{
+  color: var(--brace-text);
+}
+
+.brace-card{
+  background: var(--brace-card);
+  color: var(--brace-text);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+}
+
+.brace-card .title,
+.brace-card .subtitle{
+  color: var(--brace-text);
+}
+
+.brace-kicker{
+  color: var(--brace-muted);
+  font-weight: 600;
+}
+
+.brace-badges img{
+  height: 20px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+.brace-thumb{
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.brace-footer{
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 24px;
+  color: rgba(255,255,255,.75);
+}
+

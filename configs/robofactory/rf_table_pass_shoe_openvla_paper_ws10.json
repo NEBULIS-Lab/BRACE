@@ -1,0 +1,89 @@
+{
+  "domain": "robofactory",
+  "task": "PassShoe-table",
+  "task_text": "Two Panda arms must hand over a shoe and place it in a goal region. WS10 uses OpenMARL OpenVLA executor while still logging WS1 schema + phase=vla_policy_call.",
+  "policy": "openmarl_openvla",
+  "cuda_visible_devices": "auto",
+  "gpu_auto_max_mem_used_mb": 2048,
+  "gpu_auto_max_util_pct": 10,
+  "random_seed": 0,
+  "episodes": 10,
+  "max_steps": 0,
+  "hard_step_limit": 12000,
+  "max_history": 20,
+  "slo_ms": 250,
+  "simulate_planner_latency": false,
+  "token_budget": 450,
+  "clarification_budget_turns": 0,
+  "num_agents": 2,
+  "deadlock_window_steps": 80,
+  "stall_obs_delta_epsilon": 1e-6,
+  "wait_action_l2_epsilon": 0.01,
+  "replan_interval_steps": 10,
+  "trigger_cooldown_steps": 0,
+  "openmarl_checkpoint_tag": "best",
+  "openmarl_device": "cuda:0",
+  "openmarl_topp_dt": 0.05,
+  "openmarl_topp_subsample": 10,
+  "openmarl_no_topp": false,
+  "robofactory": {
+    "repo_dir": "RoboFactory_workspace/OpenMARL",
+    "run_dir": "RoboFactory_workspace/OpenMARL__run",
+    "env_id": "PassShoe-rf",
+    "config_path": "RoboFactory_workspace/OpenMARL/robofactory/configs/table/pass_shoe.yaml",
+    "obs_mode": "rgb",
+    "control_mode": "pd_joint_pos",
+    "render_mode": "rgb_array",
+    "reward_mode": "dense",
+    "sim_backend": "cpu",
+    "shader": "default"
+  },
+  "variants": [
+    {
+      "name": "baseline_nobrace_recency__int10__B450",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "context_compress_method": "recency",
+      "keep_ratio": 1.0,
+      "token_budget": 450,
+      "replan_interval_steps": 10
+    },
+    {
+      "name": "nobrace_none__int10__B450",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "context_compress_method": "none",
+      "keep_ratio": 1.0,
+      "token_budget": 450,
+      "replan_interval_steps": 10
+    },
+    {
+      "name": "nobrace_erecap_r0.7__int10__B450",
+      "brace_enabled": false,
+      "pruning_enabled": true,
+      "context_compress_method": "erecap",
+      "keep_ratio": 0.7,
+      "token_budget": 450,
+      "replan_interval_steps": 10
+    },
+    {
+      "name": "brace_none__int10__B450",
+      "brace_enabled": true,
+      "pruning_enabled": false,
+      "context_compress_method": "none",
+      "keep_ratio": 1.0,
+      "token_budget": 450,
+      "replan_interval_steps": 10
+    },
+    {
+      "name": "brace_erecap_r0.7__int10__B450",
+      "brace_enabled": true,
+      "pruning_enabled": true,
+      "context_compress_method": "erecap",
+      "keep_ratio": 0.7,
+      "token_budget": 450,
+      "replan_interval_steps": 10
+    }
+  ]
+}
+

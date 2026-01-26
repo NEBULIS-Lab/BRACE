@@ -1,0 +1,46 @@
+{
+  "domain": "habitat",
+  "runner": "brace_pointnav_runner",
+  "random_seed": 0,
+  "episodes": 2,
+  "max_steps": 80,
+  "replan_interval": 20,
+  "min_replans": 3,
+  "trigger_cooldown_steps": 0,
+  "slo_ms": 250,
+  "token_budget": 60,
+  "num_agents": 1,
+  "instruction_style": "coarsened",
+  "clarification_turns": 0,
+  "ambiguity_type": "goal",
+  "success_distance_m": 0.2,
+  "variants": [
+    {
+      "name": "baseline_random__B60",
+      "brace_enabled": false,
+      "pruning_enabled": true,
+      "keep_ratio": 1.0,
+      "compress_strategy": "random",
+      "token_budget": 60
+    },
+    {
+      "name": "baseline_recency__B60",
+      "brace_enabled": false,
+      "pruning_enabled": true,
+      "keep_ratio": 1.0,
+      "compress_strategy": "recency",
+      "token_budget": 60
+    },
+    {
+      "name": "baseline_structsum__B60",
+      "brace_enabled": false,
+      "pruning_enabled": true,
+      "keep_ratio": 1.0,
+      "compress_strategy": "structured_summary",
+      "summary_head_tokens": 12,
+      "summary_tail_tokens": 12,
+      "token_budget": 60
+    }
+  ]
+}
+

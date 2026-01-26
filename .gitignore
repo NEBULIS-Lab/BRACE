@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs / temp
+*.log
+*.tmp
+*.swp
+
+# Large artifacts (never commit)
+runs/
+artifacts/
+icml2026/artifacts/
+*.mp4
+*.webm
+*.gif
+*.webp
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# Model weights / caches
+assets/models/**
+!assets/models/.gitkeep
+**/*.ckpt
+**/*.safetensors
+**/*.bin
+**/*.pt
+**/*.pth
+
+# Datasets (keep checklists, not data)
+assets/datasets/**
+!assets/datasets/**/
+!assets/datasets/**/*.md
+!assets/datasets/**/*.txt
+!assets/datasets/**/*.json
+!assets/datasets/**/*.yml
+!assets/datasets/**/*.yaml
+!assets/datasets/.gitkeep
+
+# TeX build (paper lives elsewhere, but keep repo clean)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz

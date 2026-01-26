@@ -1,0 +1,76 @@
+{
+  "domain": "habitat",
+  "task": "PointNav",
+  "runner": "experiments/habitat/run_habitat_setup_real.py:v2",
+  "seed": 42,
+  "episodes": 10,
+  "num_agents": 1,
+  "max_steps": 160,
+  "replan_interval": 20,
+  "min_replan_cycles": 3,
+  "trigger_cooldown_steps": 0,
+  "use_env_triggers": false,
+  "slo_ms": 2500,
+  "executor": "shortest_path_noise",
+  "sp_noise_prob": 0.1,
+  "clarification_overhead_ms": 300.0,
+  "clarification_ms_per_token": 10.0,
+  "variants": [
+    {
+      "name": "oracle_0turn",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "oracle",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 0
+    },
+    {
+      "name": "coarsened_goal_0turn",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "coarsened",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 0
+    },
+    {
+      "name": "coarsened_goal_2turn",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "coarsened",
+      "ambiguity_type": "goal",
+      "clarification_budget_turns": 2
+    },
+    {
+      "name": "coarsened_process_2turn",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "coarsened",
+      "ambiguity_type": "process",
+      "clarification_budget_turns": 2
+    },
+    {
+      "name": "coarsened_success_2turn",
+      "brace_enabled": false,
+      "pruning_enabled": false,
+      "keep_ratio": 1.0,
+      "context_strategy": "none",
+      "token_budget": 0,
+      "instruction_style": "coarsened",
+      "ambiguity_type": "success",
+      "clarification_budget_turns": 2
+    }
+  ]
+}
+

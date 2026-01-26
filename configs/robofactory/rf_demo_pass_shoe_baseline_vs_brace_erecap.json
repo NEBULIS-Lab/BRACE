@@ -1,0 +1,69 @@
+{
+  "domain": "robofactory",
+  "task": "PassShoe-table-demo",
+  "task_text": "Demo: baseline vs BRACE+E-RECAP under identical seed and replanning schedule. Uses a strict per-episode time budget to visualize timeout-induced failures.",
+  "policy": "motion_planning",
+  "cuda_visible_devices": "5",
+  "random_seed": 0,
+  "episodes": 1,
+  "max_steps": 0,
+  "hard_step_limit": 1200,
+  "max_history": 20,
+  "replan_interval_steps": 10,
+  "trigger_cooldown_steps": 0,
+  "slo_ms": 250,
+  "episode_time_budget_ms": 6500,
+  "simulate_planner_latency": true,
+  "ms_per_token": 1.0,
+  "overhead_ms": 10.0,
+  "tail_lognorm_sigma": 0.25,
+  "token_budget": 450,
+  "clarification_budget_turns": 0,
+  "num_agents": 2,
+  "deadlock_window_steps": 80,
+  "stall_obs_delta_epsilon": 1e-6,
+  "wait_action_l2_epsilon": 0.01,
+  "suppress_policy_stdout": true,
+  "record_video": true,
+  "video_fps": 30,
+  "brace_hparams": {
+    "cooldown_steps": 0,
+    "min_commit_window": 0,
+    "partial_budget_ratio": 1.0,
+    "progress_epsilon": 0.02,
+    "deadlock_window": 10,
+    "slo_guard_ratio": 0.95,
+    "max_consecutive_defers": 0
+  },
+  "robofactory": {
+    "repo_dir": "RoboFactory_workspace/RoboFactory",
+    "run_dir": "RoboFactory_workspace/RoboFactory__run",
+    "env_id": "PassShoe-rf",
+    "config_path": "RoboFactory_workspace/RoboFactory/robofactory/configs/table/pass_shoe.yaml",
+    "obs_mode": "state",
+    "control_mode": "pd_joint_pos",
+    "render_mode": "rgb_array",
+    "reward_mode": "dense",
+    "sim_backend": "cpu",
+    "shader": "default"
+  },
+  "variants": [
+    {
+      "name": "baseline_nobrace_none",
+      "brace_enabled": false,
+      "context_compress_method": "none",
+      "keep_ratio": 1.0,
+      "token_budget": 450,
+      "replan_interval_steps": 10
+    },
+    {
+      "name": "method_brace_erecap_r0.7",
+      "brace_enabled": true,
+      "context_compress_method": "erecap",
+      "keep_ratio": 0.7,
+      "token_budget": 450,
+      "replan_interval_steps": 10
+    }
+  ]
+}
+
