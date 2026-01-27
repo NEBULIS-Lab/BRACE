@@ -1,7 +1,7 @@
 <div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/static/images/logo_dark.png">
-    <img src="docs/static/images/logo.png" alt="BRACE logo" width="120">
+    <img src="docs/static/images/logo.png" alt="BRACE logo" width="280">
   </picture>
   <h1>When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</h1>
 </div>
