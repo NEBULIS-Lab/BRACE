@@ -35,12 +35,12 @@ python analysis/budget_match_table.py runs/<run_id> --write_tables
 
 ## Domain tables (per-domain)
 
-- Domain B (RoboFactory/RoboCasa):
+- RoboFactory/RoboCasa:
 ```bash
 python analysis/domainb_table.py runs/<run_id> --write_tables
 ```
 
-- Domain C (AirSim):
+- Microsoft AirSim:
 ```bash
 python analysis/domainc_table.py runs/<run_id> --write_tables
 ```

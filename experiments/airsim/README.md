@@ -1,14 +1,14 @@
-# Domain C: AirSim (Vehicles / Drones)
+# AirSim (Vehicles / Drones)
 
-This folder contains the **Domain C** runner for AirSim-based vehicle/drone tasks.
+This folder contains the runner for Microsoft AirSim-based vehicle/drone tasks.
 
 ## Requirements (not shipped in this repo)
 
-- AirSim UE binary environments on your machine
+- Microsoft AirSim UE binary environments on your machine
 - Python deps installed (see repo `requirements.txt`)
 
 Recommended env vars:
-- `BRACE_AIRSIM_ENVS_ROOT`: root folder that contains your AirSim UE environments
+- `BRACE_AIRSIM_ENVS_ROOT`: root folder that contains your Microsoft AirSim UE environments
 
 ## Run
 
@@ -24,4 +24,3 @@ You can switch to curated configs under `configs/experiments/` for showcase/abla
 
 - Run logs: `runs/<run_id>/{run.json,events.jsonl,episode_metrics.jsonl}`
 - Demo media (if enabled by config): `artifacts/demos/airsim/<run_id>/`
-

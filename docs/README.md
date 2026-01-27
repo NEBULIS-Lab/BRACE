@@ -39,8 +39,8 @@ scripts/smoke_local.sh
 - `BRACE_MODELS_ROOT`: LLM/VLM weights root
 - `BRACE_DATA_ROOT`: optional general data root
 - `BRACE_ROBOFACTORY_DATA_ROOT`: RoboFactory/OpenMARL runtime data root (checkpoints, caches)
-- `BRACE_AIRSIM_ENVS_ROOT`: AirSim UE binaries root
-- `BRACE_HABITAT_PY`: python executable for your Habitat env (only needed for the Habitat wrapper runner)
+- `BRACE_AIRSIM_ENVS_ROOT`: Microsoft AirSim UE binaries root
+- `BRACE_HABITAT_PY`: python executable for your Meta AI Habitat env (only needed for the Habitat wrapper runner)
 
 ---
 
@@ -69,7 +69,7 @@ E-RECAP code is vendored under `e-recap/`, but uses project-wide deps + checkpoi
 
 ### Habitat (navigation)
 
-Requires your own `habitat-setup/` checkout + a working Habitat env.
+Requires your own `habitat-setup/` checkout + a working Meta AI Habitat env (Habitat-Lab/Habitat-Sim).
 
 ```bash
 scripts/run_habitat.sh --config configs/smoke/habitat_setup.json --run-name habitat_smoke
@@ -89,7 +89,7 @@ scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json 
 
 ### AirSim (vehicles / drones)
 
-Requires local AirSim UE binaries and `BRACE_AIRSIM_ENVS_ROOT` set.
+Requires local Microsoft AirSim UE binaries and `BRACE_AIRSIM_ENVS_ROOT` set.
 
 ```bash
 export BRACE_AIRSIM_ENVS_ROOT=/path/to/AirSim/envs

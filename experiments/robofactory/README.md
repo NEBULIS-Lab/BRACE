@@ -1,6 +1,6 @@
-# Domain B: RoboFactory
+# RoboFactory
 
-This folder contains the **Domain B** runner for RoboFactory tasks.
+This folder contains the runner for RoboFactory tasks.
 
 ## Requirements (not shipped in this repo)
 
