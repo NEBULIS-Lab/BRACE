@@ -253,7 +253,7 @@ body {
 }
 
 .publication-logo {
-    max-height: 85px;
+    max-height: 110px;
     width: auto;
     flex-shrink: 0;
     margin-right: 0;
@@ -551,6 +551,17 @@ code {
 }
 
 /* BibTeX Section Improvements */
+.bibtex-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.bibtex-container pre {
+  width: 100%;
+  margin: 0;
+  padding: 1rem !important; /* reduce visual narrowing vs body text */
+}
+
 .bibtex-header {
   display: flex;
   justify-content: space-between;
@@ -771,6 +782,10 @@ code {
 @media screen and (max-width: 768px) {
   .hero-body {
     padding: 2rem 1rem;
+  }
+
+  .publication-logo {
+    max-height: 80px;
   }
   
   .publication-header .hero-body {
