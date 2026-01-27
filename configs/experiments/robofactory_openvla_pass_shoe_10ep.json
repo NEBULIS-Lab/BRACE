@@ -27,10 +27,10 @@
   "openmarl_topp_subsample": 10,
   "openmarl_no_topp": false,
   "robofactory": {
-    "repo_dir": "RoboFactory_workspace/OpenMARL",
+    "repo_dir": "third_party/openmarl",
     "run_dir": "RoboFactory_workspace/OpenMARL__run",
     "env_id": "PassShoe-rf",
-    "config_path": "RoboFactory_workspace/OpenMARL/robofactory/configs/table/pass_shoe.yaml",
+    "config_path": "third_party/openmarl/robofactory/configs/table/pass_shoe.yaml",
     "obs_mode": "rgb",
     "control_mode": "pd_joint_pos",
     "render_mode": "rgb_array",
@@ -86,4 +86,3 @@
     }
   ]
 }
-

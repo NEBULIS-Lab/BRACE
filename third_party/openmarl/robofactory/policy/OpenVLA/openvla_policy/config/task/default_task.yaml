@@ -1,0 +1,6 @@
+name: default_task
+
+dataset:
+  rlds_path: "data/rlds_data/task_name"
+  _target_: openvla_policy.dataset.robot_rlds_dataset.RobotRLDSDataset
+

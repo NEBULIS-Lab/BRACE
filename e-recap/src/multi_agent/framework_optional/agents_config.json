@@ -57,5 +57,5 @@
       "backstory": "You are a DevOps Engineer specializing in Kubernetes, Docker, and automated deployment pipelines."
     }
   ],
-  "default_model_path": "/data/shared/user2/models/Mistral-7B-Instruct-v0.3"
+  "default_model_path": "Mistral-7B-Instruct-v0.3"
 }

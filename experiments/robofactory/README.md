@@ -4,11 +4,14 @@ This folder contains the **Domain B** runner for RoboFactory tasks.
 
 ## Requirements (not shipped in this repo)
 
-- A working RoboFactory installation/workspace (env + assets)
+- RoboFactory runtime deps + assets (simulator + scenes)
 - Python deps installed (see repo `requirements.txt`)
 
 Recommended env vars:
-- `BRACE_ROBOFACTORY_DATA_ROOT`: where RoboFactory/OpenMARL assets/checkpoints/caches live (machine-specific)
+- `BRACE_ROBOFACTORY_DATA_ROOT`: where RoboFactory/OpenMARL checkpoints/caches live (machine-specific)
+
+Notes:
+- OpenMARL policy code used by the VLA track is vendored under `third_party/openmarl/` (no separate OpenMARL checkout needed).
 
 ## Run
 
@@ -24,4 +27,3 @@ You can switch to curated configs under `configs/experiments/` for demos/ablatio
 
 - Run logs: `runs/<run_id>/{run.json,events.jsonl,episode_metrics.jsonl}`
 - Aggregate tables: `scripts/postprocess_run.sh runs/<run_id>` (writes to `artifacts/tables/`, git-ignored)
-

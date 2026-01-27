@@ -1,0 +1,87 @@
+# Configuration template for new VLA policies
+# Copy this file and modify for your policy
+
+defaults:
+  - _self_
+
+# Hydra target for workspace instantiation
+_target_: robofactory.policy.templates.new_policy.workspace.NewPolicyWorkspace
+
+# Experiment name for checkpointing and logging
+exp_name: new_policy
+
+# Agent configuration (for multi-agent tasks)
+agent_id: ${agent_id:0}
+
+# Task configuration
+task:
+  name: ${task_name:LiftBarrier-rf}
+  data_dir: data/lerobot_data/${task.name}_Agent${agent_id}_${data_num:50}
+
+# Model configuration
+model:
+  image_size: 224
+  state_dim: 8
+  action_dim: 8
+  hidden_dim: 256
+
+# Training configuration
+training:
+  seed: 42
+  num_epochs: 100
+  resume: true
+  
+  # Optimizer
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-6
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_eps: 1.0e-8
+  
+  # Scheduler
+  use_scheduler: true
+  min_learning_rate: 1.0e-6
+  
+  # Gradient settings
+  max_grad_norm: 1.0
+  gradient_accumulate_every: 1
+  
+  # Checkpointing
+  checkpoint_every: 10
+  val_every: 1
+
+# Dataloader configuration
+dataloader:
+  batch_size: 32
+  num_workers: 8
+  pin_memory: true
+  prefetch_factor: 2
+  persistent_workers: true
+
+# Validation dataloader
+val_dataloader:
+  batch_size: ${dataloader.batch_size}
+  num_workers: ${dataloader.num_workers}
+  pin_memory: ${dataloader.pin_memory}
+
+# Logging configuration
+logging:
+  wandb_enabled: true
+  project: openmarl
+  name: ${exp_name}_${task.name}_Agent${agent_id}
+  mode: online
+  tags:
+    - ${exp_name}
+    - ${task.name}
+  log_every_n_steps: 20
+  log_images_every: 500
+  print_freq: 100
+
+# Hydra output configuration
+hydra:
+  run:
+    dir: outputs/${exp_name}/${task.name}_Agent${agent_id}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: outputs/${exp_name}/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${task.name}_Agent${agent_id}
+

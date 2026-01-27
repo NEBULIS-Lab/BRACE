@@ -1,0 +1,114 @@
+# OpenVLA policy configuration
+# Inherits from: robofactory/policy/core/config/base_training.yaml
+# Inherits from: robofactory/policy/core/config/base_logging.yaml
+
+defaults:
+  - _self_
+  - task: default_task
+
+name: openvla_${task.name}
+_target_: openvla_policy.workspace.openvla_workspace.OpenVLAWorkspace
+
+task_name: ${task.name}
+exp_name: "openvla"
+agent_id: 0  # Override via command line: agent_id=0, agent_id=1, etc.
+
+# Model configuration
+model:
+  model_name: "openvla/openvla-7b"
+  use_lora: True
+  lora_rank: 32
+  lora_alpha: 64
+  lora_dropout: 0.0
+  torch_dtype: "bfloat16"
+  image_size: 224
+  action_dim: 8
+  # Multi-view configuration (3 camera views)
+  use_multi_view: True
+  num_images: 3
+  image_views: ["primary", "secondary", "wrist"]  # head_cam, global_cam, wrist_cam
+  multi_view_fusion: "concatenate"  # 'concatenate' horizontally then resize
+
+# Training configuration
+training:
+  device: "cuda:0"
+  seed: 42
+  num_epochs: 30
+  learning_rate: 5.0e-4
+  min_learning_rate: 1.0e-6
+  weight_decay: 1.0e-6
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_eps: 1.0e-8
+  max_grad_norm: 1.0
+  gradient_accumulate_every: 1
+  use_scheduler: True
+  
+  # Image augmentation
+  image_aug: True
+  augment_crop_ratio: 0.9
+  
+  # Validation
+  val_split: 0.1
+  val_every: 5                        # Validate every 5 epochs
+  
+  # Checkpointing
+  checkpoint_every: 5                # Checkpoint every 10 epochs
+  resume: True
+  
+  # Early stopping
+  early_stopping: False
+  early_stopping_patience: 20         # Wait 20 epochs before stopping
+  early_stopping_min_delta: 1e-7
+  
+  # Simulation evaluation
+  eval_in_sim: False
+  eval_sim_every_n_epochs: 10         # Run sim eval every 10 epochs
+  eval_sim_episodes: 4               # More episodes for reliable metrics
+  eval_sim_num_envs: 4
+  eval_sim_max_steps: 200             # Longer episodes
+  
+  # Debug mode (disabled for production)
+  debug: True
+  max_train_steps: null
+  max_val_steps: null
+
+# Dataloader configuration
+dataloader:
+  batch_size: 8
+  num_workers: 0  # Set to 0 to avoid Docker shared memory issues
+  shuffle: True
+  pin_memory: True
+
+val_dataloader:
+  batch_size: 8
+  num_workers: 0  # Set to 0 to avoid Docker shared memory issues
+  shuffle: False
+  pin_memory: True
+
+# Logging configuration
+logging:
+  project: "openmarl-train"
+  mode: "online"
+  name: "${task_name}_${exp_name}_Agent${agent_id}"
+  tags: ["${name}", "${task_name}", "${exp_name}", "Agent${agent_id}"]
+  
+  # Step-level logging
+  log_every_n_steps: 20               # Log to wandb every N steps
+  log_gradients: True                 # Log gradient norms
+  log_learning_rate: True             # Log learning rate
+  log_images: True                    # Log sample observations
+  log_images_every_n_epochs: 1        # Log input images every N epochs (multi-view visualization)
+  log_action_predictions: True        # Log predicted vs GT actions
+  log_eval_video: False               # Log evaluation rollout videos
+
+# Hydra configuration
+hydra:
+  job:
+    override_dirname: ${name}
+  run:
+    dir: robofactory/checkpoints/openvla/${task.name}_Agent${agent_id}
+  sweep:
+    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}
+    subdir: ${hydra.job.num}
+

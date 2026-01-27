@@ -1,0 +1,48 @@
+# Base training configuration for VLA policies
+# This file defines common training parameters that all policies should use
+# Policy-specific configs should use Hydra defaults to inherit from this
+
+# Training hyperparameters
+training:
+  # Basic settings
+  seed: 42
+  num_epochs: 100
+  resume: true  # Resume from latest checkpoint if available
+  
+  # Optimizer settings (AdamW)
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-6
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_eps: 1.0e-8
+  
+  # Learning rate scheduling
+  use_scheduler: true
+  min_learning_rate: 1.0e-6
+  
+  # Gradient settings
+  max_grad_norm: 1.0  # Set to 0 to disable gradient clipping
+  gradient_accumulate_every: 1
+  
+  # Checkpointing
+  checkpoint_every: 10  # Save checkpoint every N epochs
+  val_every: 1  # Run validation every N epochs
+  
+  # Mixed precision
+  use_amp: false  # Automatic mixed precision
+  precision: "fp32"  # fp32, fp16, bf16
+
+# Dataloader configuration
+dataloader:
+  batch_size: 32
+  num_workers: 8
+  pin_memory: true
+  prefetch_factor: 2
+  persistent_workers: true
+
+# Validation dataloader (can override specific settings)
+val_dataloader:
+  batch_size: ${dataloader.batch_size}
+  num_workers: ${dataloader.num_workers}
+  pin_memory: ${dataloader.pin_memory}
+

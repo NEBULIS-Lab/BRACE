@@ -6,9 +6,9 @@
   <h1>When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</h1>
 </div>
 
-<a href="docs/"><img src="https://img.shields.io/badge/-Paper%20PDF-7C3AED.svg" alt="Paper PDF"></a>
-<a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/-Website-0EA5E9.svg" alt="Website"></a>
-<a href="https://drive.google.com/drive/folders/11ONHDWuz-Es9sc9vvv5rQYVdMQgrBikl?usp=sharing"><img src="https://img.shields.io/badge/-Demos%20(Drive)-F97316.svg" alt="Demos (Drive)"></a>
+<a href="docs/"><img src="https://img.shields.io/badge/Paper-PDF-7C3AED.svg" alt="Paper"></a>
+<a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Docs-0EA5E9.svg" alt="Website"></a>
+<a href="https://drive.google.com/drive/folders/11ONHDWuz-Es9sc9vvv5rQYVdMQgrBikl?usp=sharing"><img src="https://img.shields.io/badge/Demos-Google%20Drive-F97316.svg" alt="Demos"></a>
 <a href="https://www.deepspeed.ai/"><img alt="DeepSpeed" src="https://img.shields.io/badge/DeepSpeed-0A66FF?logo=microsoft&logoColor=white"></a>
 <a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/-AirSim-22C55E.svg" alt="AirSim"></a>
 <a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/-Habitat-EF4444.svg" alt="Habitat"></a>

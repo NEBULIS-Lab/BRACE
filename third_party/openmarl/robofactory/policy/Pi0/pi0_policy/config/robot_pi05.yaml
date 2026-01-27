@@ -1,0 +1,98 @@
+# Pi0.5 policy configuration
+# Inherits from: robofactory/policy/core/config/base_training.yaml
+# Inherits from: robofactory/policy/core/config/base_logging.yaml
+
+defaults:
+  - _self_
+  - task: default_task
+
+name: pi05_${task.name}
+_target_: pi0_policy.workspace.pi0_workspace.Pi0Workspace
+
+task_name: ${task.name}
+exp_name: "pi05"
+agent_id: 0  # Override via command line: agent_id=0, agent_id=1, etc.
+
+# Model configuration for Pi0.5 (following openpi's Pi0Config with pi05=True)
+model:
+  model_variant: "pi05"  # Key difference from pi0
+  
+  # Model architecture (from openpi.models.pi0_config.Pi0Config)
+  paligemma_variant: "gemma_2b"
+  action_expert_variant: "gemma_300m"
+  action_dim: 8
+  action_horizon: 50
+  max_token_len: 200  # Pi0.5 uses 200 tokens (vs 48 for Pi0)
+  
+  # Pretrained checkpoint for Pi0.5 (from openpi)
+  pretrained_checkpoint: "gs://openpi-assets/checkpoints/pi05_base"
+  
+  # Precision (following openpi)
+  dtype: "bfloat16"
+  pytorch_training_precision: "bfloat16"  # or "float32" for higher precision
+  
+  # Memory optimization
+  use_gradient_checkpointing: true
+  
+  # Pi0.5 specifics:
+  # - Uses discrete state input (tokenized as part of language, not continuous embedding)
+  # - Uses adaRMSNorm for timestep injection (instead of MLP)
+  use_flow_matching: true
+
+# Training configuration (following openpi's train_pytorch.py)
+training:
+  device: "cuda:0"
+  seed: 42
+  num_epochs: 30
+  
+  # Optimizer (openpi defaults)
+  learning_rate: 5.0e-4
+  min_learning_rate: 1.0e-6
+  weight_decay: 1.0e-6
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_eps: 1.0e-8
+  max_grad_norm: 1.0
+  gradient_accumulate_every: 1
+  use_scheduler: true
+  
+  # Validation
+  val_split: 0.1
+  val_every: 5
+  
+  # Checkpointing (following openpi pattern)
+  checkpoint_every: 5
+  save_interval: 5000  # Save every N steps (openpi convention)
+  resume: true
+
+# Dataloader configuration
+dataloader:
+  batch_size: 32
+  num_workers: 0  # Set to 0 to avoid shared memory issues in Docker
+  shuffle: true
+  pin_memory: true
+
+val_dataloader:
+  batch_size: 32
+  num_workers: 0  # Set to 0 to avoid shared memory issues in Docker
+  shuffle: false
+  pin_memory: true
+
+# Logging configuration (following openpi's train_pytorch.py)
+logging:
+  project: "openmarl-train"
+  mode: "online"  # "online", "offline", or "disabled"
+  name: "${task_name}_${exp_name}_Agent${agent_id}"
+  tags: ["pi05", "${task_name}", "Agent${agent_id}"]
+  log_every_n_steps: 20
+  wandb_enabled: true
+
+# Hydra configuration
+hydra:
+  job:
+    override_dirname: ${name}
+  run:
+    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}
+  sweep:
+    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}
+    subdir: ${hydra.job.num}

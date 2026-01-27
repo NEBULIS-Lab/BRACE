@@ -38,7 +38,7 @@ scripts/smoke_local.sh
 
 - `BRACE_MODELS_ROOT`: LLM/VLM weights root
 - `BRACE_DATA_ROOT`: optional general data root
-- `BRACE_ROBOFACTORY_DATA_ROOT`: RoboFactory/OpenMARL data root (checkpoints, caches)
+- `BRACE_ROBOFACTORY_DATA_ROOT`: RoboFactory/OpenMARL runtime data root (checkpoints, caches)
 - `BRACE_AIRSIM_ENVS_ROOT`: AirSim UE binaries root
 - `BRACE_HABITAT_PY`: python executable for your Habitat env (only needed for the Habitat wrapper runner)
 
@@ -77,7 +77,11 @@ scripts/run_habitat.sh --config configs/smoke/habitat_setup.json --run-name habi
 
 ### RoboFactory (manipulation / multi-agent)
 
-Requires your own RoboFactory workspace + assets; see `configs/smoke/` / `configs/experiments/` for expected knobs.
+Requires RoboFactory runtime deps + assets.
+
+Notes:
+- OpenMARL policy code used by the VLA track is vendored under `third_party/openmarl/` (no separate OpenMARL checkout needed).
+- Checkpoints/caches still live outside git (see `BRACE_ROBOFACTORY_DATA_ROOT` and `robofactory.run_dir` in configs).
 
 ```bash
 scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name rf_smoke

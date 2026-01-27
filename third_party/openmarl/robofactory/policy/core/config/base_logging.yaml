@@ -1,0 +1,29 @@
+# Base logging configuration for VLA policies
+# This file defines common logging parameters for all policies
+# Policy-specific configs should use Hydra defaults to inherit from this
+
+# Logging settings
+logging:
+  # WandB settings
+  wandb_enabled: true
+  project: "openmarl"  # WandB project name (override per experiment)
+  name: null  # Run name (auto-generated if null)
+  mode: "online"  # online, offline, disabled
+  tags: []  # List of tags for the run
+  
+  # Logging frequency
+  log_every_n_steps: 20  # Log training metrics every N steps
+  log_images_every: 500  # Log sample images every N steps
+  
+  # Console output
+  print_freq: 100  # Print to console every N steps
+  
+  # Video logging (for simulation evaluation)
+  log_video: true
+  video_fps: 10
+
+# Output directory configuration (usually set by Hydra)
+output:
+  dir: ${hydra:runtime.output_dir}
+  checkpoint_subdir: "checkpoints"
+

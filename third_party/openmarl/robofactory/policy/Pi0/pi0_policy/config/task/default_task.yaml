@@ -1,0 +1,12 @@
+# Default task configuration for Pi0/Pi0.5 policies
+
+name: ???  # Will be overridden by command line
+
+# Dataset configuration
+dataset:
+  # LeRobot repo path (following openpi convention)
+  lerobot_path: "data/lerobot_data/${name}_Agent${agent_id}_150"
+  
+  # Action chunking (Pi0 default)
+  action_horizon: 50
+
