@@ -8,7 +8,7 @@
 
 <a href="docs/"><img src="https://img.shields.io/badge/Paper-PDF-7C3AED.svg" alt="Paper"></a>
 <a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Page%20URL-0EA5E9.svg" alt="Website"></a>
-<a href="https://drive.google.com/drive/folders/11ONHDWuz-Es9sc9vvv5rQYVdMQgrBikl?usp=sharing"><img src="https://img.shields.io/badge/Demos-Google%20Drive-F97316.svg" alt="Demos"></a>
+<a href="https://drive.google.com/drive/folders/1Aafo36p2JB8cCeWyG9-QRmEWrssk4kXM?usp=sharing"><img src="https://img.shields.io/badge/Demos-Google%20Drive-F97316.svg" alt="Demos"></a>
 <a href="https://www.deepspeed.ai/"><img alt="DeepSpeed" src="https://img.shields.io/badge/DeepSpeed-0A66FF?logo=microsoft&logoColor=white"></a>
 <a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/AirSim-Microsoft-16A34A.svg" alt="Microsoft AirSim"></a>
 <a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/Habitat-Meta-DC2626.svg" alt="Meta Habitat"></a>
@@ -20,9 +20,17 @@ BRACE treats **high-frequency replanning** as a **systems bottleneck** for embod
 
 ## Showcases (short video loops)
 
-| Meta AI Habitat (tail/SLO) | RoboFactory (coordination) | Microsoft AirSim (cinematic) |
-|---|---|---|
-| ![](docs/static/images/habitat_compare.gif) | ![](docs/static/images/robofactory_compare.gif) | ![](docs/static/images/airsim_compare.gif) |
+**Microsoft AirSim (cinematic)**
+
+<img src="docs/static/images/airsim_compare.gif" width="860" />
+
+**Meta AI Habitat (tail/SLO)**
+
+<img src="docs/static/images/habitat_compare.gif" width="860" />
+
+**RoboFactory (coordination)**
+
+<img src="docs/static/images/robofactory_compare.gif" width="860" />
 
 ### What are these 3 demos (tasks)?
 
