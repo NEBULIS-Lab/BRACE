@@ -49,7 +49,7 @@ python analysis/domainc_table.py runs/<run_id> --write_tables
 
 If you have table JSONs (e.g., `*__agg__*.json`) and want a quick numeric sanity check across comparisons:
 
-1) Edit `configs/paper/claim_check_manifest.json` to point to your table JSON(s).
+1) Edit `configs/experiments/claim_check_manifest.json` to point to your table JSON(s).
 2) Run:
 ```bash
 python analysis/claim_check.py --write_tables

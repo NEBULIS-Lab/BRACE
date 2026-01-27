@@ -29,3 +29,11 @@ Files:
 
 License:
 - See the license note embedded in the SVG font files under `docs/static/webfonts/`.
+
+## E-RECAP (vendored module)
+
+Files:
+- `e-recap/`
+
+License:
+- Covered by this repository's top-level MIT license, see `LICENSE`.

@@ -18,8 +18,14 @@ Thumbs.db
 *.log
 *.tmp
 *.swp
+results/
+outputs/
 
 # Large artifacts (never commit)
+checkpoints/**
+!checkpoints/
+!checkpoints/README.md
+
 runs/**
 !runs/
 !runs/README.md

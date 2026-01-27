@@ -7,3 +7,8 @@ msgpack-rpc-python>=0.4
 opencv-python>=4.9
 imageio-ffmpeg>=0.4
 
+# LLM / VLM / E-RECAP
+# NOTE: Install Torch separately with the right CUDA build for your machine.
+transformers>=4.39
+datasets>=2.19
+pynvml>=11.5.0

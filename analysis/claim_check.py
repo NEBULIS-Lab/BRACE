@@ -213,7 +213,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument(
         "--manifest",
-        default="configs/paper/claim_check_manifest.json",
+        default="configs/experiments/claim_check_manifest.json",
         help="Manifest JSON describing which table JSONs and variants to compare.",
     )
     ap.add_argument("--out_md", default=None)
@@ -267,4 +267,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

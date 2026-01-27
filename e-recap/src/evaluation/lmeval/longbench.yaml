@@ -1,0 +1,30 @@
+# LongBench custom task configuration for lm-eval-harness
+#
+# This YAML file defines the LongBench task format for lm-eval-harness.
+# Since LongBench tasks are loaded from JSON files, this configuration
+# serves as a template that can be used with different task files.
+#
+# Usage:
+#   python src/evaluation/lmeval/run_lmeval.py \
+#       --task_config data/LongBench/narrativeqa.json
+#
+# Note: The actual task data is loaded from the JSON file specified
+# in --task_config, not from this YAML file. This YAML is kept for
+# reference and future integration with lm-eval-harness task registry.
+
+task: longbench_custom
+dataset_path: ""  # Actual path provided via --task_config
+output_type: generate_until  # LongBench tasks use generation-based evaluation
+trainer: no_training  # No training data needed
+
+# Task metadata
+description: "Custom LongBench tasks for E-RECAP evaluation"
+version: 1.0
+metrics: ["exact_match", "f1_score", "rouge_l"]  # Common LongBench metrics
+
+# Task structure (for reference)
+# Each LongBench JSON file should contain:
+#   - "input": Input prompt/question
+#   - "answers": List of possible answers (first one used as target)
+#   - Optional: "context" for context-aware tasks
+

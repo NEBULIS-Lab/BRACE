@@ -16,6 +16,7 @@ Key docs:
 - Controller spec (proxy-ready): `docs/CONTROLLER.md`
 - Analysis utilities: `analysis/README.md`
 - Demo/media provenance: `docs/PROVENANCE.md`
+- E-RECAP (v1) integration: `docs/e-recap.md`
 
 ---
 
@@ -48,7 +49,7 @@ These scripts are thin wrappers around the python entrypoints under `experiments
 
 Configs are intentionally curated to keep this repo small:
 - `configs/smoke/`: fast sanity checks (default paths for scripts/CLI)
-- `configs/paper/`: paper-scale and demo configs (representative; extend as needed)
+- `configs/experiments/`: curated eval/demo configs (representative; extend as needed)
 
 ### Proxy / stub (no external simulators)
 
@@ -58,6 +59,12 @@ These two are intentionally dependency-free and are suitable for open-source smo
 scripts/run_stub.sh --run-name stub_smoke --episodes 1
 scripts/run_proxy.sh --run-name proxy_smoke
 ```
+
+### E-RECAP (v1) module (optional)
+
+E-RECAP code is vendored under `e-recap/`, but uses project-wide deps + checkpoints. See:
+- `docs/e-recap.md`
+- `scripts/run_e_recap_stage1.sh`, `scripts/run_e_recap_stage2.sh`, `scripts/run_e_recap_inference.sh`
 
 ### Habitat (navigation)
 
@@ -69,7 +76,7 @@ scripts/run_domain_a_habitat.sh --config configs/smoke/habitat_setup.json --run-
 
 ### RoboFactory (manipulation / multi-agent)
 
-Requires your own RoboFactory workspace + assets; see `configs/smoke/` / `configs/paper/` for expected knobs.
+Requires your own RoboFactory workspace + assets; see `configs/smoke/` / `configs/experiments/` for expected knobs.
 
 ```bash
 scripts/run_domain_b_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name rf_smoke

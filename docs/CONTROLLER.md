@@ -105,10 +105,10 @@ Important: BRACE **outputs budgets**; the runner/pruner must enforce them.
   - or `scripts/run_proxy.sh --config configs/smoke/proxy_controller.json --run-name brace_controller_proxy_smoke`
 
 - Controller ablation sweep (cooldown/commit/deadlock window):
-  - `python experiments/proxy/brace_controller_proxy_runner.py --config configs/paper/proxy_stability_sweep_p0.json --runs_root runs --run_name brace_controller_proxy_stability_sweep`
+  - `python experiments/proxy/brace_controller_proxy_runner.py --config configs/experiments/proxy_stability_sweep_p0.json --runs_root runs --run_name brace_controller_proxy_stability_sweep`
 
 - Frequency axis sweep (replan interval × cooldown):
-  - `python experiments/proxy/brace_controller_proxy_runner.py --config configs/paper/proxy_frequency_sweep_steps.json --runs_root runs --run_name brace_controller_proxy_freq_sweep`
+  - `python experiments/proxy/brace_controller_proxy_runner.py --config configs/experiments/proxy_frequency_sweep_steps.json --runs_root runs --run_name brace_controller_proxy_freq_sweep`
 
 Outputs:
 - runs are written under `runs/<run_id>/`
