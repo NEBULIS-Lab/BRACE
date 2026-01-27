@@ -249,13 +249,14 @@ body {
     gap: 0.5rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .publication-logo {
     max-height: 85px;
     width: auto;
     flex-shrink: 0;
-    margin-right: 0.5rem;
+    margin-right: 0;
 }
 
 .publication-title {
@@ -265,8 +266,9 @@ body {
     margin-bottom: 0 !important;
     line-height: 1.1 !important;
     font-size: clamp(1.5rem, 4vw, 2.1rem) !important;
-    flex: 1;
+    flex: 0 0 auto;
     min-width: 0;
+    text-align: center;
 }
 
 .publication-banner {

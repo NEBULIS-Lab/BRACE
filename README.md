@@ -8,9 +8,10 @@
 
 <a href="#"><img src="https://img.shields.io/badge/Paper-ICML%202026-6366F1.svg" alt="Paper"></a>
 <a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Docs-0EA5E9.svg" alt="Website"></a>
-<a href="#"><img src="https://img.shields.io/badge/Demos-Video%20%2B%20Screenshots-FF6B35.svg" alt="Demos"></a>
-<a href="#"><img src="https://img.shields.io/badge/Schema-Auditable-22C55E.svg" alt="Schema"></a>
-![](https://img.shields.io/badge/PRs-Welcome-blue)
+<a href="https://drive.google.com/drive/folders/11ONHDWuz-Es9sc9vvv5rQYVdMQgrBikl?usp=sharing"><img src="https://img.shields.io/badge/Demos-Google%20Drive-FF6B35.svg" alt="Demos"></a>
+<a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/Microsoft-AirSim-0078D4.svg" alt="Microsoft AirSim"></a>
+<a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/Meta-Habitat-0866FF.svg" alt="Meta Habitat"></a>
+<a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/RoboFactory-Domain%20B-111827.svg" alt="RoboFactory"></a>
 
 BRACE treats **high-frequency replanning** as a **systems bottleneck** for embodied agents: repeated replanning under context growth leads to tail latency and SLO violations. We integrate a budgeted replanning controller (BRACE) with auditable logging (phase cost breakdown) and composable efficiency modules (E-RECAP pruning, RAG/memory, budget-matched baselines), evaluated across multiple domains (Habitat, RoboFactory, AirSim) and a VLA executor track (OpenMARL).
 
