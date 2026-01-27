@@ -36,4 +36,4 @@ Files:
 - `e-recap/`
 
 License:
-- Covered by this repository's top-level MIT license, see `LICENSE`.
+- MIT, see `assets/licenses/E_RECAP_MIT.txt` (upstream). This repository itself is MIT, see `LICENSE`.

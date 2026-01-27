@@ -3,6 +3,10 @@
 BRACE can optionally use **E-RECAP** as a learned pruning module to reduce replanning context cost.
 This repo vendors the E-RECAP code under `e-recap/` and standardizes all assets/deps at the BRACE project level.
 
+Vendored contents:
+- Core code: `e-recap/src/`
+- Upstream helper scripts (reference only): `e-recap/scripts/`
+
 ## 1) Dependencies
 
 Install BRACE dependencies:
@@ -52,4 +56,3 @@ scripts/run_e_recap_inference.sh --mode profile --config keep07 --model_path che
 
 BRACE experiment configs typically toggle pruning via `pruning_enabled` / `context_strategy`.
 For learned pruning, point the runner to the local model + pruning checkpoint via env vars or config knobs (runner-dependent).
-
