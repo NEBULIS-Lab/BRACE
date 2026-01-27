@@ -10,9 +10,9 @@
 <a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Docs-0EA5E9.svg" alt="Website"></a>
 <a href="https://drive.google.com/drive/folders/11ONHDWuz-Es9sc9vvv5rQYVdMQgrBikl?usp=sharing"><img src="https://img.shields.io/badge/Demos-Google%20Drive-F97316.svg" alt="Demos"></a>
 <a href="https://www.deepspeed.ai/"><img alt="DeepSpeed" src="https://img.shields.io/badge/DeepSpeed-0A66FF?logo=microsoft&logoColor=white"></a>
-<a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/-AirSim-22C55E.svg" alt="AirSim"></a>
-<a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/-Habitat-EF4444.svg" alt="Habitat"></a>
-<a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/-RoboFactory-14B8A6.svg" alt="RoboFactory"></a>
+<a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/-AirSim-0066CC.svg" alt="Microsoft AirSim"></a>
+<a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/-Habitat-0052CC.svg" alt="Meta Habitat"></a>
+<a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/-RoboFactory-008B8B.svg" alt="RoboFactory"></a>
 
 BRACE treats **high-frequency replanning** as a **systems bottleneck** for embodied agents: repeated replanning under context growth leads to tail latency and SLO violations. We integrate a budgeted replanning controller (BRACE) with auditable logging (phase cost breakdown) and composable efficiency modules (E-RECAP pruning, RAG/memory, budget-matched baselines), evaluated across multiple domains (Habitat, RoboFactory, AirSim) and a VLA executor track (OpenMARL).
 
