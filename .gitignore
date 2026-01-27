@@ -27,12 +27,8 @@ checkpoints/**
 !checkpoints/README.md
 
 runs/**
-!runs/
-!runs/README.md
 
 artifacts/**
-!artifacts/
-!artifacts/README.md
 icml2026/artifacts/
 *.mp4
 *.webm
@@ -70,13 +66,6 @@ assets/datasets/**
 
 # Local data (generated instruction manifests, etc.)
 data/**
-!data/**/
-!data/**/*.md
-!data/**/*.txt
-!data/**/*.json
-!data/**/*.yml
-!data/**/*.yaml
-!data/.gitkeep
 
 # TeX build (paper lives elsewhere, but keep repo clean)
 *.aux

@@ -45,4 +45,4 @@ scripts/smoke_local.sh
 This repository is **code + configs + docs only**.
 
 - Do not commit large weights/datasets/videos; keep them under your `BRACE_MODELS_ROOT` / `BRACE_DATA_ROOT` and reference via env vars.
-- Local runs/artifacts are generated under `runs/` and `artifacts/` (ignored by git).
+- Local outputs are generated at runtime (e.g., `runs/`, `artifacts/`, `data/`) and are **not** shipped in this repo. See `docs/LOCAL_OUTPUTS.md`.

@@ -17,6 +17,7 @@ Key docs:
 - Analysis utilities: `analysis/README.md`
 - Demo/media provenance: `docs/PROVENANCE.md`
 - E-RECAP (v1) integration: `docs/e-recap.md`
+- Local output dirs (`runs/`, `artifacts/`, `data/`): `docs/LOCAL_OUTPUTS.md`
 
 ---
 
@@ -71,7 +72,7 @@ E-RECAP code is vendored under `e-recap/`, but uses project-wide deps + checkpoi
 Requires your own `habitat-setup/` checkout + a working Habitat env.
 
 ```bash
-scripts/run_domain_a_habitat.sh --config configs/smoke/habitat_setup.json --run-name habitat_smoke
+scripts/run_habitat.sh --config configs/smoke/habitat_setup.json --run-name habitat_smoke
 ```
 
 ### RoboFactory (manipulation / multi-agent)
@@ -79,7 +80,7 @@ scripts/run_domain_a_habitat.sh --config configs/smoke/habitat_setup.json --run-
 Requires your own RoboFactory workspace + assets; see `configs/smoke/` / `configs/experiments/` for expected knobs.
 
 ```bash
-scripts/run_domain_b_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name rf_smoke
+scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name rf_smoke
 ```
 
 ### AirSim (vehicles / drones)
@@ -88,7 +89,7 @@ Requires local AirSim UE binaries and `BRACE_AIRSIM_ENVS_ROOT` set.
 
 ```bash
 export BRACE_AIRSIM_ENVS_ROOT=/path/to/AirSim/envs
-scripts/run_domain_c_airsim.sh --config configs/smoke/airsim_multidrone_demo.json --run-name airsim_demo --ue-env airsimnh
+scripts/run_airsim.sh --config configs/smoke/airsim_multidrone_demo.json --run-name airsim_demo --ue-env airsimnh
 ```
 
 ---
@@ -102,7 +103,7 @@ scripts/postprocess_run.sh runs/<run_id>
 ```
 
 This runs strict schema checks + aggregation + trigger/controller coverage and writes markdown tables under `artifacts/tables/` (append-only).
-It also attempts domain-specific tables (Domain B/C) when applicable; see `analysis/README.md` for the full list.
+It also attempts domain-specific tables (RoboFactory/AirSim) when applicable; see `analysis/README.md` for the full list.
 
 ---
 
