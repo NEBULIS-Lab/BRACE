@@ -1,9 +1,9 @@
 <div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/static/images/logo_dark.png">
-    <img src="docs/static/images/logo.png" alt="BRACE logo" width="280">
+    <img src="docs/static/images/logo.png" alt="BRACE logo" width="300">
   </picture>
-  <h1>When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</h1>
+  <h1>BRACE: When Replanning Becomes the Bottleneck</h1>
 </div>
 
 <a href="#"><img src="https://img.shields.io/badge/Paper-ICML%202026-6366F1.svg" alt="Paper"></a>
