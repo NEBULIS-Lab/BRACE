@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "BRACE: When Replanning Becomes the Bottleneck"
+type: software
+license: MIT
+authors:
+  - name: "Anonymous authors"
+date-released: "2026-01-26"
+repository-code: "https://github.com/anonymous-2026/BRACE-ICML"
+keywords:
+  - replanning
+  - embodied ai
+  - systems
+  - latency
+  - vla
+
