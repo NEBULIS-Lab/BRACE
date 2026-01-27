@@ -1,15 +1,13 @@
 <div align="center">
-  <h1 style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 0; vertical-align: middle;">
-    <picture style="display: inline-block; vertical-align: middle; line-height: 1;">
-      <source media="(prefers-color-scheme: dark)" srcset="docs/static/images/logo_dark.svg">
-      <img src="docs/static/images/logo.svg" alt="BRACE logo" width="50" style="display: block; vertical-align: middle; margin: 0;">
-    </picture>
-    <span style="display: inline-block; vertical-align: middle; line-height: 1.2;">When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</span>
-  </h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/static/images/logo_dark.png">
+    <img src="docs/static/images/logo.png" alt="BRACE logo" width="120">
+  </picture>
+  <h1>When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</h1>
 </div>
 
 <a href="#"><img src="https://img.shields.io/badge/Paper-ICML%202026-6366F1.svg" alt="Paper"></a>
-<a href="#"><img src="https://img.shields.io/badge/Website-Docs-6366F1.svg" alt="Website"></a>
+<a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Docs-0EA5E9.svg" alt="Website"></a>
 <a href="#"><img src="https://img.shields.io/badge/Demos-Video%20%2B%20Screenshots-FF6B35.svg" alt="Demos"></a>
 <a href="#"><img src="https://img.shields.io/badge/Schema-Auditable-22C55E.svg" alt="Schema"></a>
 ![](https://img.shields.io/badge/PRs-Welcome-blue)
