@@ -7,7 +7,7 @@
 </div>
 
 <a href="docs/"><img src="https://img.shields.io/badge/Paper-PDF-7C3AED.svg" alt="Paper"></a>
-<a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Docs-0EA5E9.svg" alt="Website"></a>
+<a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Page%20URL-0EA5E9.svg" alt="Website"></a>
 <a href="https://drive.google.com/drive/folders/11ONHDWuz-Es9sc9vvv5rQYVdMQgrBikl?usp=sharing"><img src="https://img.shields.io/badge/Demos-Google%20Drive-F97316.svg" alt="Demos"></a>
 <a href="https://www.deepspeed.ai/"><img alt="DeepSpeed" src="https://img.shields.io/badge/DeepSpeed-0A66FF?logo=microsoft&logoColor=white"></a>
 <a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/-Microsoft%20AirSim-16A34A.svg" alt="Microsoft AirSim"></a>
