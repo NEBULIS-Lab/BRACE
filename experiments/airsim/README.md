@@ -15,7 +15,7 @@ Recommended env vars:
 Minimal entrypoint (uses a small demo config):
 
 ```bash
-scripts/run_domain_c_airsim.sh --config configs/smoke/airsim_multidrone_demo.json --run-name airsim_demo
+scripts/run_airsim.sh --config configs/smoke/airsim_multidrone_demo.json --run-name airsim_demo
 ```
 
 You can switch to curated configs under `configs/experiments/` for showcase/ablation runs.

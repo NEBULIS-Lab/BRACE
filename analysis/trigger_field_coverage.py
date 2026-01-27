@@ -11,7 +11,7 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# Top-level fields expected on *replan* events for WS3 auditing.
+# Top-level fields expected on *replan* events for trigger-field auditing.
 FIELDS = (
     "trigger",
     "replan_trigger_type",

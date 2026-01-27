@@ -6,7 +6,7 @@
   <h1>When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</h1>
 </div>
 
-<a href="docs/"><img src="https://img.shields.io/badge/Paper-PDF-7C3AED.svg" alt="Paper"></a>
+<a href="docs/"><img src="https://img.shields.io/badge/Docs-Guide-7C3AED.svg" alt="Docs"></a>
 <a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Page%20URL-0EA5E9.svg" alt="Website"></a>
 <a href="https://drive.google.com/drive/folders/1Aafo36p2JB8cCeWyG9-QRmEWrssk4kXM?usp=sharing"><img src="https://img.shields.io/badge/Demos-Google%20Drive-F97316.svg" alt="Demos"></a>
 <a href="https://www.deepspeed.ai/"><img alt="DeepSpeed" src="https://img.shields.io/badge/DeepSpeed-0A66FF?logo=microsoft&logoColor=white"></a>
@@ -16,37 +16,54 @@
 
 **BRACE** = **B**udgeted **R**eplanning and **C**oordination for **E**mbodied **A**gents.
 
-BRACE treats **high-frequency replanning** as a **systems bottleneck** for embodied agents: repeated replanning under context growth leads to tail latency and SLO violations. We integrate a budgeted replanning controller (BRACE) with auditable logging (phase cost breakdown) and composable efficiency modules (E-RECAP pruning, RAG/memory, budget-matched baselines), evaluated across multiple environments (Meta AI Habitat / Habitat-Lab+Habitat-Sim navigation, RoboFactory manipulation, Microsoft AirSim vehicles/drones) and a VLA executor track (OpenMARL).
+BRACE targets **high-frequency replanning** as a **systems bottleneck** for embodied agents: as context grows (history, perception summaries, retrieved memory), replanning latency develops a heavy tail and leads to **deadline/SLO misses**.
 
-## Showcases (short video loops)
+BRACE provides:
+- A **budgeted replanning controller** (when to replan, what to include, and how to stay within a time/token budget), and
+- **Auditable phase logging** (token + latency accounting on the replanning call path),
+and composes with efficiency modules (e.g., **E-RECAP** token pruning, optional retrieval/RAG).
 
-**Microsoft AirSim (cinematic)**
+> **Note (double-blind):** This repository accompanies an ICML 2026 submission. Please avoid adding author-identifying information to public artifacts during the review period.
 
-<img src="docs/static/images/airsim_compare.gif" width="860" />
+## Showcases (side-by-side demos)
 
-**Meta AI Habitat (tail/SLO)**
+Each showcase below is a small, GitHub-friendly loop. Full-resolution artifacts are in the public Google Drive folder (badge above).
 
-<img src="docs/static/images/habitat_compare.gif" width="860" />
+### Microsoft AirSim — multi-agent intersection (K=8)
 
-**RoboFactory (coordination)**
+<img src="docs/static/images/airsim_compare.gif" style="max-width: 100%; height: auto;" />
 
-<img src="docs/static/images/robofactory_compare.gif" width="860" />
+Left: baseline. Right: BRACE.
 
-### What are these 3 demos (tasks)?
+- Short MP4: `docs/static/videos/airsim_compare.mp4`
 
-These GIF/MP4 loops are **qualitative “baseline vs BRACE” comparisons** (kept small for the website). Concretely:
+### Meta AI Habitat — navigation under strict SLO (tail latency)
 
-- **Habitat (navigation): PointNav / Goal-reaching replanning under tight SLO**
-  - Task: **PointNav** (navigate to a target goal in indoor scenes), with replanning enabled to recover from noise/failures.
-  - What you see: baseline experiences **tail latency + SLO violations** as replanning context grows; BRACE (with budgeting + optional pruning) keeps replanning within budget, improving SLO adherence while maintaining success.
-- **RoboFactory (manipulation): multi-arm “PassShoe” handover + placement**
-  - Task: **PassShoe-table / PassShoe-rf** — two Panda arms **handover a shoe** and place it into a goal region (multi-agent coordination with frequent replans).
-  - What you see: baseline shows longer waits / coordination stalls; BRACE reduces replanning overhead and stabilizes coordination (less churn/wait).
-- **AirSim (vehicles/drones): multi-agent intersection-style scenario with frequent replanning**
-  - Task: **AirSimNH multi-agent intersection** (multiple vehicles/drones traversing constrained space), forcing high-frequency replanning to avoid conflicts.
-  - What you see: baseline suffers from heavy tail replanning latency; BRACE keeps replanning within budget and produces a more stable/smooth closed-loop trajectory.
+<img src="docs/static/images/habitat_compare.gif" style="max-width: 100%; height: auto;" />
 
-Full MP4 clips (for the website) live in `docs/static/videos/` and are embedded in `docs/index.html`.
+Left: no-prune. Right: E-RECAP pruning.
+
+- Short MP4: `docs/static/videos/habitat_compare.mp4`
+
+### RoboFactory — multi-agent manipulation (coordination)
+
+<img src="docs/static/images/robofactory_compare.gif" style="max-width: 100%; height: auto;" />
+
+Left: baseline. Right: BRACE + E-RECAP.
+
+- Short MP4: `docs/static/videos/robofactory_compare.mp4`
+
+## Representative results
+
+Numbers below are aggregated from paper-facing tables produced by the postprocess pipeline (see **Reproducibility & auditing**). We report **replanning** tail latency and **SLO violation rate** (fraction of replanning calls exceeding the per-platform SLO).
+
+| Platform | Setting | Baseline → Method | Tokens after (mean) | Lat P95 (ms) | SLO viol. |
+|---|---|---|---:|---:|---:|
+| Meta AI Habitat | navigation (30 eps) | no-prune → E-RECAP prune \(r=0.7\) | 235.07 → **20.06** | 2676.85 → **2499** | 85.5% → **3.6%** |
+| RoboFactory | PassShoe (10 eps, SLO=250ms) | no-BRACE → BRACE + E-RECAP \(r=0.7\) | 1566.37 → **318.73** | 1603.75 → **1213** | 100.0% → **50.0%** |
+| Microsoft AirSim | K=8 intersection (10 eps) | baseline → BRACE | 2934.14 → **1113.59** | 8520.00 → **1640** | 100.0% → **4.7%** |
+
+> **Note (how to read):** Success can saturate at 100% in easy regimes; BRACE is primarily evaluated on **tail/SLO behavior and auditable accounting** on the replanning call path.
 
 ## Quick links
 
@@ -60,11 +77,66 @@ Full MP4 clips (for the website) live in `docs/static/videos/` and are embedded 
 - E-RECAP (v1) module: `docs/e-recap.md` / `e-recap/`
 - Scripts (runnable entrypoints): `scripts/`
 
-## Minimal smoke (no simulators)
+## Quickstart (local smoke; no simulators required)
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Validates: run directory + schema + postprocess tables.
 scripts/smoke_local.sh
 ```
+
+> **Note (how notes work):** We use `> **Note:** ...` blocks throughout the README to call out constraints, caveats, or reviewer-facing guidance.
+
+## Run (requires simulators / external assets)
+
+These wrappers invoke the python entrypoints under `experiments/` and write results to `runs/`:
+
+```bash
+# Meta AI Habitat (requires local habitat-setup + MP3D license assets)
+scripts/run_habitat.sh --config configs/smoke/habitat_setup.json --run-name habitat_smoke
+
+# RoboFactory (requires RoboFactory runtime + assets)
+scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name robofactory_smoke
+
+# Microsoft AirSim (requires UE binaries + BRACE_AIRSIM_ENVS_ROOT)
+scripts/run_airsim.sh --config configs/smoke/airsim_multidrone_demo.json --run-name airsim_demo --ue-env airsimnh
+```
+
+## Repo map (where to look)
+
+- `brace/`: BRACE controller core (budgeting + stability mechanisms)
+- `experiments/`: domain runners (Habitat / RoboFactory / AirSim / proxy + stubs)
+- `analysis/`: aggregation + audit tools (tables, schema coverage, trigger/controller audits)
+- `docs/`: project page + guides (incl. schema, controller spec, provenance)
+- `configs/`: curated configs (`smoke/` for sanity checks; `experiments/` for paper-facing setups)
+- `scripts/`: thin wrappers around Python entrypoints (smoke / run / postprocess)
+- `e-recap/`: vendored E-RECAP module (optional)
+- `third_party/openmarl/`: vendored OpenMARL components used by the VLA executor track
+
+## Reproducibility & auditing (paper-facing tables)
+
+This repo uses an on-disk, auditable run format:
+
+- `runs/<run_id>/run.json`
+- `runs/<run_id>/events.jsonl`
+- `runs/<run_id>/episode_metrics.jsonl`
+
+To postprocess a run into paper-facing tables:
+
+```bash
+scripts/postprocess_run.sh runs/<run_id>
+```
+
+This performs strict schema checks and writes markdown tables under `artifacts/tables/`. See:
+- `docs/SCHEMA.md` for field definitions
+- `docs/PROVENANCE.md` for committed demo media provenance
+
+## Citation
+
+> **Note:** Citation will be updated after acceptance.
 
 ## Repo policy (open-source)
 

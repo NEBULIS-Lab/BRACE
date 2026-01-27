@@ -18,7 +18,7 @@ Notes:
 Minimal entrypoint (uses a small smoke config):
 
 ```bash
-scripts/run_domain_b_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name robofactory_smoke
+scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name robofactory_smoke
 ```
 
 You can switch to curated configs under `configs/experiments/` for demos/ablations.

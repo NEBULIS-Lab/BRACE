@@ -1099,7 +1099,7 @@ def main() -> None:
             base_cfg["cuda_visible_devices_resolved"] = str(resolved)
 
     # Optional: pin HuggingFace cache to the project/shared run dir to avoid downloads.
-    # This matters for WS10 (OpenVLA/Pi0), where base models are large.
+    # This matters for VLA executors (e.g., OpenVLA / Pi0), where base models are large.
     hf_home_cfg = base_cfg.get("hf_home")
     if hf_home_cfg is not None:
         hf_home = _resolve_path(str(hf_home_cfg))

@@ -218,33 +218,35 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Render high-res showcase media for README + website (no ffmpeg).")
     parser.add_argument("--min-gif-mb", type=float, default=4.0)
     parser.add_argument("--max-gif-mb", type=float, default=10.0)
+    parser.add_argument("--airsim-src", type=str, default="", help="Optional: source MP4 for AirSim side-by-side compare.")
+    parser.add_argument("--habitat-src", type=str, default="", help="Optional: source MP4 for Habitat side-by-side compare.")
+    parser.add_argument("--robofactory-baseline-src", type=str, default="", help="Optional: source MP4 for RoboFactory baseline.")
+    parser.add_argument("--robofactory-method-src", type=str, default="", help="Optional: source MP4 for RoboFactory method.")
+    parser.add_argument("--robofactory-start-seconds", type=float, default=8.0, help="Start time for RoboFactory compare clip.")
+    parser.add_argument("--robofactory-seconds", type=float, default=3.0, help="Duration for RoboFactory compare clip.")
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
     videos_dir = repo_root / "docs" / "static" / "videos"
     images_dir = repo_root / "docs" / "static" / "images"
 
-    sources = {
-        "airsim_compare_mp4": Path("Replanning/examples/00_public_release/website/demos/airsim/airsim_showcase_k8_intersection/compare__baseline__vs__brace_full__airsim_ep0000.mp4"),
-        "habitat_compare_mp4": Path("Replanning/examples/00_public_release/paper/figures/habitat/habitat_real_llm_demo_oracle_slohl_v2/compare__nobrace_noprune__vs__nobrace_prune_r0.7__ep3662__hstack__x2.mp4"),
-        "robofactory_baseline_mp4": Path("Replanning/examples/00_public_release/website/demos/robofactory/robofactory_pass_shoe_demo/baseline_nobrace_none__seed0.mp4"),
-        "robofactory_method_mp4": Path("Replanning/examples/00_public_release/website/demos/robofactory/robofactory_pass_shoe_demo/method_brace_erecap_r0.7__seed0.mp4"),
-    }
-
     # Website MP4s (keep native resolution; do not resize).
     airsim_out_mp4 = videos_dir / "airsim_compare.mp4"
     habitat_out_mp4 = videos_dir / "habitat_compare.mp4"
     robofactory_out_mp4 = videos_dir / "robofactory_compare.mp4"
 
-    _copy_file(sources["airsim_compare_mp4"], airsim_out_mp4)
-    _copy_file(sources["habitat_compare_mp4"], habitat_out_mp4)
-    _encode_side_by_side_mp4(
-        left_mp4=sources["robofactory_baseline_mp4"],
-        right_mp4=sources["robofactory_method_mp4"],
-        out_mp4=robofactory_out_mp4,
-        start_seconds=8.0,
-        seconds=3.0,
-    )
+    if args.airsim_src:
+        _copy_file(Path(args.airsim_src), airsim_out_mp4)
+    if args.habitat_src:
+        _copy_file(Path(args.habitat_src), habitat_out_mp4)
+    if args.robofactory_baseline_src and args.robofactory_method_src:
+        _encode_side_by_side_mp4(
+            left_mp4=Path(args.robofactory_baseline_src),
+            right_mp4=Path(args.robofactory_method_src),
+            out_mp4=robofactory_out_mp4,
+            start_seconds=float(args.robofactory_start_seconds),
+            seconds=float(args.robofactory_seconds),
+        )
 
     # README GIFs (keep video dimensions; tune fps/duration/colors to fit size budget).
     gif_jobs = [
@@ -276,8 +278,11 @@ def main() -> None:
         print(f"[gif] {gif.relative_to(repo_root)} <- {mp4.relative_to(repo_root)} | chosen={chosen} | size={_size_mb(gif):.2f}MB")
 
     for p in [airsim_out_mp4, habitat_out_mp4, robofactory_out_mp4]:
-        info = _video_info(p)
-        print(f"[mp4] {p.relative_to(repo_root)} {info['width']}x{info['height']} fps={info['fps']:.2f} dur={info['duration_s']:.2f}s size={_size_mb(p):.2f}MB")
+        if p.exists():
+            info = _video_info(p)
+            print(f"[mp4] {p.relative_to(repo_root)} {info['width']}x{info['height']} fps={info['fps']:.2f} dur={info['duration_s']:.2f}s size={_size_mb(p):.2f}MB")
+        else:
+            print(f"[mp4] missing: {p.relative_to(repo_root)}")
 
 
 if __name__ == "__main__":

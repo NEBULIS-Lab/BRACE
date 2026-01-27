@@ -196,7 +196,7 @@ def aggregate_domainb(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
         )
 
     md: List[str] = []
-    md.append(f"# Domain B summary: `{run_id}`\n\n")
+    md.append(f"# RoboFactory summary: `{run_id}`\n\n")
     md.append(
         "| Variant | Episodes | Success | Deadlock(any) | Timeout | Wait (ms/ep) | Tokens in (mean) | Tokens after (mean) | Token reduction | Tokens after P95 | Tokens after P99 | Lat P50 (ms) | Lat P95 (ms) | Lat P99 (ms) | SLO (ms) | SLO viol. |\n"
     )

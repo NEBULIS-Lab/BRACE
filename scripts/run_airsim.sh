@@ -14,7 +14,7 @@ while [[ $# -gt 0 ]]; do
     --ue-env) UE_ENV="$2"; shift 2 ;;
     -h|--help)
       cat <<EOF
-Usage: scripts/run_domain_c_airsim.sh [--config <json>] [--run-name <name>] [--runs-root <dir>] [--ue-env airsimnh|blocks|...]
+Usage: scripts/run_airsim.sh [--config <json>] [--run-name <name>] [--runs-root <dir>] [--ue-env airsimnh|blocks|...]
 
 Requires: AirSim UE binaries and BRACE_AIRSIM_ENVS_ROOT set.
 EOF

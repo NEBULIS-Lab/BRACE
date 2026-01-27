@@ -1,7 +1,7 @@
 {
   "domain": "robofactory",
   "task": "PassShoe-table",
-  "task_text": "WS4 paper table: RoboFactory budget-matched baselines (random/recency/structured_summary) with auditable summary overhead; token_budget chosen to ensure binding replans.",
+  "task_text": "RoboFactory budget-matched baselines (random/recency/structured_summary) with auditable summary overhead; token_budget chosen to ensure binding replans.",
   "policy": "motion_planning",
   "random_seed": 0,
   "episodes": 10,

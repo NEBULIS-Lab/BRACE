@@ -14,7 +14,7 @@ while [[ $# -gt 0 ]]; do
     --habitat-setup-root) HABITAT_SETUP_ROOT="$2"; shift 2 ;;
     -h|--help)
       cat <<EOF
-Usage: scripts/run_domain_a_habitat.sh [--config <json>] [--run-name <name>] [--runs-root <dir>] [--habitat-setup-root <dir>]
+Usage: scripts/run_habitat.sh [--config <json>] [--run-name <name>] [--runs-root <dir>] [--habitat-setup-root <dir>]
 
 Requires: a working Habitat environment + a local habitat-setup checkout.
 Env:

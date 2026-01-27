@@ -1,7 +1,7 @@
 {
   "domain": "robofactory",
   "task": "PassShoe-table",
-  "task_text": "Two Panda arms must hand over a shoe and place it in a goal region. WS10 uses OpenMARL OpenVLA executor while still logging WS1 schema + phase=vla_policy_call.",
+  "task_text": "Two Panda arms must hand over a shoe and place it in a goal region. Uses an OpenMARL/OpenVLA executor while still logging auditable per-phase costs (e.g., phase=vla_policy_call).",
   "policy": "openmarl_openvla",
   "cuda_visible_devices": "auto",
   "gpu_auto_max_mem_used_mb": 2048,

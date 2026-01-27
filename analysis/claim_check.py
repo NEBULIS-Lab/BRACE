@@ -112,7 +112,7 @@ def summarize_one(
         "deltas": {},
     }
 
-    # Common metrics across tables in this repo (Domain A/B/C + proxy).
+    # Common metrics across tables in this repo (Habitat / RoboFactory / AirSim + proxy).
     metrics = [
         ("success", "success", "pp"),
         ("slo_violation_rate", "slo_violation_rate", "pp"),

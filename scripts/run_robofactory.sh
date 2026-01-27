@@ -12,7 +12,7 @@ while [[ $# -gt 0 ]]; do
     --run-name) RUN_NAME="$2"; shift 2 ;;
     -h|--help)
       cat <<EOF
-Usage: scripts/run_domain_b_robofactory.sh [--config <json>] [--run-name <name>] [--runs-root <dir>]
+Usage: scripts/run_robofactory.sh [--config <json>] [--run-name <name>] [--runs-root <dir>]
 
 Requires: a working RoboFactory workspace + assets.
 Env:

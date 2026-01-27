@@ -1,7 +1,7 @@
 {
   "domain": "robofactory",
   "task": "PassShoe-table",
-  "task_text": "WS4 paper-ready: RAG×Prune 2×2 (No-RAG vs RAG) × (No-prune vs E-RECAP), 10ep/variant. Deterministic retrieval snippets injected into HISTORY tail; retrieval overhead is auditable (lat_retrieval_ms, retrieved_tokens, kept_tokens, retrieval_note).",
+  "task_text": "RAG×Prune 2×2 (No-RAG vs RAG) × (No-prune vs E-RECAP), 10ep/variant. Deterministic retrieval snippets injected into HISTORY tail; retrieval overhead is auditable (lat_retrieval_ms, retrieved_tokens, kept_tokens, retrieval_note).",
   "policy": "motion_planning",
   "random_seed": 0,
   "episodes": 10,
@@ -77,4 +77,3 @@
     }
   ]
 }
-
