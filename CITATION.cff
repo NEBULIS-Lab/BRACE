@@ -4,13 +4,12 @@ title: "BRACE: When Replanning Becomes the Bottleneck"
 type: software
 license: MIT
 authors:
-  - name: "NEBULIS Lab"
+  - name: "Anonymous authors"
 date-released: "2026-01-26"
-repository-code: "git@github.com:NEBULIS-Lab/shuaijun-icml26-code.git"
+repository-code: "https://github.com/anonymous-2026/BRACE-ICML"
 keywords:
   - replanning
   - embodied ai
   - systems
   - latency
   - vla
-

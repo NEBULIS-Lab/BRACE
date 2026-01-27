@@ -11,6 +11,6 @@ This folder vendors the official **AirSim PythonClient** package `airsim` so thi
 
 ## Notes
 
-- Vendored by copying the upstream `PythonClient/airsim` directory into `UAV/HATTO-UFog/AirSim/vendor/airsim`.
+- Vendored by copying the upstream `PythonClient/airsim` directory into `experiments/airsim/vendor/airsim`.
 - Do not edit these files unless you also update this note and clearly document local patches.
 

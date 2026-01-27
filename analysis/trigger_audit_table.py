@@ -86,7 +86,7 @@ def _primary_trigger_from_event(event: Dict[str, Any]) -> str:
 
     unsafe = bool(trig.get("unsafe", False))
     deadlock = bool(trig.get("deadlock", False)) or ("deadlock" in types)
-    failure = "failure" in types
+    failure = bool(trig.get("failure", False)) or ("failure" in types)
     periodic = bool(trig.get("periodic", False))
 
     if unsafe:

@@ -28,9 +28,19 @@ Full MP4 clips (for the website) live in `docs/static/videos/` and are embedded 
 
 - Website (static template): `docs/index.html`
 - Docs (single guide): `docs/README.md`
+- Controller spec (proxy-ready): `docs/CONTROLLER.md`
+- Logging schema: `docs/SCHEMA.md`
+- Analysis utilities: `analysis/README.md`
+- Demo/media provenance: `docs/PROVENANCE.md`
 - Configs: `configs/smoke/` (defaults) and `configs/paper/` (paper/demos)
 - E-RECAP module (lightweight subset): `erecap/`
 - Scripts (runnable entrypoints): `scripts/`
+
+## Minimal smoke (no simulators)
+
+```bash
+scripts/smoke_local.sh
+```
 
 ## Repo policy (open-source)
 

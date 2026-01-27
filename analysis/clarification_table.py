@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as _dt
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -91,22 +92,35 @@ def main() -> None:
     ap.add_argument("run_dir")
     ap.add_argument("--out_md", default=None)
     ap.add_argument("--out_json", default=None)
+    ap.add_argument(
+        "--write_tables",
+        action="store_true",
+        help="Write outputs under artifacts/tables/ with a timestamp (append-only).",
+    )
     args = ap.parse_args()
 
     run_dir = Path(args.run_dir)
     md, payload = build_table(run_dir)
 
-    if args.out_md:
-        out_md = Path(args.out_md)
+    out_md = Path(args.out_md) if args.out_md else None
+    out_json = Path(args.out_json) if args.out_json else None
+    if args.write_tables:
+        ts = _dt.datetime.now(_dt.timezone.utc).strftime("%Y%m%d_%H%M%S")
+        out_md = Path("artifacts/tables") / f"{run_dir.name}__clarification__{ts}.md"
+        out_json = Path("artifacts/tables") / f"{run_dir.name}__clarification__{ts}.json"
+
+    if out_md:
         out_md.parent.mkdir(parents=True, exist_ok=True)
         out_md.write_text(md, encoding="utf-8")
     else:
         print(md)
 
-    if args.out_json:
-        out_json = Path(args.out_json)
+    if out_json:
         out_json.parent.mkdir(parents=True, exist_ok=True)
         out_json.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+
+    if args.write_tables and out_md:
+        print(str(out_md))
 
 
 if __name__ == "__main__":

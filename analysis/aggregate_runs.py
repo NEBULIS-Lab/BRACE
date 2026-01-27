@@ -63,10 +63,12 @@ def _read_jsonl(path: Path) -> Iterable[Dict[str, Any]]:
 
 
 def _safe_mean(vals: List[float]) -> float:
-    return float(mean(vals)) if vals else float("nan")
+    clean = [v for v in vals if v == v]  # drop NaNs
+    return float(mean(clean)) if clean else float("nan")
 
 
 def _percentile(vals: List[float], q: float) -> float:
+    vals = [v for v in vals if v == v]
     if not vals:
         return float("nan")
     if q <= 0:
@@ -109,6 +111,30 @@ def _union_keys(records: List[Dict[str, Any]]) -> set[str]:
     for r in records:
         keys.update(r.keys())
     return keys
+
+def _time_key(ev: Dict[str, Any]) -> Optional[str]:
+    for k in ("t", "step", "replan_cycle"):
+        v = ev.get(k, None)
+        if v is None:
+            continue
+        if isinstance(v, bool):
+            continue
+        if isinstance(v, (int, float)):
+            fv = float(v)
+            if fv.is_integer():
+                return str(int(fv))
+            return str(fv)
+        return str(v)
+    return None
+
+def _time_value(ev: Dict[str, Any]) -> Optional[float]:
+    tk = _time_key(ev)
+    if tk is None:
+        return None
+    try:
+        return float(tk)
+    except Exception:
+        return None
 
 
 def _is_replan_event(ev: Dict[str, Any]) -> bool:
@@ -254,6 +280,9 @@ def aggregate_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
     # Optional: per-phase overhead breakdown (VLM/VLA tracks, budget-matched baselines, etc.).
     # Convention: for `event_type="phase"` records, `lat_total_ms` is the phase duration.
     phase_lat_stats: Dict[Tuple[str, str], List[float]] = defaultdict(list)
+    vla_policy_calls_by_variant_ep: Dict[Tuple[str, str], List[Tuple[float, float]]] = defaultdict(list)
+    vla_policy_events_by_variant: Dict[str, int] = defaultdict(int)
+    vla_policy_events_skipped: int = 0
     for ev in phase_events:
         v = str(ev.get("variant", "unknown"))
         ph = ev.get("phase", None)
@@ -264,6 +293,16 @@ def aggregate_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
             lt = ev.get("lat_vlm_ms", None)
         if isinstance(lt, (int, float)) and float(lt) >= 0:
             phase_lat_stats[(v, ph_s)].append(float(lt))
+
+        # VLA-aware latency accounting: treat `phase=vla_policy_call` as the control-loop latency anchor for VLA runs.
+        if ph_s == "vla_policy_call":
+            ep_id = ev.get("episode_id", None)
+            tv = _time_value(ev)
+            if ep_id is None or tv is None:
+                vla_policy_events_skipped += 1
+            elif isinstance(lt, (int, float)) and float(lt) >= 0:
+                vla_policy_calls_by_variant_ep[(v, str(ep_id))].append((tv, float(lt)))
+                vla_policy_events_by_variant[v] += 1
 
     phase_rows: List[Dict[str, Any]] = []
     for (variant, phase), vals in sorted(phase_lat_stats.items()):
@@ -278,17 +317,77 @@ def aggregate_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
             }
         )
 
+    # If VLA policy calls were logged as separate `phase` events, report VLA-aware control-loop latency:
+    # for each VLA call, add all replanning latency since the previous VLA call (per-episode timeline).
+    lat_stats_effective = defaultdict(list)
+    slo_violation_stats_effective = defaultdict(list)
+    slo_over_stats_effective = defaultdict(list)
+    ep_any_slo_violation_effective: Dict[str, Dict[str, bool]] = defaultdict(dict)
+    vla_assign_stats: Dict[str, Dict[str, float]] = defaultdict(
+        lambda: {"vla_calls": 0.0, "replans_total": 0.0, "replans_assigned": 0.0, "replans_unassigned": 0.0}
+    )
+
+    if vla_policy_calls_by_variant_ep:
+        replans_by_variant_ep: Dict[Tuple[str, str], List[Tuple[float, float]]] = defaultdict(list)
+        for ev in events:
+            v = str(ev.get("variant", "unknown"))
+            if vla_policy_events_by_variant.get(v, 0) <= 0:
+                continue
+            ep_id = ev.get("episode_id", None)
+            tv = _time_value(ev)
+            lt = ev.get("lat_total_ms", None)
+            if ep_id is None or tv is None or not (isinstance(lt, (int, float)) and float(lt) >= 0):
+                continue
+            replans_by_variant_ep[(v, str(ep_id))].append((tv, float(lt)))
+            vla_assign_stats[v]["replans_total"] += 1.0
+
+        for (v, ep_id), vla_calls in vla_policy_calls_by_variant_ep.items():
+            vla_calls.sort(key=lambda x: x[0])
+            replans = replans_by_variant_ep.get((v, ep_id), [])
+            replans.sort(key=lambda x: x[0])
+
+            i = 0
+            pending_replan_ms = 0.0
+            for tv, vla_ms in vla_calls:
+                assigned_this = 0
+                while i < len(replans) and replans[i][0] <= tv:
+                    pending_replan_ms += replans[i][1]
+                    assigned_this += 1
+                    i += 1
+
+                lt_eff = float(vla_ms) + float(pending_replan_ms)
+                pending_replan_ms = 0.0
+
+                lat_stats_effective[v].append(lt_eff)
+                vla_assign_stats[v]["vla_calls"] += 1.0
+                vla_assign_stats[v]["replans_assigned"] += float(assigned_this)
+
+                slo_ms = slo_ms_default
+                if isinstance(slo_ms, (int, float)) and float(slo_ms) > 0:
+                    violation = lt_eff > float(slo_ms)
+                    slo_violation_stats_effective[v].append(1.0 if violation else 0.0)
+                    slo_over_stats_effective[v].append(max(0.0, lt_eff - float(slo_ms)))
+                    if violation:
+                        ep_any_slo_violation_effective[v][ep_id] = True
+
+            # Any replans after the last VLA call cannot be assigned in this heuristic.
+            if i < len(replans):
+                vla_assign_stats[v]["replans_unassigned"] += float(len(replans) - i)
+
     rows: List[Dict[str, Any]] = []
     for variant in sorted(variants):
         eps = by_variant_ep.get(variant, [])
         n = len(eps)
         success_rate = sum(1.0 for e in eps if float(e.get("success", 0.0)) > 0.0) / n if n else float("nan")
+        use_effective_slo = bool(lat_stats_effective.get(variant))
+        ep_any_slo = ep_any_slo_violation_effective if use_effective_slo else ep_any_slo_violation
+
         # "SLO+Success": success AND no SLO violations within the episode.
         slo_success_n = 0
         for e in eps:
             ep_id = e.get("episode_id")
             ep_id_s = str(ep_id) if ep_id is not None else None
-            has_violation = bool(ep_id_s is not None and ep_any_slo_violation.get(variant, {}).get(ep_id_s, False))
+            has_violation = bool(ep_id_s is not None and ep_any_slo.get(variant, {}).get(ep_id_s, False))
             is_success = float(e.get("success", 0.0)) > 0.0
             if is_success and (not has_violation):
                 slo_success_n += 1
@@ -338,7 +437,13 @@ def aggregate_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
             tok_keep_mean = tok_after_mean / tok_in_mean
             tok_reduction_mean = 1.0 - tok_keep_mean
 
-        lat_mean = _safe_mean(lat_stats[variant])
+        lat_list = lat_stats_effective[variant] if lat_stats_effective.get(variant) else lat_stats[variant]
+        slo_violation_list = (
+            slo_violation_stats_effective[variant] if slo_violation_stats_effective.get(variant) else slo_violation_stats[variant]
+        )
+        slo_over_list = slo_over_stats_effective[variant] if slo_over_stats_effective.get(variant) else slo_over_stats[variant]
+
+        lat_mean = _safe_mean(lat_list)
         rows.append(
             {
                 "run_id": run_id,
@@ -353,9 +458,15 @@ def aggregate_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
                 "clarification_turns": _safe_mean(clarif_turn_vals),
                 "clarification_tokens": _safe_mean(clarif_tok_vals),
                 "clarification_lat_ms": _safe_mean(clarif_lat_vals),
-                "spl": _safe_mean([float(e.get("spl", 0.0)) for e in eps]) if n else float("nan"),
-                "steps": _safe_mean([float(e.get("step_count", 0.0)) for e in eps]) if n else float("nan"),
-                "replans": _safe_mean([float(e.get("replan_cycles", 0.0)) for e in eps]) if n else float("nan"),
+                "spl": _safe_mean([float(e.get("spl")) if e.get("spl") is not None else float("nan") for e in eps])
+                if n
+                else float("nan"),
+                "steps": _safe_mean([float(e.get("step_count")) if e.get("step_count") is not None else float("nan") for e in eps])
+                if n
+                else float("nan"),
+                "replans": _safe_mean([float(e.get("replan_cycles")) if e.get("replan_cycles") is not None else float("nan") for e in eps])
+                if n
+                else float("nan"),
                 "deadlock_rate": _safe_mean(deadlock_vals),
                 "wait_time_ms_mean": _safe_mean(wait_vals),
                 "wait_time_ms_p95": _percentile(wait_vals, 0.95),
@@ -366,16 +477,21 @@ def aggregate_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
                 "tok_after_p95": _percentile(tok_after_stats[variant], 0.95),
                 "tok_after_p99": _percentile(tok_after_stats[variant], 0.99),
                 "lat_mean_ms": lat_mean,
-                "lat_p50_ms": _percentile(lat_stats[variant], 0.50),
-                "lat_p95_ms": _percentile(lat_stats[variant], 0.95),
-                "lat_p99_ms": _percentile(lat_stats[variant], 0.99),
+                "lat_p50_ms": _percentile(lat_list, 0.50),
+                "lat_p95_ms": _percentile(lat_list, 0.95),
+                "lat_p99_ms": _percentile(lat_list, 0.99),
                 "slo_ms": slo_ms_default,
-                "slo_violation_rate": _safe_mean(slo_violation_stats[variant]),
-                "slo_over_mean_ms": _safe_mean(slo_over_stats[variant]),
+                "slo_violation_rate": _safe_mean(slo_violation_list),
+                "slo_over_mean_ms": _safe_mean(slo_over_list),
                 "ctx_before_chars": ctx_before,
                 "ctx_after_chars": ctx_after,
                 "ctx_reduction": ctx_reduction,
                 "missing_event_fields": dict(missing_required.get(variant, {})),
+                "lat_accounting": "control_loop_vla_policy_call_plus_replan" if lat_stats_effective.get(variant) else "replan_only",
+                "vla_policy_call_events": int(vla_policy_events_by_variant.get(variant, 0)),
+                "vla_policy_call_replans_total": int(vla_assign_stats.get(variant, {}).get("replans_total", 0.0)),
+                "vla_policy_call_replans_assigned": int(vla_assign_stats.get(variant, {}).get("replans_assigned", 0.0)),
+                "vla_policy_call_replans_unassigned": int(vla_assign_stats.get(variant, {}).get("replans_unassigned", 0.0)),
             }
         )
 
@@ -421,6 +537,29 @@ def aggregate_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
             )
         )
 
+    if vla_policy_calls_by_variant_ep:
+        md.append("\n## VLA-aware latency accounting\n\n")
+        md.append(
+            "If `phase=vla_policy_call` is present, this run-level report treats it as the control-loop latency anchor "
+            "and adds all replanning latency since the previous VLA call (per-episode timeline). "
+            "Lat metrics above use this VLA-aware control-loop latency.\n\n"
+        )
+        md.append("| Variant | VLA phase events | VLA calls used | Replans total | Replans assigned | Replans unassigned | Skipped VLA events |\n")
+        md.append("|---|---:|---:|---:|---:|---:|---:|\n")
+        for r in rows:
+            variant = str(r.get("variant", "-"))
+            md.append(
+                "| {variant} | {vlae} | {vlac} | {rt} | {ra} | {ru} | {skipped} |\n".format(
+                    variant=variant,
+                    vlae=int(r.get("vla_policy_call_events", 0)),
+                    vlac=int(vla_assign_stats.get(variant, {}).get("vla_calls", 0.0)),
+                    rt=int(r.get("vla_policy_call_replans_total", 0)),
+                    ra=int(r.get("vla_policy_call_replans_assigned", 0)),
+                    ru=int(r.get("vla_policy_call_replans_unassigned", 0)),
+                    skipped=int(vla_policy_events_skipped),
+                )
+            )
+
     if phase_rows:
         md.append("\n## Phase latency breakdown\n\n")
         md.append("| Variant | Phase | N | Lat mean (ms) | Lat P95 | Lat P99 |\n")
@@ -437,7 +576,13 @@ def aggregate_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
                 )
             )
 
-    payload = {"run_id": run_id, "domain": domain, "rows": rows, "phase_latency_breakdown": phase_rows}
+    payload = {
+        "run_id": run_id,
+        "domain": domain,
+        "rows": rows,
+        "phase_latency_breakdown": phase_rows,
+        "vla_policy_events_skipped": vla_policy_events_skipped,
+    }
     return "".join(md), payload
 
 

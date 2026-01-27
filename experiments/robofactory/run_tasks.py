@@ -165,7 +165,8 @@ def _coerce_bool(x: Any) -> Optional[bool]:
 
 def _load_env(rf_cfg: Dict[str, Any]) -> Any:
     repo_dir = _resolve_path(str(rf_cfg.get("repo_dir", "RoboFactory_workspace/RoboFactory")))
-    run_dir = _resolve_path(str(rf_cfg.get("run_dir", "RoboFactory_workspace/RoboFactory__run")))
+    default_run_dir = os.environ.get("BRACE_ROBOFACTORY_DATA_ROOT") or "RoboFactory_workspace/RoboFactory__run"
+    run_dir = _resolve_path(str(rf_cfg.get("run_dir", default_run_dir)))
     os.environ.setdefault("ROBOFACTORY_RUN_DIR", run_dir)
 
     if repo_dir not in sys.path:

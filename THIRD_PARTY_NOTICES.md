@@ -1,0 +1,31 @@
+# Third-Party Notices
+
+This repository includes a small set of third-party components for demos and integrations.
+
+## AirSim (PythonClient)
+
+Files:
+- `experiments/airsim/vendor/airsim/`
+
+Provenance (vendored):
+- Upstream repo and commit are recorded in `experiments/airsim/vendor/airsim/upstream.md`.
+
+License:
+- MIT, see `experiments/airsim/vendor/airsim/LICENSE`.
+
+## Bulma (CSS)
+
+Files:
+- `docs/static/css/bulma.min.css`
+
+License:
+- MIT (noted in the file header comment).
+
+## Font Awesome Free
+
+Files:
+- `docs/static/js/fontawesome.all.min.js`
+- `docs/static/webfonts/*`
+
+License:
+- See the license note embedded in the SVG font files under `docs/static/webfonts/`.

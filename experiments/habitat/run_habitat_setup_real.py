@@ -38,14 +38,15 @@ def _env_without_proxies() -> Dict[str, str]:
     return env
 
 
-def _pick_habitat_python() -> str:
-    candidates = [
-        os.path.expanduser("~/miniconda3/envs/habitat/bin/python"),
-    ]
-    for p in candidates:
-        if os.path.exists(p):
-            return p
-    return sys.executable
+def _pick_habitat_python(env: Dict[str, str]) -> str:
+    """Pick the python executable for the external Habitat runner.
+
+    Policy: respect user-provided `BRACE_HABITAT_PY` when set; otherwise use the current
+    interpreter (`sys.executable`).
+    """
+
+    p = str(env.get("BRACE_HABITAT_PY", "")).strip()
+    return p if p else sys.executable
 
 
 def _append_runs_index(runs_root: str, payload: Dict[str, Any]) -> None:
@@ -1358,7 +1359,7 @@ def main() -> None:
         raise FileNotFoundError(f"Missing habitat-setup script: {script_path}")
 
     env = _env_without_proxies()
-    env["BRACE_HABITAT_PY"] = _pick_habitat_python()
+    env["BRACE_HABITAT_PY"] = _pick_habitat_python(env)
     ctx.append_event({"phase": "selected_habitat_python", "python": env["BRACE_HABITAT_PY"]})
 
     all_episode_rows: List[Dict[str, Any]] = []

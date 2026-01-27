@@ -11,25 +11,34 @@ Website demo page:
 - Open `docs/index.html` locally, or host `docs/` via GitHub Pages.
 - Short MP4 clips are stored in `docs/static/videos/` (kept intentionally small).
 
+Key docs:
+- Logging schema: `docs/SCHEMA.md`
+- Controller spec (proxy-ready): `docs/CONTROLLER.md`
+- Analysis utilities: `analysis/README.md`
+- Demo/media provenance: `docs/PROVENANCE.md`
+
 ---
 
-## 0) Quick start (analysis-only)
+## 0) Quick start (local smoke; no simulators required)
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+
+# Validates: run directory + schema + postprocess tables.
+scripts/smoke_local.sh
 ```
 
 ---
 
-## 1) Environment variables (no hard-coded paths)
+## 1) Environment variables
 
 - `BRACE_MODELS_ROOT`: LLM/VLM weights root
 - `BRACE_DATA_ROOT`: optional general data root
 - `BRACE_ROBOFACTORY_DATA_ROOT`: RoboFactory/OpenMARL data root (checkpoints, caches)
 - `BRACE_AIRSIM_ENVS_ROOT`: AirSim UE binaries root
-- `BRACE_HABITAT_PY`: python executable for your Habitat env
+- `BRACE_HABITAT_PY`: python executable for your Habitat env (only needed for the Habitat wrapper runner)
 
 ---
 
@@ -40,6 +49,15 @@ These scripts are thin wrappers around the python entrypoints under `experiments
 Configs are intentionally curated to keep this repo small:
 - `configs/smoke/`: fast sanity checks (default paths for scripts/CLI)
 - `configs/paper/`: paper-scale and demo configs (representative; extend as needed)
+
+### Proxy / stub (no external simulators)
+
+These two are intentionally dependency-free and are suitable for open-source smoke testing:
+
+```bash
+scripts/run_stub.sh --run-name stub_smoke --episodes 1
+scripts/run_proxy.sh --run-name proxy_smoke
+```
 
 ### Habitat (navigation)
 
@@ -77,13 +95,15 @@ scripts/postprocess_run.sh runs/<run_id>
 ```
 
 This runs strict schema checks + aggregation + trigger/controller coverage and writes markdown tables under `artifacts/tables/` (append-only).
+It also attempts domain-specific tables (Domain B/C) when applicable; see `analysis/README.md` for the full list.
 
 ---
 
 ## 4) Datasets (what is intentionally missing)
 
 - **MP3D** is license-gated and is not included. Keep any MP3D scenes/episodes outside git.
-- The repo ships only configs and checks; you must obtain datasets through their official channels.
+- See `assets/licenses/MP3D.md` and keep your local checklist under `assets/datasets/mp3d/MP3D_CHECKLIST.md`.
+- The repo ships only configs/checklists; you must obtain datasets through their official channels.
 
 ---
 
@@ -91,6 +111,6 @@ This runs strict schema checks + aggregation + trigger/controller coverage and w
 
 These are **known gaps** for paper-level claims:
 
-- **VLA-aware latency accounting**: current RoboFactory VLA tables may exclude `phase=vla_policy_call` from end-to-end latency totals.
+- **VLA-aware latency accounting**: supported when the runner logs `event_type="phase"` with `phase="vla_policy_call"`; `analysis/aggregate_runs.py` will then report VLA-aware control-loop latency.
 - **RoboFactory SLO reporting**: a single tight SLO (e.g., 250ms) can saturate violations and hide improvements; prefer multi-threshold reporting.
 - **BRACE (beyond pruning) in real domains**: proxy shows strong stability deltas; real-domain deltas still need strengthening.

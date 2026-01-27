@@ -109,6 +109,8 @@ def aggregate_domainc(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
     run_id = str(run_json.get("run_id", run_dir.name))
     run_cfg = run_json.get("config") or {}
     slo_ms_default = run_cfg.get("slo_ms", None)
+    if slo_ms_default is None:
+        slo_ms_default = (run_cfg.get("brace_hparams", {}) or {}).get("slo_ms")
 
     episodes = list(_read_jsonl(run_dir / "episode_metrics.jsonl"))
     events_all = list(_read_jsonl(run_dir / "events.jsonl"))
@@ -194,7 +196,7 @@ def aggregate_domainc(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
         )
 
     md: List[str] = []
-    md.append(f"# AirSim summary: `{run_id}`\n\n")
+    md.append(f"# Domain C summary: `{run_id}`\n\n")
     md.append(
         "| Variant | Episodes | Success | Deadlock | Wait (ms/ep) | Collisions/ep | Near-miss/ep | Min dist (m) | Tokens in (mean) | Tokens after (mean) | Token reduction | Tokens after P95 | Tokens after P99 | Lat P50 (ms) | Lat P95 (ms) | Lat P99 (ms) | SLO (ms) | SLO viol. |\n"
     )

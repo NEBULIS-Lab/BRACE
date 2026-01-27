@@ -208,7 +208,10 @@ def audit_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
     }
 
     fully_missing_all = [k for k in FIELDS if n_all > 0 and missing_all[k] == n_all]
-    fully_missing_trig_all = [k for k in TRIGGER_KEYS if n_all > 0 and trig_missing_all[k] == n_all]
+    fully_missing_trig_all_raw = [k for k in TRIGGER_KEYS if n_all > 0 and trig_missing_all[k] == n_all]
+    fully_missing_trig_all_effective = [
+        k for k in INFERABLE_TRIGGER_KEYS if n_all > 0 and trig_missing_eff_all.get(k, 0) == n_all
+    ]
 
     md: List[str] = []
     md.append(f"# Trigger field coverage: `{run_id}`\n\n")
@@ -224,37 +227,41 @@ def audit_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
         md.append(f"\nFully missing in all events: {', '.join(f'`{k}`' for k in fully_missing_all)}\n")
 
     md.append("\n### `trigger` nested keys (overall)\n\n")
-    md.append("| Key | NA rate (raw) | NA rate (effective) |\n")
+    md.append("| Key | NA rate (defaults-applied) | NA rate (explicit) |\n")
     md.append("|---|---:|---:|\n")
     for k in TRIGGER_KEYS:
         eff = trig_missing_rate_eff_all.get(k, float("nan"))
-        md.append(f"| `{k}` | {_pct(float(trig_missing_rate_all[k]))} | {_pct(float(eff))} |\n")
-    if fully_missing_trig_all:
+        md.append(f"| `{k}` | {_pct(float(eff))} | {_pct(float(trig_missing_rate_all[k]))} |\n")
+    if fully_missing_trig_all_effective:
         md.append(
-            f"\nFully missing nested keys in all events: {', '.join(f'`{k}`' for k in fully_missing_trig_all)}\n"
+            "\nDefaults-applied fully-missing nested keys (cannot be inferred): "
+            + ", ".join(f"`{k}`" for k in fully_missing_trig_all_effective)
+            + ".\n"
         )
 
     md.append("\n## By variant\n\n")
     md.append(
         "| Variant | Replans | "
         + " | ".join(f"`{k}` NA" for k in FIELDS)
-        + " | `trigger.types` NA (raw/effective) | `trigger.periodic` NA (raw/effective) | Fully missing |\n"
+        + " | `trigger.types` NA (default/explicit) | `trigger.periodic` NA (default/explicit) | `trigger.failure` NA (default/explicit) | `trigger.cooldown_active` NA (default/explicit) | Explicitly missing |\n"
     )
-    md.append("|---|---:|---:|---:|---:|---:|---:|---:|---|\n")
+    md.append("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|\n")
     for r in rows:
         mr = r["missing_rate"]
         tmr = r["trigger_missing_rate"]
         tmr_eff = r["trigger_missing_rate_effective"]
         md.append(
-            "| {v} | {n} | {tr} | {tt} | {ri} | {cd} | {types} | {per} | {fm} |\n".format(
+            "| {v} | {n} | {tr} | {tt} | {ri} | {cd} | {types} | {per} | {fail} | {cda} | {fm} |\n".format(
                 v=r["variant"],
                 n=int(r["replan_events"]),
                 tr=_pct(float(mr["trigger"])),
                 tt=_pct(float(mr["replan_trigger_type"])),
                 ri=_pct(float(mr["replan_interval_steps"])),
                 cd=_pct(float(mr["trigger_cooldown_steps"])),
-                types=f"{_pct(float(tmr['types']))}/{_pct(float(tmr_eff.get('types', float('nan'))))}",
-                per=f"{_pct(float(tmr['periodic']))}/{_pct(float(tmr_eff.get('periodic', float('nan'))))}",
+                types=f"{_pct(float(tmr_eff.get('types', float('nan'))))}/{_pct(float(tmr['types']))}",
+                per=f"{_pct(float(tmr_eff.get('periodic', float('nan'))))}/{_pct(float(tmr['periodic']))}",
+                fail=f"{_pct(float(tmr_eff.get('failure', float('nan'))))}/{_pct(float(tmr['failure']))}",
+                cda=f"{_pct(float(tmr_eff.get('cooldown_active', float('nan'))))}/{_pct(float(tmr['cooldown_active']))}",
                 fm=",".join(r["fully_missing"] + [f"trigger.{k}" for k in r["fully_missing_trigger"]])
                 if (r["fully_missing"] or r["fully_missing_trigger"])
                 else "-",
@@ -272,7 +279,8 @@ def audit_run(run_dir: Path) -> Tuple[str, Dict[str, Any]]:
             "trigger_missing_rate": trig_missing_rate_all,
             "trigger_missing_rate_effective": trig_missing_rate_eff_all,
             "fully_missing": fully_missing_all,
-            "fully_missing_trigger": fully_missing_trig_all,
+            "fully_missing_trigger_raw": fully_missing_trig_all_raw,
+            "fully_missing_trigger_effective": fully_missing_trig_all_effective,
         },
         "by_variant": rows,
     }

@@ -1,0 +1,18 @@
+{
+  "about": "Paper numeric claim check: compare primary vs baseline using aggregated table JSONs (append-only outputs under artifacts/tables/).",
+  "comparisons": [
+    {
+      "name": "Proxy (synthetic) — 2x2 sanity",
+      "tables": [
+        "artifacts/tables/<RUN_ID>__agg__<TS>.json"
+      ],
+      "baseline_variant": "nobrace_noprune__r1.0__B800",
+      "primary_method_variant": "brace_prune__r0.7__B800",
+      "secondary_variants": [
+        "nobrace_prune__r0.7__B800",
+        "brace_noprune__r1.0__B800"
+      ]
+    }
+  ]
+}
+
