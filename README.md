@@ -14,11 +14,11 @@
 <a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/Habitat-Meta-DC2626.svg" alt="Meta Habitat"></a>
 <a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/-RoboFactory-0D9488.svg" alt="RoboFactory"></a>
 
-BRACE treats **high-frequency replanning** as a **systems bottleneck** for embodied agents: repeated replanning under context growth leads to tail latency and SLO violations. We integrate a budgeted replanning controller (BRACE) with auditable logging (phase cost breakdown) and composable efficiency modules (E-RECAP pruning, RAG/memory, budget-matched baselines), evaluated across multiple domains (Habitat, RoboFactory, AirSim) and a VLA executor track (OpenMARL).
+BRACE treats **high-frequency replanning** as a **systems bottleneck** for embodied agents: repeated replanning under context growth leads to tail latency and SLO violations. We integrate a budgeted replanning controller (BRACE) with auditable logging (phase cost breakdown) and composable efficiency modules (E-RECAP pruning, RAG/memory, budget-matched baselines), evaluated across multiple environments (Meta AI Habitat / Habitat-Lab+Habitat-Sim navigation, RoboFactory manipulation, Microsoft AirSim vehicles/drones) and a VLA executor track (OpenMARL).
 
 ## Showcases (short video loops)
 
-| Habitat (tail/SLO) | RoboFactory (coordination) | AirSim (cinematic) |
+| Meta AI Habitat (tail/SLO) | RoboFactory (coordination) | Microsoft AirSim (cinematic) |
 |---|---|---|
 | ![](docs/static/images/habitat_compare.gif) | ![](docs/static/images/robofactory_compare.gif) | ![](docs/static/images/airsim_compare.gif) |
 

@@ -76,7 +76,7 @@ SOFTWARE.
 
 ## Habitat (external dependency; not distributed)
 
-This repository includes a Habitat runner/integration, but does **not** vendor or redistribute Habitat code/assets.
+This repository includes a Meta AI Habitat runner/integration, but does **not** vendor or redistribute Habitat code/assets.
 
 Upstream:
 - Habitat-Sim: `https://github.com/facebookresearch/habitat-sim`

@@ -33,7 +33,7 @@ Generate “Quality @ matched tokens” + “Systems @ matched quality” tables
 python analysis/budget_match_table.py runs/<run_id> --write_tables
 ```
 
-## Domain tables (per-domain)
+## Per-environment tables
 
 - RoboFactory/RoboCasa:
 ```bash
