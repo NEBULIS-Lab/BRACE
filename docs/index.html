@@ -88,7 +88,7 @@
               <div class="column has-text-centered">
                 <div class="publication-links">
                   <span class="link-block">
-                    <a href="#bibtex" class="external-link button is-normal is-rounded is-dark">
+                    <a href="#repro" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon"><i class="fas fa-file-pdf"></i></span>
                       <span>Paper</span>
                     </a>
@@ -106,7 +106,7 @@
                     </a>
                   </span>
                   <span class="link-block">
-                    <a href="https://drive.google.com/drive/folders/11ONHDWuz-Es9sc9vvv5rQYVdMQgrBikl?usp=sharing" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
+                    <a href="https://drive.google.com/drive/folders/1Aafo36p2JB8cCeWyG9-QRmEWrssk4kXM?usp=sharing" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon"><i class="fas fa-download"></i></span>
                       <span>Full Videos</span>
                     </a>
@@ -201,7 +201,9 @@
                   <div class="card-content">
                     <p class="title is-5">Habitat (navigation)</p>
                     <p class="subtitle is-6">Tail latency / SLO bottleneck</p>
-                    <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/habitat_compare.mp4" poster="static/images/habitat_demo_frame.png"></video>
+                    <div class="hf-video-wrapper">
+                      <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/habitat_compare.mp4" poster="static/images/habitat_demo_frame.png"></video>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -211,7 +213,9 @@
                   <div class="card-content">
                     <p class="title is-5">RoboFactory (manipulation)</p>
                     <p class="subtitle is-6">Coordination (deadlock/wait)</p>
-                    <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/robofactory_compare.mp4" poster="static/images/robofactory_demo_frame.png"></video>
+                    <div class="hf-video-wrapper">
+                      <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/robofactory_compare.mp4" poster="static/images/robofactory_demo_frame.png"></video>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -221,7 +225,9 @@
                   <div class="card-content">
                     <p class="title is-5">AirSim (vehicles/drones)</p>
                     <p class="subtitle is-6">High-frequency replanning (cinematic)</p>
-                    <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/airsim_compare.mp4" poster="static/images/airsim_demo_panel.png"></video>
+                    <div class="hf-video-wrapper">
+                      <video class="hf-video-inline" controls muted loop playsinline data-src="static/videos/airsim_compare.mp4" poster="static/images/airsim_demo_panel.png"></video>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -249,38 +255,30 @@ scripts/smoke_all.sh</code></pre>
                 See <code>docs/README.md</code> for environment variables, run scripts, and postprocessing into markdown tables.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hero is-light" id="bibtex">
-      <div class="container is-max-widescreen">
-        <div class="columns is-centered">
-          <div class="column is-five-sixths">
-            <h2 class="title is-3 has-text-left">BibTeX</h2>
-            <div class="content">
+            <div class="content" style="margin-top: 2rem;">
+              <h3 class="title is-4 has-text-left">Citation</h3>
               <p class="has-text-justified">Citation will be updated after acceptance.</p>
-            </div>
-            <div class="bibtex-container">
-              <div class="bibtex-header">
-                <span class="bibtex-title">Citation</span>
-                <button class="copy-bibtex-btn" onclick="copyBibTeX()">
-                  <span class="copy-icon"><i class="fas fa-copy"></i></span>
-                  <span class="copy-text">Copy</span>
-                </button>
-              </div>
-              <pre><code id="bibtex-code">@inproceedings{brace2026,
+              <div class="bibtex-container">
+                <div class="bibtex-header">
+                  <span class="bibtex-title">BibTeX</span>
+                  <button class="copy-bibtex-btn" onclick="copyBibTeX()">
+                    <span class="copy-icon"><i class="fas fa-copy"></i></span>
+                    <span class="copy-text">Copy</span>
+                  </button>
+                </div>
+                <pre><code id="bibtex-code">@inproceedings{brace2026,
   title     = {When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning},
   author    = {Anonymous},
   booktitle = {International Conference on Machine Learning (ICML)},
   year      = {2026}
 }</code></pre>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
 
   </main>
 </body>

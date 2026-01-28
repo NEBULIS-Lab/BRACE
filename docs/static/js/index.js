@@ -121,7 +121,7 @@ function setupLazyVideoLoading() {
                 const video = entry.target;
                 const videoSrc = video.getAttribute('data-src');
                 
-                if (videoSrc && !video.src) {
+                if (videoSrc && !video.querySelector('source')) {
                     // Create source element and add to video
                     const source = document.createElement('source');
                     source.src = videoSrc;
@@ -140,11 +140,40 @@ function setupLazyVideoLoading() {
             }
         });
     }, {
-        rootMargin: '50px' // Start loading 50px before video enters viewport
+        rootMargin: '100px', // Start loading 100px before video enters viewport
+        threshold: 0.01 // Trigger even if only 1% is visible
     });
     
     lazyVideos.forEach(video => {
         videoObserver.observe(video);
+    });
+    
+    // Also load videos on click/interaction to ensure they work
+    lazyVideos.forEach(video => {
+        video.addEventListener('click', function() {
+            const videoSrc = video.getAttribute('data-src');
+            if (videoSrc && !video.querySelector('source')) {
+                const source = document.createElement('source');
+                source.src = videoSrc;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+                video.removeAttribute('data-src');
+                video.load();
+            }
+        });
+        
+        // Also trigger on play attempt
+        video.addEventListener('play', function() {
+            const videoSrc = video.getAttribute('data-src');
+            if (videoSrc && !video.querySelector('source')) {
+                const source = document.createElement('source');
+                source.src = videoSrc;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+                video.removeAttribute('data-src');
+                video.load();
+            }
+        }, { once: true });
     });
 }
 

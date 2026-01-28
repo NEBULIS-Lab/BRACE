@@ -93,10 +93,23 @@ body {
   margin-right: auto;
 }
 
-.hf-video-inline {
+.hf-video-wrapper {
+  position: relative;
   width: 100%;
-  height: auto;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  background: #0b1220;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.hf-video-inline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: block;
+  object-fit: contain;
   background: #0b1220;
   border-radius: var(--border-radius-lg);
 }
