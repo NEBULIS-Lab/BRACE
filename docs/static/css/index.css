@@ -89,11 +89,11 @@ body {
 }
 
 #results .hf-media.hf-plot {
-  max-height: 320px;
+  max-height: 240px;
 }
 
 #results .hf-figure {
-  width: min(520px, 100%);
+  width: min(420px, 100%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -144,6 +144,14 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Demos: avoid extra framing so posters match the final video element box before playback. */
+#demos .hf-video-wide,
+#demos .hf-video-inline,
+#demos .hf-video-narrow {
+  background: transparent !important;
+  border-radius: 0 !important;
 }
 
 #results .hf-card,
@@ -287,17 +295,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1.25rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
 .publication-logo {
-    max-height: 110px;
+    max-height: 125px;
     width: auto;
     flex-shrink: 0;
     margin-right: 0;
+    margin-bottom: 0.75rem;
 }
 
 .publication-title {

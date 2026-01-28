@@ -129,14 +129,13 @@
           <div class="column is-five-sixths">
             <h2 class="title is-3 has-text-left">Abstract</h2>
             <div class="content">
+              <p class="has-text-justified"><strong>BRACE</strong> = <strong>B</strong>udgeted <strong>R</strong>eplanning and <strong>C</strong>oordination for <strong>E</strong>mbodied <strong>A</strong>gents.</p>
               <p class="has-text-justified">
-                Embodied agents increasingly rely on frequent replanning to recover from uncertainty, partial observability, and
-                multi-agent coordination. However, as context grows (history, perception summaries, retrieved memory), replanning
-                latency develops a heavy tail and becomes a systems bottleneck: tighter SLOs saturate violations, while looser SLOs hide
-                meaningful improvements. We propose BRACE, a budgeted replanning controller that (i) allocates per-replan budgets,
-                (ii) enforces commitment/cooldown to stabilize behavior, and (iii) produces auditable phase logs for fair cost accounting.
-                We evaluate BRACE across multiple domains (Meta AI Habitat navigation, RoboFactory manipulation, Microsoft AirSim vehicles/drones) and
-                include a VLA executor track (OpenMARL). Demos below illustrate baseline vs BRACE behavior and tail/SLO effects.
+                High-frequency replanning is a dominant and under-measured bottleneck for embodied agents: human instructions are often high-level and underspecified; interactive clarification is not always available and, when allowed, is constrained, while dynamic environments still force repeated replanning. As histories and world-state summaries grow over time (and, in multi-agent settings, across cooperating agents), replanning calls become slower and more variable, causing missed deadlines under strict token and latency budgets.
+                We introduce BRACE, a budgeted replanning framework that treats replanning as a systems control problem, selecting replanning modes and allocating per-call token/time budgets to reduce instability such as plan churn and coordination deadlocks.
+                BRACE is modular and composes with efficiency mechanisms on the replanning call path, including E-RECAP token pruning and retrieval-based replanning memory.
+                On Habitat-Lab navigation under multi-agent context growth, E-RECAP reduces replanning tokens by 71–76% and replanning latency by 2.1–2.6× relative to no pruning, with minimal loss in success and SPL.
+                We argue that budgeting and tail-aware reporting are essential for studying replanning at scale, and propose an evaluation paradigm that reports tail latency and Service-Level Objective (SLO) violations alongside task success.
               </p>
 
               <ul class="has-text-left">
@@ -232,21 +231,21 @@
 
             <div class="columns is-multiline">
               <div class="column is-12">
-                <video class="hf-video hf-video-wide" controls muted loop playsinline preload="metadata" poster="static/images/habitat_demo_frame.png">
+                <video class="hf-video hf-video-wide" width="2048" height="512" controls muted loop playsinline preload="metadata" poster="static/images/habitat_demo_frame.png">
                   <source src="static/videos/habitat_compare.mp4" type="video/mp4">
                 </video>
                 <p class="hf-caption">Habitat (navigation) — Tail latency / SLO bottleneck</p>
               </div>
 
               <div class="column is-12">
-                <video class="hf-video hf-video-narrow" controls muted loop playsinline preload="metadata" poster="static/images/robofactory_demo_frame.png">
+                <video class="hf-video hf-video-narrow" width="2048" height="1024" controls muted loop playsinline preload="metadata" poster="static/images/robofactory_demo_frame.png">
                   <source src="static/videos/robofactory_compare.mp4" type="video/mp4">
                 </video>
                 <p class="hf-caption">RoboFactory (manipulation) — Coordination (deadlock/wait)</p>
               </div>
 
               <div class="column is-12">
-                <video class="hf-video hf-video-wide" controls muted loop playsinline preload="metadata" poster="static/images/airsim_demo_panel.png">
+                <video class="hf-video hf-video-wide" width="3840" height="720" controls muted loop playsinline preload="metadata" poster="static/images/airsim_demo_panel.png">
                   <source src="static/videos/airsim_compare.mp4" type="video/mp4">
                 </video>
                 <p class="hf-caption">AirSim (vehicles/drones) — High-frequency replanning (cinematic)</p>
@@ -267,6 +266,11 @@
               <p class="has-text-justified">
                 Average latency can hide instability. The plots below summarize tail behavior (CDF with an SLO threshold) and SLO violation rates across platforms under a common replanning accounting definition.
               </p>
+              <ul class="has-text-left">
+                <li><strong>Success can saturate while deadlines are missed:</strong> across platforms, baselines can achieve high success yet frequently violate replanning SLOs.</li>
+                <li><strong>Token reduction is necessary but not sufficient:</strong> budgeting + phase accounting make tail behavior explicit, while composable modules (e.g., pruning) reduce tail latency and SLO violations.</li>
+                <li><strong>Tail-aware reporting matters:</strong> heavy tails (e.g., AirSim) motivate reporting percentiles and SLO violations, not averages alone.</li>
+              </ul>
             </div>
 
             <div class="columns is-multiline">
