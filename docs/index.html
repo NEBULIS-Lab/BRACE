@@ -187,23 +187,17 @@
                 <figure class="image">
                   <img class="hf-media" src="static/images/paper/erecap_method_architecture.png" alt="E-RECAP token pruning module overview" loading="lazy">
                 </figure>
+                <p class="hf-caption">Figure: E-RECAP module overview (progressive pruning on the replanning call path).</p>
               </div>
               <div class="column is-6">
                 <div class="content">
                   <p class="has-text-justified">
-                    <strong>E-RECAP</strong> is a composable acceleration module that plugs into BRACE’s replanning call path. When replanning is triggered,
-                    E-RECAP reduces the effective planner input by <strong>progressively pruning context tokens</strong> while preserving critical task, state,
-                    safety, and coordination information.
-                  </p>
-                  <p class="has-text-justified">
-                    This targets the practical bottleneck of replanning under context growth: as histories and multi-agent signals accumulate, transformer attention cost
-                    grows quickly with input length. By enforcing an explicit per-call budget (via a keep ratio <code>r</code>), E-RECAP can shrink attention cost without modifying
-                    tasks, environments, controllers, or replanning triggers.
+                    <strong>E-RECAP</strong> is a drop-in module on the replanning call path: when replanning is triggered, it <strong>prunes context tokens</strong> to meet a per-call budget while preserving critical task/state/safety/coordination information.
                   </p>
                   <ul class="has-text-left">
-                    <li><strong>Drop-in:</strong> operates on the replanning context at trigger time (no changes to the underlying planner/VLM).</li>
-                    <li><strong>Budget-aligned:</strong> helps meet per-call token budgets so tail latency and SLO violations can be reduced.</li>
-                    <li><strong>Auditable:</strong> pruning overhead is accounted as a phase on the replanning call path.</li>
+                    <li><strong>Budget-aligned:</strong> reduces tail latency / SLO violations under context growth.</li>
+                    <li><strong>Composable:</strong> can be combined with BRACE budgeting and optional retrieval.</li>
+                    <li><strong>Auditable:</strong> pruning overhead is logged as its own phase.</li>
                   </ul>
                 </div>
               </div>
@@ -261,21 +255,21 @@
 
             <div class="columns is-multiline">
               <div class="column is-12">
-                <video class="hf-video hf-video-wide" width="2048" height="512" controls muted loop playsinline preload="metadata" poster="static/images/habitat_demo_frame.png">
+                <video class="hf-video hf-video-wide demo-habitat" width="2048" height="512" controls muted loop playsinline preload="metadata" poster="static/images/habitat_demo_frame.png">
                   <source src="static/videos/habitat_compare.mp4" type="video/mp4">
                 </video>
                 <p class="hf-caption">Habitat (navigation) — Tail latency / SLO bottleneck</p>
               </div>
 
               <div class="column is-12">
-                <video class="hf-video hf-video-narrow" width="2048" height="1024" controls muted loop playsinline preload="metadata" poster="static/images/robofactory_demo_frame.png">
+                <video class="hf-video hf-video-narrow demo-robofactory" width="2048" height="1024" controls muted loop playsinline preload="metadata" poster="static/images/robofactory_demo_frame.png">
                   <source src="static/videos/robofactory_compare.mp4" type="video/mp4">
                 </video>
                 <p class="hf-caption">RoboFactory (manipulation) — Coordination (deadlock/wait)</p>
               </div>
 
               <div class="column is-12">
-                <video class="hf-video hf-video-wide" width="3840" height="720" controls muted loop playsinline preload="metadata" poster="static/images/airsim_demo_panel.png">
+                <video class="hf-video hf-video-wide demo-airsim" width="3840" height="720" controls muted loop playsinline preload="metadata" poster="static/images/airsim_demo_panel.png">
                   <source src="static/videos/airsim_compare.mp4" type="video/mp4">
                 </video>
                 <p class="hf-caption">AirSim (vehicles/drones) — High-frequency replanning (cinematic)</p>

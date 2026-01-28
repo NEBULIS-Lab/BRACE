@@ -152,6 +152,11 @@ body {
   border-radius: 0 !important;
 }
 
+/* Critical: lock demo aspect ratios so the poster box matches the video box before metadata/playback. */
+#demos video.demo-habitat { aspect-ratio: 4 / 1; }        /* 2048x512 */
+#demos video.demo-robofactory { aspect-ratio: 2 / 1; }    /* 2048x1024 */
+#demos video.demo-airsim { aspect-ratio: 16 / 3; }        /* 3840x720 */
+
 #results .hf-card,
 #simulators .hf-card,
 #demos .hf-card {
