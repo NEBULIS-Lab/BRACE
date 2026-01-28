@@ -29,11 +29,11 @@ and composes with efficiency modules (e.g., **E-RECAP** token pruning, optional 
 
 Each showcase below is a small, GitHub-friendly loop. Full-resolution artifacts are in the public Google Drive folder (badge above).
 
-### Microsoft AirSim — multi-agent intersection (K=8)
+### Microsoft AirSim — multi-agent intersection
 
 <img src="docs/static/images/airsim_compare.gif" style="max-width: 100%; height: auto;" />
 
-Left: baseline. Right: BRACE.
+**Scenario:** 8 drones navigating through a shared intersection with high-frequency replanning. **Left:** baseline (no budget control) suffers from replanning latency spikes, leading to coordination failures and collisions. **Right:** BRACE with budgeted replanning maintains stable, coordinated flight paths and avoids deadline misses.
 
 - Short MP4: [docs/static/videos/airsim_compare.mp4](docs/static/videos/airsim_compare.mp4)
 
@@ -41,7 +41,7 @@ Left: baseline. Right: BRACE.
 
 <img src="docs/static/images/habitat_compare.gif" style="max-width: 100%; height: auto;" />
 
-Left: baseline. Right: E-RECAP pruning.
+**Scenario:** PointGoal navigation task with strict SLO (2500ms per replanning call). **Left:** baseline (no pruning) exceeds SLO frequently, causing agent stalling. **Right:** E-RECAP token pruning reduces context size and keeps replanning within SLO, enabling smooth navigation.
 
 - Short MP4: [docs/static/videos/habitat_compare.mp4](docs/static/videos/habitat_compare.mp4)
 
@@ -49,7 +49,7 @@ Left: baseline. Right: E-RECAP pruning.
 
 <img src="docs/static/images/robofactory_compare.gif" style="max-width: 100%; height: auto;" />
 
-Left: baseline. Right: BRACE + E-RECAP.
+**Scenario:** PassShoe task requiring tight coordination between two robots. **Left:** baseline suffers from deadlock and excessive wait times due to uncoordinated replanning. **Right:** BRACE + E-RECAP coordinates replanning decisions, reduces wait times, and maintains task success while staying within SLO.
 
 - Short MP4: [docs/static/videos/robofactory_compare.mp4](docs/static/videos/robofactory_compare.mp4)
 

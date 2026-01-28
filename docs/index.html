@@ -88,7 +88,7 @@
               <div class="column has-text-centered">
                 <div class="publication-links">
                   <span class="link-block">
-                    <a href="#bibtex" class="external-link button is-normal is-rounded is-dark">
+                    <a href="#repro" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon"><i class="fas fa-file-pdf"></i></span>
                       <span>Paper</span>
                     </a>
@@ -191,8 +191,13 @@
             <h2 class="title is-3 has-text-left">Demos</h2>
             <div class="content">
               <p class="has-text-justified">
-                Below are lightweight MP4 clips suitable for GitHub Pages. Full-resolution artifacts live outside this repo.
+                Below are side-by-side comparisons demonstrating BRACE's impact across three domains. Each demo shows baseline behavior (left) versus BRACE or BRACE + E-RECAP (right), highlighting improvements in replanning latency, SLO compliance, and multi-agent coordination. The clips are lightweight MP4s suitable for GitHub Pages; full-resolution artifacts are available in the public Google Drive folder (link above).
               </p>
+              <ul class="has-text-left">
+                <li><strong>Meta Habitat:</strong> PointGoal navigation under strict SLO constraints, showing how E-RECAP token pruning keeps replanning within deadline.</li>
+                <li><strong>RoboFactory:</strong> Multi-agent manipulation (PassShoe task) demonstrating coordination improvements and reduced wait times.</li>
+                <li><strong>Microsoft AirSim:</strong> High-frequency replanning with 8 drones navigating a shared intersection, showcasing stable coordination and collision avoidance.</li>
+              </ul>
             </div>
 
             <div class="columns is-multiline">
@@ -247,34 +252,6 @@ scripts/smoke_all.sh</code></pre>
               <p class="has-text-justified">
                 See <code>docs/README.md</code> for environment variables, run scripts, and postprocessing into markdown tables.
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hero is-light" id="bibtex">
-      <div class="container is-max-widescreen">
-        <div class="columns is-centered">
-          <div class="column is-five-sixths">
-            <h2 class="title is-3 has-text-left">Citation</h2>
-            <div class="content">
-              <p class="has-text-justified">Citation will be updated after acceptance.</p>
-            </div>
-            <div class="bibtex-container">
-              <div class="bibtex-header">
-                <span class="bibtex-title">BibTeX</span>
-                <button class="copy-bibtex-btn" onclick="copyBibTeX()">
-                  <span class="copy-icon"><i class="fas fa-copy"></i></span>
-                  <span class="copy-text">Copy</span>
-                </button>
-              </div>
-              <pre><code id="bibtex-code">@inproceedings{brace2026,
-  title     = {When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning},
-  author    = {Anonymous},
-  booktitle = {International Conference on Machine Learning (ICML)},
-  year      = {2026}
-}</code></pre>
             </div>
           </div>
         </div>
