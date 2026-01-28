@@ -53,6 +53,27 @@ Left: baseline. Right: BRACE + E-RECAP.
 
 - Short MP4: [docs/static/videos/robofactory_compare.mp4](docs/static/videos/robofactory_compare.mp4)
 
+## Repo map
+
+- **`brace/`**: BRACE controller core (budgeting + stability mechanisms)
+- **`experiments/`**: domain runners (Habitat / RoboFactory / AirSim / proxy + stubs)
+- **`analysis/`**: aggregation + audit tools (tables, schema coverage, trigger/controller audits)
+  - Start here: [`analysis/README.md`](analysis/README.md)
+- **`docs/`**: project page + guides
+  - Website: [`docs/index.html`](docs/index.html)
+  - Main guide: [`docs/README.md`](docs/README.md)
+  - Controller spec: [`docs/CONTROLLER.md`](docs/CONTROLLER.md)
+  - Logging schema: [`docs/SCHEMA.md`](docs/SCHEMA.md)
+  - Demo/media provenance: [`docs/PROVENANCE.md`](docs/PROVENANCE.md)
+  - E-RECAP guide: [`docs/e-recap.md`](docs/e-recap.md)
+- **`configs/`**: curated configs
+  - Defaults: `configs/smoke/` (sanity checks)
+  - Paper-facing: `configs/experiments/` (curated eval/demo configs)
+- **`scripts/`**: thin wrappers around Python entrypoints (smoke / run / postprocess)
+- **`e-recap/`**: vendored E-RECAP module (optional)
+- **`third_party/openmarl/`**: vendored OpenMARL components used by the VLA executor track
+
+
 ## Representative results
 
 Numbers below are aggregated from paper-facing tables produced by the postprocess pipeline (see **Reproducibility & auditing**). We report **replanning** tail latency and **SLO violation rate** (fraction of replanning calls exceeding the per-platform SLO).
@@ -85,18 +106,6 @@ Numbers below are aggregated from paper-facing tables produced by the postproces
 
 > **Note (how to read):** Success can saturate at 100% in easy regimes; BRACE is primarily evaluated on **tail/SLO behavior and auditable accounting** on the replanning call path.
 
-## Quick links
-
-- Website (static template): `docs/index.html`
-- Docs (single guide): `docs/README.md`
-- Controller spec (proxy-ready): `docs/CONTROLLER.md`
-- Logging schema: `docs/SCHEMA.md`
-- Analysis utilities: `analysis/README.md`
-- Demo/media provenance: `docs/PROVENANCE.md`
-- Configs: `configs/smoke/` (defaults) and `configs/experiments/` (curated eval/demo configs)
-- E-RECAP (v1) module: `docs/e-recap.md` / `e-recap/`
-- Scripts (runnable entrypoints): `scripts/`
-
 ## Quickstart (local smoke; no simulators required)
 
 ```bash
@@ -122,17 +131,6 @@ scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json 
 # Microsoft AirSim (requires UE binaries + BRACE_AIRSIM_ENVS_ROOT)
 scripts/run_airsim.sh --config configs/smoke/airsim_multidrone_demo.json --run-name airsim_demo --ue-env airsimnh
 ```
-
-## Repo map (where to look)
-
-- `brace/`: BRACE controller core (budgeting + stability mechanisms)
-- `experiments/`: domain runners (Habitat / RoboFactory / AirSim / proxy + stubs)
-- `analysis/`: aggregation + audit tools (tables, schema coverage, trigger/controller audits)
-- `docs/`: project page + guides (incl. schema, controller spec, provenance)
-- `configs/`: curated configs (`smoke/` for sanity checks; `experiments/` for paper-facing setups)
-- `scripts/`: thin wrappers around Python entrypoints (smoke / run / postprocess)
-- `e-recap/`: vendored E-RECAP module (optional)
-- `third_party/openmarl/`: vendored OpenMARL components used by the VLA executor track
 
 ## Reproducibility & auditing (paper-facing tables)
 
