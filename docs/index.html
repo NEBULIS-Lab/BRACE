@@ -183,6 +183,43 @@
       </div>
     </section>
 
+    <section class="section hero is-light" id="erecap">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">E-RECAP: progressive token pruning on the replanning call path</h2>
+            <div class="columns is-vcentered">
+              <div class="column is-6">
+                <figure class="image hf-figure">
+                  <img class="hf-media" src="static/images/paper/erecap_method_architecture.png" alt="E-RECAP token pruning module overview" loading="lazy">
+                </figure>
+              </div>
+              <div class="column is-6">
+                <div class="content">
+                  <p class="has-text-justified">
+                    <strong>E-RECAP</strong> is a composable acceleration module that plugs into BRACE’s replanning call path. When replanning is triggered,
+                    E-RECAP reduces the effective planner input by <strong>progressively pruning context tokens</strong> while preserving critical task, state,
+                    safety, and coordination information.
+                  </p>
+                  <p class="has-text-justified">
+                    This targets the practical bottleneck of replanning under context growth: as histories and multi-agent signals accumulate, transformer attention cost
+                    grows quickly with input length. By enforcing an explicit per-call budget (via a keep ratio <code>r</code>), E-RECAP can shrink attention cost without modifying
+                    tasks, environments, controllers, or replanning triggers.
+                  </p>
+                  <ul class="has-text-left">
+                    <li><strong>Drop-in:</strong> operates on the replanning context at trigger time (no changes to the underlying planner/VLM).</li>
+                    <li><strong>Budget-aligned:</strong> helps meet per-call token budgets so tail latency and SLO violations can be reduced.</li>
+                    <li><strong>Auditable:</strong> pruning overhead is accounted as a phase on the replanning call path.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <p class="hf-caption">Figure: E-RECAP module overview (progressive pruning on the replanning call path).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section hero is-light" id="motivation">
       <div class="container is-max-widescreen">
         <div class="columns is-centered">
