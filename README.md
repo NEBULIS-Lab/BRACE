@@ -16,7 +16,7 @@
 
 **BRACE** = **B**udgeted **R**eplanning and **C**oordination for **E**mbodied **A**gents.
 
-BRACE targets **high-frequency replanning** as a **systems bottleneck** for embodied agents: as context grows (history, perception summaries, retrieved memory), replanning latency develops a heavy tail and leads to **deadline/SLO misses**.
+This work targets **high-frequency replanning** as a **systems bottleneck** for embodied agents: as context grows (history, perception summaries, retrieved memory), replanning latency develops a heavy tail and leads to **deadline/SLO misses**.
 
 BRACE provides:
 - A **budgeted replanning controller** (when to replan, what to include, and how to stay within a time/token budget), and
