@@ -192,11 +192,17 @@
               <div class="column is-6">
                 <div class="content">
                   <p class="has-text-justified">
-                    <strong>E-RECAP</strong> is a drop-in module on the replanning call path: when replanning is triggered, it <strong>prunes context tokens</strong> to meet a per-call budget while preserving critical task/state/safety/coordination information.
+                    <strong>E-RECAP</strong> is a composable acceleration module that plugs into BRACE’s replanning call path. When replanning is triggered,
+                    E-RECAP reduces the effective planner input by <strong>progressively pruning context tokens</strong> while preserving critical task, state,
+                    safety, and coordination information.
+                  </p>
+                  <p class="has-text-justified">
+                    This targets replanning under context growth: as histories and multi-agent signals accumulate, attention cost grows quickly with input length.
+                    By enforcing an explicit per-call budget (via a keep ratio <code>r</code>), E-RECAP can shrink attention cost without modifying tasks, environments, controllers, or triggers.
                   </p>
                   <ul class="has-text-left">
-                    <li><strong>Budget-aligned:</strong> reduces tail latency / SLO violations under context growth.</li>
-                    <li><strong>Composable:</strong> can be combined with BRACE budgeting and optional retrieval.</li>
+                    <li><strong>Drop-in:</strong> operates on the replanning context at trigger time (no changes to the underlying planner/VLM).</li>
+                    <li><strong>Budget-aligned:</strong> helps meet per-call token budgets, reducing tail latency and SLO violations.</li>
                     <li><strong>Auditable:</strong> pruning overhead is logged as its own phase.</li>
                   </ul>
                 </div>

@@ -206,7 +206,36 @@ function setupVideoCarouselAutoplay() {
     });
 }
 
+// Fix video sizing: ensure poster box matches video box before playback
+function fixVideoSizing() {
+    const demoVideos = document.querySelectorAll('#demos video');
+    demoVideos.forEach(video => {
+        // Set size immediately if metadata is already loaded
+        if (video.readyState >= 1) {
+            video.style.width = video.offsetWidth + 'px';
+            video.style.height = video.offsetHeight + 'px';
+        }
+        
+        // Lock size when metadata loads
+        video.addEventListener('loadedmetadata', function() {
+            const computedWidth = window.getComputedStyle(video).width;
+            const computedHeight = window.getComputedStyle(video).height;
+            video.style.width = computedWidth;
+            video.style.height = computedHeight;
+        }, { once: true });
+        
+        // Also lock on canplay to catch early loads
+        video.addEventListener('canplay', function() {
+            const computedWidth = window.getComputedStyle(video).width;
+            const computedHeight = window.getComputedStyle(video).height;
+            video.style.width = computedWidth;
+            video.style.height = computedHeight;
+        }, { once: true });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     setupLazyVideoLoading();
     setupVideoCarouselAutoplay();
+    fixVideoSizing();
 });
