@@ -136,7 +136,7 @@ body {
 }
 
 .hf-video-narrow {
-  width: min(266px, 100%); /* ~1/3 of 800px */
+  width: min(400px, 100%); /* Smaller than wide videos */
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -147,21 +147,27 @@ body {
 #demos .hf-video-inline,
 #demos .hf-video-narrow {
   background: transparent !important;
-  border-radius: 0 !important;
+  border-radius: var(--border-radius-lg) !important;
+  overflow: hidden !important; /* Ensure rounded corners are visible */
 }
 
-/* Critical: lock demo aspect ratios so the poster box matches the video box before metadata/playback. */
+/* Critical: lock demo aspect ratios so the poster box matches the video box before metadata/playback.
+   The aspect-ratio forces the video element to have the correct dimensions even when showing the poster. */
 #demos video.demo-habitat { 
   aspect-ratio: 4 / 1 !important;        /* 2048x512 */
   height: auto !important;
+  /* object-fit ensures poster fits within the aspect-ratio box without distorting */
+  object-fit: contain !important;
 }
 #demos video.demo-robofactory { 
   aspect-ratio: 2 / 1 !important;       /* 2048x1024 */
   height: auto !important;
+  object-fit: contain !important;
 }
 #demos video.demo-airsim { 
-  aspect-ratio: 16 / 3 !important;      /* 3840x720 */
+  aspect-ratio: 16 / 3 !important;      /* 3840x720 = 5.333... */
   height: auto !important;
+  object-fit: contain !important;
 }
 
 #results .hf-card,
