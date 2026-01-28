@@ -35,7 +35,7 @@ Each showcase below is a small, GitHub-friendly loop. Full-resolution artifacts 
 
 Left: baseline. Right: BRACE.
 
-- Short MP4: `docs/static/videos/airsim_compare.mp4`
+- Short MP4: [docs/static/videos/airsim_compare.mp4](docs/static/videos/airsim_compare.mp4)
 
 ### Meta AI Habitat — navigation under strict SLO (tail latency)
 
@@ -43,7 +43,7 @@ Left: baseline. Right: BRACE.
 
 Left: no-prune. Right: E-RECAP pruning.
 
-- Short MP4: `docs/static/videos/habitat_compare.mp4`
+- Short MP4: [docs/static/videos/habitat_compare.mp4](docs/static/videos/habitat_compare.mp4)
 
 ### RoboFactory — multi-agent manipulation (coordination)
 
@@ -51,17 +51,37 @@ Left: no-prune. Right: E-RECAP pruning.
 
 Left: baseline. Right: BRACE + E-RECAP.
 
-- Short MP4: `docs/static/videos/robofactory_compare.mp4`
+- Short MP4: [docs/static/videos/robofactory_compare.mp4](docs/static/videos/robofactory_compare.mp4)
 
 ## Representative results
 
 Numbers below are aggregated from paper-facing tables produced by the postprocess pipeline (see **Reproducibility & auditing**). We report **replanning** tail latency and **SLO violation rate** (fraction of replanning calls exceeding the per-platform SLO).
 
-| Platform | Setting | Baseline → Method | Tokens after (mean) | Lat P95 (ms) | SLO viol. |
-|---|---|---|---:|---:|---:|
-| Meta AI Habitat | navigation (30 eps) | no-prune → E-RECAP prune \(r=0.7\) | 235.07 → **20.06** | 2676.85 → **2499** | 85.5% → **3.6%** |
-| RoboFactory | PassShoe (10 eps, SLO=250ms) | no-BRACE → BRACE + E-RECAP \(r=0.7\) | 1566.37 → **318.73** | 1603.75 → **1213** | 100.0% → **50.0%** |
-| Microsoft AirSim | K=8 intersection (10 eps) | baseline → BRACE | 2934.14 → **1113.59** | 8520.00 → **1640** | 100.0% → **4.7%** |
+### Meta AI Habitat — navigation under strict SLO (30 eps, SLO=2500ms)
+
+| Method Variant | Success | Tokens after (mean) | Token reduction | Lat P95 (ms) | Lat P99 (ms) | SLO viol. |
+|---|---:|---:|---:|---:|---:|---:|
+| nobrace_noprune | 100.0% | 235.07 | 0.0% | 2677 | 2700 | 85.5% |
+| nobrace_prune_r0.7 | 100.0% | **20.06** | **91.8%** | **2499** | 2533 | **3.6%** |
+| brace_noprune | 100.0% | 234.68 | 0.0% | 2679 | 2688 | 85.3% |
+| brace_prune_r0.7 | 100.0% | **20.02** | **91.7%** | 2500 | **2504** | 4.7% |
+
+### RoboFactory — PassShoe (10 eps, SLO=250ms)
+
+| Method Variant | Success | Tokens after (mean) | Token reduction | Lat P95 (ms) | Lat P99 (ms) | SLO viol. | Wait time mean (ms/ep) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| nobrace_none | 100.0% | 1566.37 | 0.0% | 1604 | 2481 | 100.0% | 9063 |
+| nobrace_erecap_r0.7 | 100.0% | 350.45 | 77.6% | 1236 | 1239 | 100.0% | 7141 |
+| nobrace_baseline_recency | 100.0% | 350.37 | 77.7% | 1235 | 1246 | 100.0% | 7172 |
+| brace_none | 100.0% | 1413.77 | 0.0% | 1587 | 1596 | **50.0%** | 4213 |
+| brace_erecap_r0.7 | 100.0% | **318.73** | **77.4%** | **1213** | **1226** | **50.0%** | **3546** |
+
+### Microsoft AirSim — multi-agent intersection (K=8, 10 eps, SLO=2500ms)
+
+| Method Variant | Success | Tokens after (mean) | Token reduction | Lat P50 (ms) | Lat P95 (ms) | Lat P99 (ms) | SLO viol. |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| baseline | 100.0% | 2934.14 | 0.0% | 5960 | 8520 | 9000 | 100.0% |
+| brace_full | 100.0% | **1113.59** | **65.0%** | **1640** | **1640** | 9120 | **4.7%** |
 
 > **Note (how to read):** Success can saturate at 100% in easy regimes; BRACE is primarily evaluated on **tail/SLO behavior and auditable accounting** on the replanning call path.
 
@@ -87,8 +107,6 @@ pip install -r requirements.txt
 # Validates: run directory + schema + postprocess tables.
 scripts/smoke_local.sh
 ```
-
-> **Note (how notes work):** We use `> **Note:** ...` blocks throughout the README to call out constraints, caveats, or reviewer-facing guidance.
 
 ## Run (requires simulators / external assets)
 
