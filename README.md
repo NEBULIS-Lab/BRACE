@@ -37,11 +37,11 @@ Left: baseline. Right: BRACE.
 
 - Short MP4: [docs/static/videos/airsim_compare.mp4](docs/static/videos/airsim_compare.mp4)
 
-### Meta AI Habitat — navigation under strict SLO (tail latency)
+### Meta Habitat — navigation under strict SLO (tail latency)
 
 <img src="docs/static/images/habitat_compare.gif" style="max-width: 100%; height: auto;" />
 
-Left: no-prune. Right: E-RECAP pruning.
+Left: baseline. Right: E-RECAP pruning.
 
 - Short MP4: [docs/static/videos/habitat_compare.mp4](docs/static/videos/habitat_compare.mp4)
 
@@ -59,29 +59,29 @@ Numbers below are aggregated from paper-facing tables produced by the postproces
 
 ### Meta AI Habitat — navigation under strict SLO (30 eps, SLO=2500ms)
 
-| Method Variant | Success | Tokens after (mean) | Token reduction | Lat P95 (ms) | Lat P99 (ms) | SLO viol. |
+| Method | Success | Tokens after (mean) | Token reduction | Lat P95 (ms) | Lat P99 (ms) | SLO viol. |
 |---|---:|---:|---:|---:|---:|---:|
-| nobrace_noprune | 100.0% | 235.07 | 0.0% | 2677 | 2700 | 85.5% |
-| nobrace_prune_r0.7 | 100.0% | **20.06** | **91.8%** | **2499** | 2533 | **3.6%** |
-| brace_noprune | 100.0% | 234.68 | 0.0% | 2679 | 2688 | 85.3% |
-| brace_prune_r0.7 | 100.0% | **20.02** | **91.7%** | 2500 | **2504** | 4.7% |
+| Baseline (no pruning) | 100.0% | 235.07 | 0.0% | 2677 | 2700 | 85.5% |
+| E-RECAP pruning (r=0.7) | 100.0% | **20.06** | **91.8%** | **2499** | 2533 | **3.6%** |
+| BRACE (no pruning) | 100.0% | 234.68 | 0.0% | 2679 | 2688 | 85.3% |
+| BRACE + E-RECAP (r=0.7) | 100.0% | **20.02** | **91.7%** | 2500 | **2504** | 4.7% |
 
 ### RoboFactory — PassShoe (10 eps, SLO=250ms)
 
-| Method Variant | Success | Tokens after (mean) | Token reduction | Lat P95 (ms) | Lat P99 (ms) | SLO viol. | Wait time mean (ms/ep) |
+| Method | Success | Tokens after (mean) | Token reduction | Lat P95 (ms) | Lat P99 (ms) | SLO viol. | Wait time mean (ms/ep) |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| nobrace_none | 100.0% | 1566.37 | 0.0% | 1604 | 2481 | 100.0% | 9063 |
-| nobrace_erecap_r0.7 | 100.0% | 350.45 | 77.6% | 1236 | 1239 | 100.0% | 7141 |
-| nobrace_baseline_recency | 100.0% | 350.37 | 77.7% | 1235 | 1246 | 100.0% | 7172 |
-| brace_none | 100.0% | 1413.77 | 0.0% | 1587 | 1596 | **50.0%** | 4213 |
-| brace_erecap_r0.7 | 100.0% | **318.73** | **77.4%** | **1213** | **1226** | **50.0%** | **3546** |
+| Baseline | 100.0% | 1566.37 | 0.0% | 1604 | 2481 | 100.0% | 9063 |
+| E-RECAP pruning (r=0.7) | 100.0% | 350.45 | 77.6% | 1236 | 1239 | 100.0% | 7141 |
+| Recency baseline | 100.0% | 350.37 | 77.7% | 1235 | 1246 | 100.0% | 7172 |
+| BRACE (no pruning) | 100.0% | 1413.77 | 0.0% | 1587 | 1596 | **50.0%** | 4213 |
+| BRACE + E-RECAP (r=0.7) | 100.0% | **318.73** | **77.4%** | **1213** | **1226** | **50.0%** | **3546** |
 
 ### Microsoft AirSim — multi-agent intersection (K=8, 10 eps, SLO=2500ms)
 
-| Method Variant | Success | Tokens after (mean) | Token reduction | Lat P50 (ms) | Lat P95 (ms) | Lat P99 (ms) | SLO viol. |
+| Method | Success | Tokens after (mean) | Token reduction | Lat P50 (ms) | Lat P95 (ms) | Lat P99 (ms) | SLO viol. |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| baseline | 100.0% | 2934.14 | 0.0% | 5960 | 8520 | 9000 | 100.0% |
-| brace_full | 100.0% | **1113.59** | **65.0%** | **1640** | **1640** | 9120 | **4.7%** |
+| Baseline | 100.0% | 2934.14 | 0.0% | 5960 | 8520 | 9000 | 100.0% |
+| BRACE + E-RECAP | 100.0% | **1113.59** | **65.0%** | **1640** | **1640** | 9120 | **4.7%** |
 
 > **Note (how to read):** Success can saturate at 100% in easy regimes; BRACE is primarily evaluated on **tail/SLO behavior and auditable accounting** on the replanning call path.
 
