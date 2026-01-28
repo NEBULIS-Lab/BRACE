@@ -57,7 +57,7 @@ Left: baseline. Right: BRACE + E-RECAP.
 
 Numbers below are aggregated from paper-facing tables produced by the postprocess pipeline (see **Reproducibility & auditing**). We report **replanning** tail latency and **SLO violation rate** (fraction of replanning calls exceeding the per-platform SLO).
 
-### Meta AI Habitat — navigation under strict SLO (30 eps, SLO=2500ms)
+### Meta Habitat — navigation under strict SLO (30 eps, SLO=2500ms)
 
 | Method | Success | Tokens after (mean) | Token reduction | Lat P95 (ms) | Lat P99 (ms) | SLO viol. |
 |---|---:|---:|---:|---:|---:|---:|
