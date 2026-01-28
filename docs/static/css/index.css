@@ -89,7 +89,13 @@ body {
 }
 
 #results .hf-media.hf-plot {
-  max-height: 520px;
+  max-height: 320px;
+}
+
+#results .hf-figure {
+  width: min(520px, 100%);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #demos .hf-media {
@@ -110,8 +116,8 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background: #0b1220;
-  border-radius: var(--border-radius-lg);
+  background: transparent;
+  border-radius: 0;
 }
 
 .hf-video-inline {
@@ -130,6 +136,14 @@ body {
   margin-right: auto;
   background: #0b1220;
   border-radius: var(--border-radius-lg);
+}
+
+.hf-video-narrow {
+  width: min(266px, 100%); /* ~1/3 of 800px */
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #results .hf-card,

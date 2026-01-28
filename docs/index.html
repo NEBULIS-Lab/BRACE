@@ -231,18 +231,24 @@
             </div>
 
             <div class="columns is-multiline">
-              <div class="column is-6">
-                <video class="hf-video hf-video-inline" controls muted loop playsinline data-src="static/videos/habitat_compare.mp4" poster="static/images/habitat_demo_frame.png"></video>
+              <div class="column is-12">
+                <video class="hf-video hf-video-wide" controls muted loop playsinline preload="metadata" poster="static/images/habitat_demo_frame.png">
+                  <source src="static/videos/habitat_compare.mp4" type="video/mp4">
+                </video>
                 <p class="hf-caption">Habitat (navigation) — Tail latency / SLO bottleneck</p>
               </div>
 
-              <div class="column is-6">
-                <video class="hf-video hf-video-inline" controls muted loop playsinline data-src="static/videos/robofactory_compare.mp4" poster="static/images/robofactory_demo_frame.png"></video>
+              <div class="column is-12">
+                <video class="hf-video hf-video-narrow" controls muted loop playsinline preload="metadata" poster="static/images/robofactory_demo_frame.png">
+                  <source src="static/videos/robofactory_compare.mp4" type="video/mp4">
+                </video>
                 <p class="hf-caption">RoboFactory (manipulation) — Coordination (deadlock/wait)</p>
               </div>
 
               <div class="column is-12">
-                <video class="hf-video hf-video-wide" controls muted loop playsinline data-src="static/videos/airsim_compare.mp4" poster="static/images/airsim_demo_panel.png"></video>
+                <video class="hf-video hf-video-wide" controls muted loop playsinline preload="metadata" poster="static/images/airsim_demo_panel.png">
+                  <source src="static/videos/airsim_compare.mp4" type="video/mp4">
+                </video>
                 <p class="hf-caption">AirSim (vehicles/drones) — High-frequency replanning (cinematic)</p>
               </div>
             </div>
