@@ -40,6 +40,7 @@ body {
 
 /* HATTO-UFog: docs expansion (responsive media + no overflow) */
 #overview .hf-media,
+#motivation .hf-media,
 #method .hf-media,
 #results .hf-media,
 #simulators .hf-media,
@@ -55,6 +56,7 @@ body {
 }
 
 #overview .hf-figure,
+#motivation .hf-figure,
 #method .hf-figure,
 #results .hf-figure,
 #simulators .hf-figure,
@@ -76,10 +78,18 @@ body {
   object-fit: contain;
 }
 
+#overview .hf-media.hf-workflow {
+  max-height: 520px;
+}
+
 #results .hf-media,
 #simulators .hf-media {
   max-height: 360px;
   object-fit: contain;
+}
+
+#results .hf-media.hf-plot {
+  max-height: 520px;
 }
 
 #demos .hf-media {

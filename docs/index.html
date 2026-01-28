@@ -174,9 +174,39 @@
               </div>
               <div class="column is-4">
                 <figure class="image hf-figure">
-                  <img class="hf-media" src="static/images/airsim_demo_panel.png" alt="BRACE demo panel" loading="lazy">
+                  <img class="hf-media hf-workflow" src="static/images/paper/brace_workflow_clean.png" alt="BRACE workflow overview" loading="lazy">
                 </figure>
-                <p class="hf-caption">Figure: demo montage (baseline vs BRACE).</p>
+                <p class="hf-caption">Figure: BRACE workflow (controller + composable modules on the replanning call path).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="motivation">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">Motivation: tail latency and deadline misses</h2>
+            <div class="content">
+              <p class="has-text-justified">
+                In embodied replanning, success can saturate even when replanning repeatedly misses real-time deadlines. We therefore
+                evaluate with <strong>tail latency</strong> (e.g., P95/P99) and <strong>SLO violation rate</strong> (fraction of replanning calls exceeding the per-domain latency SLO),
+                alongside task success.
+              </p>
+              <p class="has-text-justified">
+                Example (Meta Habitat, SLO=2500ms): <strong>No BRACE</strong> shows frequent deadline misses (85.5% SLO violations), while
+                applying pruning on the replanning call path (as used in BRACE) reduces the replanning context from ~235 tokens to ~20 tokens and drops SLO violations to 4.7%.
+              </p>
+            </div>
+
+            <div class="columns is-centered">
+              <div class="column is-10">
+                <figure class="image hf-figure">
+                  <img class="hf-media" src="static/images/paper/meta_habitat_motivation_t2.png" alt="Meta Habitat motivating snapshot" loading="lazy">
+                </figure>
+                <p class="hf-caption">Meta Habitat motivating snapshot: keeping replanning context tractable helps avoid deadline-miss cascades.</p>
               </div>
             </div>
           </div>
@@ -217,6 +247,36 @@
               </div>
             </div>
 
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">Key results: tail distributions and SLO violations</h2>
+            <div class="content">
+              <p class="has-text-justified">
+                Average latency can hide instability. The plots below summarize tail behavior (CDF with an SLO threshold) and SLO violation rates across platforms under a common replanning accounting definition.
+              </p>
+            </div>
+
+            <div class="columns is-multiline">
+              <div class="column is-6">
+                <figure class="image hf-figure">
+                  <img class="hf-media hf-plot" src="static/images/paper/latency_cdf_meta_habitat.png" alt="Tail latency CDF (Meta Habitat) with SLO threshold" loading="lazy">
+                </figure>
+                <p class="hf-caption">Tail latency (CDF) with SLO threshold (Meta Habitat).</p>
+              </div>
+              <div class="column is-6">
+                <figure class="image hf-figure">
+                  <img class="hf-media hf-plot" src="static/images/paper/slo_violation_bar.png" alt="SLO violation snapshot across platforms" loading="lazy">
+                </figure>
+                <p class="hf-caption">SLO violation snapshot across platforms.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
