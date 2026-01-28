@@ -41,7 +41,6 @@ body {
 /* HATTO-UFog: docs expansion (responsive media + no overflow) */
 #overview .hf-media,
 #motivation .hf-media,
-#erecap .hf-media,
 #method .hf-media,
 #results .hf-media,
 #simulators .hf-media,
@@ -58,7 +57,6 @@ body {
 
 #overview .hf-figure,
 #motivation .hf-figure,
-#erecap .hf-figure,
 #method .hf-figure,
 #results .hf-figure,
 #simulators .hf-figure,
