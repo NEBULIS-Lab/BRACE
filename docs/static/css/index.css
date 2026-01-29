@@ -144,11 +144,17 @@ body {
 
 /* Demos: avoid extra framing so posters match the final video element box before playback. */
 #demos .hf-video-wide,
-#demos .hf-video-inline,
-#demos .hf-video-narrow {
+#demos .hf-video-inline {
   background: transparent !important;
   border-radius: var(--border-radius-lg) !important;
   overflow: hidden !important; /* Ensure rounded corners are visible */
+}
+
+#demos .hf-video-narrow {
+  width: min(400px, 100%) !important; /* Smaller display for RoboFactory */
+  background: transparent !important;
+  border-radius: var(--border-radius-lg) !important;
+  overflow: hidden !important;
 }
 
 /* Critical: lock demo aspect ratios so the poster box matches the video box before metadata/playback.
