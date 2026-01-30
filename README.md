@@ -14,7 +14,7 @@
 <a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/Habitat-Meta-DC2626.svg" alt="Meta Habitat"></a>
 <a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/-RoboFactory-0D9488.svg" alt="RoboFactory"></a>
 
-**BRACE** = **B**udgeted **R**eplanning **a**nd **C**oordination for **E**mbodied-agents.
+**BRACE** = **B**udgeted **R**eplanning **a**nd **C**oordination for **E**mbodied-Agents.
 
 This work targets **high-frequency replanning** as a **systems bottleneck** for embodied agents: as context grows (history, perception summaries, retrieved memory), replanning latency develops a heavy tail and leads to **deadline/SLO misses**.
 
