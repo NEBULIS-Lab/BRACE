@@ -3,7 +3,7 @@
     <source media="(prefers-color-scheme: dark)" srcset="docs/static/images/logo_dark.png">
     <img src="docs/static/images/logo.png" alt="BRACE logo" width="300">
   </picture>
-  <h1>When Replanning Becomes the Bottleneck: BRACE for Budgeted Embodied Agent Replanning</h1>
+  <h1>When Replanning Becomes the Bottleneck: Budgeted Embodied Agent Replanning</h1>
 </div>
 
 <a href="docs/"><img src="https://img.shields.io/badge/Docs-Guide-7C3AED.svg" alt="Docs"></a>
@@ -14,7 +14,7 @@
 <a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/Habitat-Meta-DC2626.svg" alt="Meta Habitat"></a>
 <a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/-RoboFactory-0D9488.svg" alt="RoboFactory"></a>
 
-**BRACE** = **B**udgeted **R**eplanning and **C**oordination for **E**mbodied **A**gents.
+**BRACE** = **B**udgeted **R**eplanning **a**nd **C**oordination for **E**mbodied-agents.
 
 This work targets **high-frequency replanning** as a **systems bottleneck** for embodied agents: as context grows (history, perception summaries, retrieved memory), replanning latency develops a heavy tail and leads to **deadline/SLO misses**.
 
