@@ -6,16 +6,22 @@
   <h1>When Replanning Becomes the Bottleneck: Budgeted Embodied Agent Replanning</h1>
 </div>
 
-<a href="docs/"><img src="https://img.shields.io/badge/Docs-Guide-7C3AED.svg" alt="Docs"></a>
-<a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Page%20URL-0EA5E9.svg" alt="Website"></a>
-<a href="https://drive.google.com/drive/folders/1Aafo36p2JB8cCeWyG9-QRmEWrssk4kXM?usp=sharing"><img src="https://img.shields.io/badge/Demos-Google%20Drive-F97316.svg" alt="Demos"></a>
-<a href="https://www.deepspeed.ai/"><img alt="DeepSpeed" src="https://img.shields.io/badge/DeepSpeed-0A66FF?logo=microsoft&logoColor=white"></a>
-<a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/AirSim-Microsoft-16A34A.svg" alt="Microsoft AirSim"></a>
-<a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/Habitat-Meta-DC2626.svg" alt="Meta Habitat"></a>
-<a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/-RoboFactory-0D9488.svg" alt="RoboFactory"></a>
-<a href="https://robosuite.ai/"><img src="https://img.shields.io/badge/RoboSuite-MuJoCo-4B5563.svg" alt="RoboSuite"></a>
-<a href="https://libero-project.github.io/"><img src="https://img.shields.io/badge/LIBERO-Benchmark-A16207.svg" alt="LIBERO"></a>
-<a href="https://qwen.ai/"><img src="https://img.shields.io/badge/Qwen-Backbone-C026D3.svg" alt="Qwen"></a>
+<div align="center">
+  <a href="#"><img src="https://img.shields.io/badge/Paper-Coming%20Soon-2563EB.svg" alt="Paper"></a>
+  <a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Page%20URL-0EA5E9.svg" alt="Website"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Video-Coming%20Soon-F97316.svg" alt="Video"></a>
+  <a href="docs/"><img src="https://img.shields.io/badge/Docs-Guide-7C3AED.svg" alt="Docs"></a>
+</div>
+
+<div align="center">
+  <a href="https://www.deepspeed.ai/"><img alt="DeepSpeed" src="https://img.shields.io/badge/DeepSpeed-0A66FF?logo=microsoft&logoColor=white"></a>
+  <a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/AirSim-Microsoft-16A34A.svg" alt="Microsoft AirSim"></a>
+  <a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/Habitat-Meta-DC2626.svg" alt="Meta Habitat"></a>
+  <a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/-RoboFactory-0D9488.svg" alt="RoboFactory"></a>
+  <a href="https://robosuite.ai/"><img src="https://img.shields.io/badge/RoboSuite-MuJoCo-4B5563.svg" alt="RoboSuite"></a>
+  <a href="https://libero-project.github.io/"><img src="https://img.shields.io/badge/LIBERO-Benchmark-A16207.svg" alt="LIBERO"></a>
+  <a href="https://qwen.ai/"><img src="https://img.shields.io/badge/Qwen-Backbone-C026D3.svg" alt="Qwen"></a>
+</div>
 
 **BRACE** = **B**udgeted **R**eplanning **a**nd **C**oordination for **E**mbodied-Agents.
 
