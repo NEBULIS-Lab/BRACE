@@ -38,6 +38,7 @@ and composes with efficiency modules (e.g., **E-RECAP** token pruning, optional 
 
 - **`brace/`**: BRACE controller core (budgeting + stability mechanisms)
 - **`experiments/`**: domain runners (Habitat / RoboFactory / AirSim / proxy + stubs)
+  - Includes benchmark helpers under `experiments/robosuite/` and `experiments/libero/`
 - **`analysis/`**: aggregation + audit tools (tables, schema coverage, trigger/controller audits)
   - Start here: [`analysis/README.md`](analysis/README.md)
 - **`docs/`**: project page + guides
@@ -80,6 +81,19 @@ scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json 
 
 # Microsoft AirSim (requires UE binaries + BRACE_AIRSIM_ENVS_ROOT)
 scripts/run_airsim.sh --config configs/smoke/airsim_multidrone_demo.json --run-name airsim_demo --ue-env airsimnh
+```
+
+Additional helper wrappers are also available for benchmark-native qualitative workflows:
+
+```bash
+# RoboSuite offscreen rendering / playback / demo collection
+scripts/run_robosuite_render.sh --help
+scripts/run_robosuite_playback.sh --help
+scripts/run_robosuite_collect.sh --help
+
+# LIBERO suite inspection / task rendering
+scripts/run_libero_check.sh --help
+scripts/run_libero_render.sh --help
 ```
 
 ## Reproducibility & auditing (paper-facing tables)

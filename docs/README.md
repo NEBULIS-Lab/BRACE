@@ -42,6 +42,7 @@ scripts/smoke_local.sh
 - `BRACE_ROBOFACTORY_DATA_ROOT`: RoboFactory/OpenMARL runtime data root (checkpoints, caches)
 - `BRACE_AIRSIM_ENVS_ROOT`: Microsoft AirSim UE binaries root
 - `BRACE_HABITAT_PY`: python executable for your Meta AI Habitat env (only needed for the Habitat wrapper runner)
+- `BRACE_LIBERO_ROOT`: optional LIBERO workspace root if LIBERO is not installed into the active Python env
 
 ---
 
@@ -90,13 +91,12 @@ scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json 
 
 ### Additional benchmark workspaces
 
-Some qualitative assets and benchmark-specific helper scripts live in external local workspaces rather than this repository.
+This repository vendors thin helper wrappers for a few benchmark-native workflows beyond the main BRACE runners.
 See `docs/EXTERNAL_BENCHMARKS.md` for:
 
-- RoboSuite task notes and local demo scripts
-- LIBERO benchmark suites and rendering entrypoints
-- PushT local evaluation workspace
-- Qwen / VLA backbone asset pointers used by related local experiments
+- RoboSuite rendering, playback, and demo collection helpers
+- LIBERO suite inspection and task rendering helpers
+- integration boundaries for PushT and Qwen-backed assets
 
 ### AirSim (vehicles / drones)
 

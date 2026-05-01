@@ -1,106 +1,99 @@
-# External benchmark and backbone notes
+# External benchmark integration notes
 
-This repository keeps the BRACE controller, configs, and analysis code in one place. Some benchmark-specific demo scripts and local benchmark workspaces live outside this repo and are referenced here for reproducibility.
+This repository now vendors lightweight helper entrypoints for benchmark-native rendering and inspection workflows that are useful when working with BRACE qualitative assets.
 
-## RoboSuite (MuJoCo)
+The goal is narrow:
+- keep the public repo path-safe and self-contained,
+- expose the thin wrappers we actually use, and
+- avoid vendoring full simulator installations, datasets, or checkpoints.
 
-Primary local workspace:
-- `/data/private/user2/workspace/robosuite_learning`
+## RoboSuite
 
-Reference note:
-- `/data/private/user2/ref/ROBOSUITE.md`
+Repository entrypoints:
+- Python helpers:
+  - `experiments/robosuite/render_offscreen_video.py`
+  - `experiments/robosuite/playback_npz_demo_to_video.py`
+  - `experiments/robosuite/collect_random_demos_npz.py`
+- Shell wrappers:
+  - `scripts/run_robosuite_render.sh`
+  - `scripts/run_robosuite_playback.sh`
+  - `scripts/run_robosuite_collect.sh`
 
-Useful local scripts:
-- `/data/private/user2/workspace/robosuite_learning/06_scripts/render_offscreen_video.py`
-- `/data/private/user2/workspace/robosuite_learning/06_scripts/playback_npz_demo_to_video.py`
-- `/data/private/user2/workspace/robosuite_learning/06_scripts/collect_random_demos_npz.py`
-- `/data/private/user2/workspace/robosuite_learning/06_scripts/capture_mujoco_viewer_ui.py`
+Supported use cases:
+- render a short offscreen rollout for a RoboSuite task
+- play back a saved `ep_*` demonstration directory into MP4
+- collect random `DataCollectionWrapper` episodes into `ep_*` folders
 
-Relevant local task assets and demos:
-- `TwoArmPegInHole`
-  - `/data/private/user2/workspace/robosuite_learning/07_demos/github_demo_video_recording__TwoArmPegInHole__PandaPanda__frontview.mp4`
-  - `/data/private/user2/workspace/robosuite_learning/07_demos/npz_playback__TwoArmPegInHole__PandaPanda__frontview.mp4`
-  - `/data/private/user2/workspace/robosuite_learning/05_related/assets/robosuite_twoarm_peginhole_expert_v0.h5`
-- `TwoArmHandover`
-  - `/data/private/user2/workspace/robosuite_learning/07_demos/github_demo_segmentation__TwoArmHandover__frontview__element.mp4`
-  - `/data/private/user2/workspace/robosuite_learning/07_demos/twoarmhandover_random_v152.mp4`
+Requirements:
+- a working `robosuite` install in the active Python environment
+- MuJoCo headless rendering support for offscreen rendering
 
-Practical note:
-- These scripts are not vendored into `BRACE-code`; they remain in the dedicated RoboSuite workspace because they depend on that local MuJoCo / robosuite setup.
+Example:
+
+```bash
+scripts/run_robosuite_render.sh \
+  --env TwoArmPegInHole \
+  --robots Panda Panda \
+  --camera frontview \
+  --steps 240 \
+  --out artifacts/robosuite/twoarm_peginhole.mp4
+```
 
 ## LIBERO
 
-Primary local workspace:
-- `/data/private/user2/workspace/embodied_platforms/libero_env`
+Repository entrypoints:
+- Python helpers:
+  - `experiments/libero/render_single_task.py`
+  - `experiments/libero/check_task_suites.py`
+- Shell wrappers:
+  - `scripts/run_libero_render.sh`
+  - `scripts/run_libero_check.sh`
 
-Reference notes:
-- `/data/private/user2/ref/LIBERO_BENCHMARKS.md`
-- `/data/private/user2/ref/LIBERO_DATASETS.md`
+Supported use cases:
+- inspect benchmark suites and task names
+- verify that referenced BDDL / init-state / demo assets exist
+- render a single task snapshot panel
 
-LIBERO code root:
-- `/data/private/user2/workspace/embodied_platforms/libero_env/src/LIBERO`
+Requirements:
+- either a working `libero` install in the active Python environment, or
+- `BRACE_LIBERO_ROOT` / `LIBERO_ROOT` pointing to a local LIBERO workspace
 
-Useful local scripts:
-- `/data/private/user2/workspace/embodied_platforms/libero_env/src/LIBERO/benchmark_scripts/check_task_suites.py`
-- `/data/private/user2/workspace/embodied_platforms/libero_env/src/LIBERO/benchmark_scripts/render_single_task.py`
-- `/data/private/user2/workspace/embodied_platforms/libero_env/src/LIBERO/scripts/collect_demonstration.py`
-- `/data/private/user2/workspace/embodied_platforms/libero_env/src/LIBERO/scripts/create_libero_task_example.py`
+Example:
 
-Available local suites:
-- `libero_10`
-- `libero_spatial`
-- `libero_object`
-- `libero_goal`
-- `libero_90`
-- `libero_100`
+```bash
+scripts/run_libero_check.sh --verify-files
+```
 
-Task-level note:
-- `Moka Pot` is handled as a task inside the relevant LIBERO suite rather than through a standalone script. In practice, the usual workflow is:
-  1. enumerate the suite task list, then
-  2. render or evaluate the selected task with the benchmark scripts above.
+Task note:
+- tasks such as `Moka Pot` are handled as suite members; enumerate the suite first, then render or evaluate the selected `task_id`.
 
 ## PushT
 
-Primary local workspace:
-- `/data/private/user2/workspace/plato_workspace`
+This repository does not vendor PushT-specific helpers.
 
-Reference note:
-- `/data/private/user2/ref/PUSHT.md`
+Current boundary:
+- BRACE keeps controller logic, configs, and analysis code here
+- benchmark-native PushT evaluation remains an external workflow
 
-Main local entrypoint:
-- `/data/private/user2/workspace/plato_workspace/scripts/lerobot_eval.py --env-type pusht`
+## Qwen-backed assets
 
-Supporting local launcher:
-- `/data/private/user2/workspace/plato_workspace/local/slurm/eval_hf_jubba_smolvla_pusht_seed1_n20_nas4.sbatch`
+This repository does not vendor model weights or backbone workspaces.
 
-Practical note:
-- PushT is maintained in a separate local evaluation workspace and is not wired into the `BRACE-code` shell wrappers.
-
-## Qwen-backed local assets
-
-Primary local asset root:
-- `/data/private/user2/workspace/VLA/qwen3`
-
-Related local assets and evaluation code:
-- `/data/private/user2/workspace/RoboFactory_workspace/rf_run_tools/run_openmarl_openvla_eval_one.sh`
-- `/data/private/user2/workspace/VLA/baseline_assets/official/vla0/eval/eval_libero.py`
-- `/data/private/user2/workspace/VLA/baseline_assets/official/openvla-oft/LIBERO.md`
-
-Practical note:
-- These assets are useful when tracing local VLA / backbone dependencies, but the BRACE repo does not vendor the Qwen workspace itself.
+Current boundary:
+- BRACE exposes controller-side experiments and wrappers
+- backbone checkpoints, evaluation harnesses, and large model assets stay outside git
 
 ## Integration boundary
 
-What lives in `BRACE-code`:
-- controller logic
-- curated experiment configs
-- platform wrappers
-- postprocess / audit utilities
-- project docs and public media
+What lives here:
+- BRACE controller logic
+- curated configs
+- platform runners
+- benchmark helper wrappers
+- public docs and media
 
 What stays external:
-- benchmark-native workspaces and demo helpers
-- heavyweight simulator installs
-- model checkpoints and large datasets
-
-This split keeps the public repository focused while still documenting where benchmark-native tooling lives locally.
+- simulator installs
+- benchmark datasets
+- checkpoints / weights
+- large local outputs
