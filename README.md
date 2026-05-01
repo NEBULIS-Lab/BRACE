@@ -8,7 +8,7 @@
 
 <div align="center">
   <a href="#"><img src="https://img.shields.io/badge/Paper-Coming%20Soon-2563EB.svg" alt="Paper"></a>
-  <a href="https://anonymous-2026.github.io/BRACE-ICML"><img src="https://img.shields.io/badge/Website-Page%20URL-0EA5E9.svg" alt="Website"></a>
+  <a href="https://nebulis-lab.com/BRACE"><img src="https://img.shields.io/badge/Website-Page%20URL-0EA5E9.svg" alt="Website"></a>
   <a href="#"><img src="https://img.shields.io/badge/Video-Coming%20Soon-F97316.svg" alt="Video"></a>
   <a href="docs/"><img src="https://img.shields.io/badge/Docs-Guide-7C3AED.svg" alt="Docs"></a>
 </div>
