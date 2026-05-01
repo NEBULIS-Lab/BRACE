@@ -15,6 +15,7 @@ Key docs:
 - Logging schema: `docs/SCHEMA.md`
 - Controller spec (proxy-ready): `docs/CONTROLLER.md`
 - Analysis utilities: `analysis/README.md`
+- External benchmark notes: `docs/EXTERNAL_BENCHMARKS.md`
 - Demo/media provenance: `docs/PROVENANCE.md`
 - E-RECAP (v1) integration: `docs/e-recap.md`
 - Local output dirs (`runs/`, `artifacts/`, `data/`): `docs/LOCAL_OUTPUTS.md`
@@ -86,6 +87,16 @@ Notes:
 ```bash
 scripts/run_robofactory.sh --config configs/smoke/robofactory_lift_barrier.json --run-name rf_smoke
 ```
+
+### Additional benchmark workspaces
+
+Some qualitative assets and benchmark-specific helper scripts live in external local workspaces rather than this repository.
+See `docs/EXTERNAL_BENCHMARKS.md` for:
+
+- RoboSuite task notes and local demo scripts
+- LIBERO benchmark suites and rendering entrypoints
+- PushT local evaluation workspace
+- Qwen / VLA backbone asset pointers used by related local experiments
 
 ### AirSim (vehicles / drones)
 

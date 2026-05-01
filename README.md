@@ -13,6 +13,9 @@
 <a href="https://github.com/microsoft/AirSim"><img src="https://img.shields.io/badge/AirSim-Microsoft-16A34A.svg" alt="Microsoft AirSim"></a>
 <a href="https://aihabitat.org/"><img src="https://img.shields.io/badge/Habitat-Meta-DC2626.svg" alt="Meta Habitat"></a>
 <a href="https://github.com/MARS-EAI/RoboFactory"><img src="https://img.shields.io/badge/-RoboFactory-0D9488.svg" alt="RoboFactory"></a>
+<a href="https://robosuite.ai/"><img src="https://img.shields.io/badge/RoboSuite-MuJoCo-4B5563.svg" alt="RoboSuite"></a>
+<a href="https://libero-project.github.io/"><img src="https://img.shields.io/badge/LIBERO-Benchmark-A16207.svg" alt="LIBERO"></a>
+<a href="https://qwen.ai/"><img src="https://img.shields.io/badge/Qwen-Backbone-C026D3.svg" alt="Qwen"></a>
 
 **BRACE** = **B**udgeted **R**eplanning **a**nd **C**oordination for **E**mbodied-Agents.
 
@@ -34,6 +37,7 @@ and composes with efficiency modules (e.g., **E-RECAP** token pruning, optional 
 - **`docs/`**: project page + guides
   - Website: [`docs/index.html`](docs/index.html)
   - Main guide: [`docs/README.md`](docs/README.md)
+  - External benchmark notes: [`docs/EXTERNAL_BENCHMARKS.md`](docs/EXTERNAL_BENCHMARKS.md)
   - Controller spec: [`docs/CONTROLLER.md`](docs/CONTROLLER.md)
   - Logging schema: [`docs/SCHEMA.md`](docs/SCHEMA.md)
   - Demo/media provenance: [`docs/PROVENANCE.md`](docs/PROVENANCE.md)
