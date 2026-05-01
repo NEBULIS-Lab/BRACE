@@ -33,6 +33,20 @@ Generate “Quality @ matched tokens” + “Systems @ matched quality” tables
 python analysis/budget_match_table.py runs/<run_id> --write_tables
 ```
 
+## Table and audit utility index
+
+Use the following entrypoints when you want a specific paper-facing table or audit artifact:
+
+- `analysis/phase_breakdown_table.py`: phase-latency breakdown tables from `event_type="phase"` logs
+- `analysis/trigger_audit_table.py`: trigger suppression / override audit tables
+- `analysis/clarification_table.py`: compact cross-domain summary tables for public-facing docs
+- `analysis/rag_prune_2x2_table.py`: retrieval/pruning comparison tables
+- `analysis/schema_check.py`: strict schema validation for a run or runs root
+- `analysis/schema_coverage.py`: field-presence summary across a runs root
+- `analysis/trigger_field_coverage.py`: trigger-controller field coverage audit
+- `analysis/controller_field_coverage.py`: controller accounting field coverage audit
+- `analysis/export_icml2026.py`: export helper for paper-facing artifacts
+
 ## Per-environment tables
 
 - RoboFactory/RoboCasa:
@@ -54,3 +68,21 @@ If you have table JSONs (e.g., `*__agg__*.json`) and want a quick numeric sanity
 ```bash
 python analysis/claim_check.py --write_tables
 ```
+
+## Curated experiment manifests
+
+These configs provide stable, named entrypoints for the main public examples and analysis slices:
+
+- `configs/experiments/habitat_llm_tails_slo.json`
+- `configs/experiments/habitat_budgetmatch_baselines_oracle30ep.json`
+- `configs/experiments/habitat_llm_2x2_oracle30ep.json`
+- `configs/experiments/robofactory_pass_shoe_2x2.json`
+- `configs/experiments/robofactory_budgetmatch_baselines_pass_shoe_10ep_b128.json`
+- `configs/experiments/robofactory_rag_prune_2x2_pass_shoe_10ep_b128.json`
+- `configs/experiments/robofactory_demo_pass_shoe_baseline_vs_brace_erecap.json`
+- `configs/experiments/airsim_k1_showcase.json`
+- `configs/experiments/airsim_k8_ablation_2x2.json`
+- `configs/experiments/proxy_frequency_sweep_steps.json`
+- `configs/experiments/proxy_stability_sweep_p0.json`
+
+For consistency, prefer these manifests over ad hoc JSON edits when generating public tables, screenshots, or demo assets.
