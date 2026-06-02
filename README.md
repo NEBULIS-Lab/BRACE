@@ -3,7 +3,7 @@
     <source media="(prefers-color-scheme: dark)" srcset="docs/static/images/logo_dark.png">
     <img src="docs/static/images/logo.png" alt="BRACE logo" width="300">
   </picture>
-  <h1>When Replanning Becomes the Bottleneck: Budgeted Embodied Agent Replanning</h1>
+  <h1>When Replanning Becomes the Bottleneck: Budgeted Replanning for Embodied Agents</h1>
 </div>
 
 <div align="center">

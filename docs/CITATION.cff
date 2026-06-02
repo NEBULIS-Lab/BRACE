@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "BRACE: When Replanning Becomes the Bottleneck"
+title: "When Replanning Becomes the Bottleneck: Budgeted Replanning for Embodied Agents"
 type: software
 license: MIT
 authors:
@@ -13,4 +13,3 @@ keywords:
   - systems
   - latency
   - vla
-
