@@ -222,6 +222,146 @@ body {
   text-align: center;
 }
 
+.key-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.key-card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  background: var(--background-primary);
+  box-shadow: var(--shadow-sm);
+  min-height: 132px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.key-label {
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.key-card strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 1.45rem;
+  line-height: 1.1;
+  margin: 0.35rem 0;
+}
+
+.key-card span:last-child {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.paper-figure {
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.8rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.paper-figure img,
+.paper-media {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.figure-overview {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.overview-media {
+  max-height: 520px;
+  object-fit: contain;
+}
+
+.figure-wide {
+  width: min(980px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.caption-text,
+.caption-wide,
+.paper-figure figcaption {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  text-align: left;
+  margin-top: 0.65rem;
+}
+
+.figure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.diagnostics-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.paper-table {
+  margin: 1.4rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--background-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-table {
+  margin-bottom: 0 !important;
+  min-width: 760px;
+}
+
+.metric-table caption {
+  caption-side: top;
+  text-align: left;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.metric-table th {
+  background: var(--background-accent);
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  white-space: nowrap;
+}
+
+.metric-table td {
+  font-size: 0.84rem;
+  vertical-align: middle;
+}
+
+.metric-table .highlight-row td {
+  background: #fff7d6;
+}
+
+.metric-table .base-row td {
+  background: #eef3ff;
+}
+
 @media (max-width: 768px) {
   #results .hf-media,
   #simulators .hf-media {
@@ -233,6 +373,16 @@ body {
   }
 
   #overview .hf-figure {
+    max-width: 100%;
+  }
+
+  .key-grid,
+  .figure-grid,
+  .diagnostics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .publication-title {
     max-width: 100%;
   }
 }

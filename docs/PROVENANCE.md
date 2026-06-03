@@ -32,13 +32,23 @@ Policy:
 | Asset | Size | sha256 | Source run/config (external; fill when known) |
 |---|---:|---|---|
 | `docs/static/images/paper/brace_workflow_clean.png` | 360KB (368322B) | `ceb3bb2b0defd2b3fe7023074a0167fb0666e3d5aa5a57c8fcd438d42955bd76` | workflow schematic; TBD |
+| `docs/static/images/paper/overview.png` | 760K (775231B) | `4567b0b5ceedfe1f93ed549f8e2c1c75b8c01d3920f6d8eb9a3ab4db2095dfab` | converted from `BRACE-icml2026-camera-ready/fig/overview.pdf` |
 | `docs/static/images/paper/erecap_method_architecture.png` | 487KB (498873B) | `89e7eaea09bcefc19e291c7a210c88f4d75be29310b8423a48688eaa67266721` | method schematic; TBD |
 | `docs/static/images/paper/meta_habitat_motivation_t2.png` | 951KB (973498B) | `3556f330cea099b32d4b887df8735d4384db6ea096a5d749f9742387148728b4` | Habitat public figure; TBD |
+| `docs/static/images/paper/habitat_spnoise_nobrace_contact.png` | 1.8M (1821420B) | `170a37863f431a68246feec0e706dbf07d5fe74ed691050f2dfea9a2a4615d05` | copied from `BRACE-icml2026-camera-ready/fig/habitat_spnoise_nobrace_contact.png` |
 | `docs/static/images/paper/latency_cdf_meta_habitat.png` | 40KB (40500B) | `a3b7fa9e7b8e578c9e65318cce3136ba38af3ec2bff520aa7d567004fe6e482b` | Habitat postprocess plot; TBD |
 | `docs/static/images/paper/slo_violation_bar.png` | 25KB (25806B) | `0d8477bda4d77d6b03b13a1aacaf9e383135220cd0b959730ce9f0078e4567ca` | cross-domain postprocess plot; TBD |
 | `docs/static/images/paper/microsoft_airsim_example_compare_frame.png` | 4.3MB (4466209B) | `462d3a1e54580e535c0d3e42a21c421efa231183f8e49d09dfc73919b40be738` | AirSim comparison still; TBD |
+| `docs/static/images/paper/airsimnh_retained_collage_main.jpg` | 504K (515694B) | `f3c2d7c817e8b3cb5ceedefc5c7438abfe0d3caf242e4c683211af69aa033f98` | copied from `BRACE-icml2026-camera-ready/fig/airsimnh_retained_collage_main.jpg` |
+| `docs/static/images/paper/robofactory_example_baseline.jpg` | 104K (104941B) | `9d947698475183ac049610765ed234712318094f9b2be7889bf848ed6ace73b3` | copied from `BRACE-icml2026-camera-ready/fig/robofactory_example_baseline.jpg` |
+| `docs/static/images/paper/robofactory_example_method.jpg` | 104K (103169B) | `74760f0570cf08210818a48705c3b6bb012e8ab863a9331c08be986d2497eddb` | copied from `BRACE-icml2026-camera-ready/fig/robofactory_example_method.jpg` |
 | `docs/static/images/paper/robofactory_example_method.png` | 493KB (504451B) | `b2735f20175b97ffb4311db24316a451217501d6802694232fb61d75ea3881c1` | RoboFactory method still; TBD |
 | `docs/static/images/paper/robofactory_example_baseline.png` | 512KB (523951B) | `4bca96a5be700b0fa9e7c792b01b58c2c1bad01d80b732d887dbe21fa953cd7d` | RoboFactory baseline still; TBD |
+| `docs/static/images/paper/take_fruit_real.png` | 708K (723752B) | `2902ae1e1cbbddce57e3daedc50d647f0a0beb61dbacc521aec053681fb84b2f` | converted from `BRACE-icml2026-camera-ready/fig/take_fruit_real.pdf` |
+| `docs/static/images/paper/diagnostics_coordination_wait_robofactory.png` | 96K (96566B) | `bbc0e33a74fd11023e7d242bd8e06e009589a51d97957bb7db8f1662c0fdb481` | copied from `BRACE-icml2026-camera-ready/fig/diagnostics_coordination_wait_robofactory.png` |
+| `docs/static/images/paper/diagnostics_slo_violation_meta_habitat.png` | 108K (106851B) | `15e4ceca87e70366c5781e6bfd16ecb27e6da728587e83a41b7f6488312031b7` | copied from `BRACE-icml2026-camera-ready/fig/diagnostics_slo_violation_meta_habitat.png` |
+| `docs/static/images/paper/diagnostics_token_latency_robofactory.png` | 148K (149782B) | `52367beb46c3ae3d16a3c22fca4277a2f44af6c2b15852a089be1c4c8894b268` | copied from `BRACE-icml2026-camera-ready/fig/diagnostics_token_latency_robofactory.png` |
+| `docs/static/images/paper/diagnostics_token_latency_meta_habitat.png` | 152K (153436B) | `4a4b6fe69ac2c080c5891009b91e78dc6c4bf74ef5ca1731926a096720f05c35` | copied from `BRACE-icml2026-camera-ready/fig/diagnostics_token_latency_meta_habitat.png` |
 
 ## How to update this file
 
