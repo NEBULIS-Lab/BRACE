@@ -1,26 +1,30 @@
 /* Modern CSS Variables for consistent theming */
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
+  --primary-color: #123a78;
+  --primary-hover: #0b2554;
+  --deep-blue: #071a3d;
+  --blue-gray: #53647d;
+  --light-blue: #e8f0ff;
+  --soft-blue: #f5f8ff;
   --secondary-color: #64748b;
-  --accent-color: #0ea5e9;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --text-light: #94a3b8;
+  --accent-color: #2d6cdf;
+  --text-primary: #101b33;
+  --text-secondary: #52627a;
+  --text-light: #8190a6;
   --background-primary: #ffffff;
-  --background-secondary: #f8fafc;
-  --background-accent: #f1f5f9;
-  --border-color: #e2e8f0;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-subtle: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-  --border-radius: 12px;
-  --border-radius-lg: 16px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --background-secondary: #f5f8ff;
+  --background-accent: #eaf1ff;
+  --border-color: #d6e0f2;
+  --shadow-sm: 0 1px 2px 0 rgb(7 26 61 / 0.06);
+  --shadow-md: 0 6px 18px -8px rgb(7 26 61 / 0.24);
+  --shadow-lg: 0 16px 34px -18px rgb(7 26 61 / 0.34);
+  --shadow-xl: 0 22px 42px -22px rgb(7 26 61 / 0.42);
+  --gradient-primary: linear-gradient(135deg, #071a3d 0%, #123a78 100%);
+  --gradient-accent: linear-gradient(135deg, #123a78 0%, #2d6cdf 100%);
+  --gradient-subtle: linear-gradient(135deg, #f5f8ff 0%, #e8f0ff 100%);
+  --border-radius: 8px;
+  --border-radius-lg: 10px;
+  --transition: all 0.25s ease;
 }
 
 /* Smooth scrolling for better UX */
@@ -266,7 +270,7 @@ body {
   background: var(--background-primary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 0.8rem;
+  padding: 0.85rem;
   box-shadow: var(--shadow-sm);
   margin-bottom: 1.5rem;
 }
@@ -281,18 +285,18 @@ body {
 }
 
 .figure-overview {
-  max-width: 760px;
+  max-width: 620px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .overview-media {
-  max-height: 520px;
+  max-height: none;
   object-fit: contain;
 }
 
 .figure-wide {
-  width: min(980px, 100%);
+  width: min(940px, 100%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -315,7 +319,13 @@ body {
 }
 
 .diagnostics-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.figure-grid .paper-figure img {
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
 }
 
 .paper-table {
@@ -355,11 +365,11 @@ body {
 }
 
 .metric-table .highlight-row td {
-  background: #fff7d6;
+  background: #eaf1ff;
 }
 
 .metric-table .base-row td {
-  background: #eef3ff;
+  background: #f2f6ff;
 }
 
 @media (max-width: 768px) {
@@ -399,7 +409,7 @@ body {
 }
 
 .button.is-dark {
-  background: var(--text-primary) !important;
+  background: var(--deep-blue) !important;
   border: none !important;
   color: white !important;
   box-shadow: var(--shadow-md);
@@ -408,7 +418,7 @@ body {
 .button.is-dark:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
-  background: var(--primary-color) !important;
+  background: var(--primary-hover) !important;
 }
 
 .button.is-dark:active {
@@ -440,6 +450,13 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
+}
+
+main > .hero:first-child {
+  background:
+    radial-gradient(circle at top left, rgba(45, 108, 223, 0.14), transparent 34rem),
+    linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .hero.is-light {
@@ -484,7 +501,7 @@ body {
 .publication-title {
     font-family: 'Inter', sans-serif !important;
     font-weight: 650 !important;
-    color: #000000 !important;
+    color: var(--deep-blue) !important;
     margin-bottom: 0 !important;
     line-height: 1.1 !important;
     font-size: clamp(1.5rem, 4vw, 2.1rem) !important;
@@ -551,13 +568,13 @@ body {
 }
 
 .publication-awards {
-    color: #ef4444;
+    color: var(--primary-hover);
     width: fit-content;
     font-weight: 700;
-    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    background: var(--light-blue);
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
-    border-left: 4px solid #ef4444;
+    border-left: 4px solid var(--accent-color);
     margin-top: 1rem;
 }
 

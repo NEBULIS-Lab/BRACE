@@ -15,17 +15,17 @@
   <meta property="og:site_name" content="BRACE">
   <meta property="og:title" content="When Replanning Becomes the Bottleneck: Budgeted Replanning for Embodied Agents">
   <meta property="og:description" content="A budgeted replanning controller with E-RECAP token pruning, tail-latency accounting, and cross-platform evaluation.">
-  <meta property="og:image" content="static/images/paper/overview.png">
-  <meta property="og:image:alt" content="BRACE overview figure">
+  <meta property="og:image" content="static/images/logo.png">
+  <meta property="og:image:alt" content="BRACE logo">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="When Replanning Becomes the Bottleneck: Budgeted Replanning for Embodied Agents">
   <meta name="twitter:description" content="Budgeted replanning for embodied agents with tail-latency and SLO reporting.">
-  <meta name="twitter:image" content="static/images/paper/overview.png">
-  <meta name="twitter:image:alt" content="BRACE overview figure">
+  <meta name="twitter:image" content="static/images/logo.png">
+  <meta name="twitter:image:alt" content="BRACE logo">
 
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="theme-color" content="#0b1f4d">
+  <meta name="msapplication-TileColor" content="#0b1f4d">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
@@ -100,19 +100,11 @@
                     </a>
                   </span>
                   <span class="link-block">
-                    <a href="#demos" class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon"><i class="fas fa-play-circle"></i></span>
-                      <span>Demos</span>
+                    <a href="#figures" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fas fa-images"></i></span>
+                      <span>Figures</span>
                     </a>
                   </span>
-                  <!--
-                  <span class="link-block">
-                    <a href="https://drive.google.com/drive/folders/1Aafo36p2JB8cCeWyG9-QRmEWrssk4kXM?usp=sharing" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon"><i class="fas fa-download"></i></span>
-                      <span>Full Videos</span>
-                    </a>
-                  </span>
-                  -->
                 </div>
               </div>
 
@@ -173,7 +165,7 @@
             <div class="columns is-vcentered overview-layout">
               <div class="column is-7">
                 <figure class="image paper-figure figure-overview">
-                  <img class="paper-media overview-media" src="static/images/paper/overview.png" alt="BRACE overview figure from the paper" loading="lazy">
+                  <img class="paper-media overview-media" src="static/images/paper/brace_workflow_clean.png" alt="BRACE overview figure from the paper" loading="lazy">
                 </figure>
               </div>
               <div class="column is-5">
@@ -251,50 +243,6 @@
                 <p class="hf-caption caption-wide">Figure 3. Qualitative motivating example on Meta Habitat. As replanning history accumulates, the context grows and produces tail-latency spikes, motivating budgeted context compression.</p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hero is-light" id="demos">
-      <div class="container is-max-widescreen">
-        <div class="columns is-centered">
-          <div class="column is-five-sixths">
-            <h2 class="title is-3 has-text-left">Demos</h2>
-            <div class="content">
-              <p class="has-text-justified">
-                Below are side-by-side comparisons demonstrating BRACE's impact across three domains. Each demo shows baseline behavior (left) versus BRACE or BRACE + E-RECAP (right), highlighting improvements in replanning latency, SLO compliance, and multi-agent coordination. The clips are lightweight MP4s suitable for GitHub Pages.
-              </p>
-              <ul class="has-text-left">
-                <li><strong>Meta Habitat:</strong> PointGoal navigation under strict SLO constraints, showing how E-RECAP token pruning keeps replanning within deadline.</li>
-                <li><strong>RoboFactory:</strong> Multi-agent manipulation (PassShoe task) demonstrating coordination improvements and reduced wait times.</li>
-                <li><strong>Microsoft AirSim:</strong> High-frequency replanning with 8 drones navigating a shared intersection, showcasing stable coordination and collision avoidance.</li>
-              </ul>
-            </div>
-
-            <div class="columns is-multiline">
-              <div class="column is-12">
-                <video class="hf-video hf-video-wide demo-habitat" width="2048" height="512" controls muted loop playsinline preload="metadata">
-                  <source src="static/videos/habitat_compare.mp4" type="video/mp4">
-                </video>
-                <p class="hf-caption">Video 1: Habitat (navigation) — Tail latency / SLO bottleneck</p>
-              </div>
-
-              <div class="column is-12">
-                <video class="hf-video hf-video-narrow demo-robofactory" width="2048" height="1024" controls muted loop playsinline preload="metadata">
-                  <source src="static/videos/robofactory_compare.mp4" type="video/mp4">
-                </video>
-                <p class="hf-caption">Video 2: RoboFactory (manipulation) — Coordination (deadlock/wait)</p>
-              </div>
-
-              <div class="column is-12">
-                <video class="hf-video hf-video-wide demo-airsim" width="3840" height="720" controls muted loop playsinline preload="metadata">
-                  <source src="static/videos/airsim_compare.mp4" type="video/mp4">
-                </video>
-                <p class="hf-caption">Video 3: AirSim (vehicles/drones) — High-frequency replanning (cinematic)</p>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
@@ -425,27 +373,22 @@
               <figcaption>Figure 7. Qualitative comparison on AirSimNH. The baseline accumulates delayed replanning decisions within the same trigger window, whereas BRACE shortens the effective replanning path and completes the interaction with fewer deadline misses.</figcaption>
             </figure>
 
-            <figure class="paper-figure figure-wide">
-              <img class="paper-media" src="static/images/paper/take_fruit_real.png" alt="Real robot PickFruit rollout pair" loading="lazy">
-              <figcaption>Figure 8. Real-robot PickFruit rollout pair on a banana instance. BRACE replans after an intermediate execution failure and recovers, while the underlying LLM+VLA stack fails to recover from a comparable failure.</figcaption>
-            </figure>
-
             <div class="figure-grid diagnostics-grid">
               <figure class="paper-figure">
                 <img src="static/images/paper/diagnostics_coordination_wait_robofactory.png" alt="Coordination wait diagnostic on RoboFactory" loading="lazy">
-                <figcaption>Figure 9a. Coordination wait on RoboFactory.</figcaption>
+                <figcaption>Figure 8a. Coordination wait on RoboFactory.</figcaption>
               </figure>
               <figure class="paper-figure">
                 <img src="static/images/paper/diagnostics_slo_violation_meta_habitat.png" alt="SLO violation diagnostic on Habitat" loading="lazy">
-                <figcaption>Figure 9b. SLO violation on Habitat.</figcaption>
+                <figcaption>Figure 8b. SLO violation on Habitat.</figcaption>
               </figure>
               <figure class="paper-figure">
                 <img src="static/images/paper/diagnostics_token_latency_robofactory.png" alt="Token-latency diagnostic on RoboFactory" loading="lazy">
-                <figcaption>Figure 9c. Token-latency tradeoff on RoboFactory.</figcaption>
+                <figcaption>Figure 8c. Token-latency tradeoff on RoboFactory.</figcaption>
               </figure>
               <figure class="paper-figure">
                 <img src="static/images/paper/diagnostics_token_latency_meta_habitat.png" alt="Token-latency diagnostic on Habitat" loading="lazy">
-                <figcaption>Figure 9d. Token-latency tradeoff on Habitat.</figcaption>
+                <figcaption>Figure 8d. Token-latency tradeoff on Habitat.</figcaption>
               </figure>
             </div>
           </div>
