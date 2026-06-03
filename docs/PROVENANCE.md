@@ -50,6 +50,26 @@ Policy:
 | `docs/static/images/paper/diagnostics_token_latency_robofactory.png` | 148K (149782B) | `52367beb46c3ae3d16a3c22fca4277a2f44af6c2b15852a089be1c4c8894b268` | copied from `BRACE-icml2026-camera-ready/fig/diagnostics_token_latency_robofactory.png` |
 | `docs/static/images/paper/diagnostics_token_latency_meta_habitat.png` | 152K (153436B) | `4a4b6fe69ac2c080c5891009b91e78dc6c4bf74ef5ca1731926a096720f05c35` | copied from `BRACE-icml2026-camera-ready/fig/diagnostics_token_latency_meta_habitat.png` |
 
+## `docs/static/images/paper/*_paper.*` (current website paper-source figures)
+
+These assets are the current website-facing versions generated from the exact figure files used by `BRACE-icml2026-camera-ready/*.tex`. If the paper used a PDF, the web asset was converted from that PDF with its crop box; if the paper used JPG, the web asset was copied from the JPG.
+
+| Asset | Size | sha256 | Source |
+|---|---:|---|---|
+| `docs/static/images/paper/overview_paper.png` | 752K (769002B) | `f811b7101be5ce8aa2d50b71a9899af2f1fbbe6f1723a1133f58e534f2c14007` | converted from `BRACE-icml2026-camera-ready/fig/overview.pdf` |
+| `docs/static/images/paper/habitat_spnoise_nobrace_contact_paper.png` | 2.6M (2713619B) | `5082bba5081f51872103aea30b835c6199fe2ab454e25111408cc1f93e942f3b` | converted from `BRACE-icml2026-camera-ready/fig/habitat_spnoise_nobrace_contact.pdf` |
+| `docs/static/images/paper/erecap_method_architecture_paper.png` | 456K (464137B) | `45a219a75970b47af33407080a4e9e7dcda82de143e58104c240215c8d972e60` | converted from `BRACE-icml2026-camera-ready/fig/erecap_method_architecture.pdf` |
+| `docs/static/images/paper/latency_cdf_meta_habitat_paper.png` | 44K (42251B) | `41811bf8b887b7404e09ac8efd86c6979321b0182706468df12407466b4599b1` | converted from `BRACE-icml2026-camera-ready/fig/latency_cdf_meta_habitat.pdf` |
+| `docs/static/images/paper/slo_violation_bar_paper.png` | 48K (45930B) | `ca66c88ba88963852a3fb6187a272e398033528b873990047df31c27d3378697` | converted from `BRACE-icml2026-camera-ready/fig/slo_violation_bar.pdf` |
+| `docs/static/images/paper/robofactory_example_baseline_paper.jpg` | 104K (104941B) | `9d947698475183ac049610765ed234712318094f9b2be7889bf848ed6ace73b3` | copied from `BRACE-icml2026-camera-ready/fig/robofactory_example_baseline.jpg` |
+| `docs/static/images/paper/robofactory_example_method_paper.jpg` | 104K (103169B) | `74760f0570cf08210818a48705c3b6bb012e8ab863a9331c08be986d2497eddb` | copied from `BRACE-icml2026-camera-ready/fig/robofactory_example_method.jpg` |
+| `docs/static/images/paper/airsimnh_retained_collage_main_paper.png` | 1.1M (1143918B) | `dbb3e9bc1e2545677c9bf9f3f0351de79a309e3e98c79cabf95cb5de5c96d604` | converted from `BRACE-icml2026-camera-ready/fig/airsimnh_retained_collage_main.pdf` |
+| `docs/static/images/paper/take_fruit_real_paper.png` | 832K (851531B) | `a9dafb9ac58c8ca479f4462448310207885a2f168c559cde11753e2a080605a2` | converted from `BRACE-icml2026-camera-ready/fig/take_fruit_real.pdf` |
+| `docs/static/images/paper/diagnostics_coordination_wait_robofactory_paper.png` | 28K (24648B) | `628f8a9fa1bb3874a2cd55e924b091f4d55a7339e200b05bbe7a9b756f54b549` | converted from `BRACE-icml2026-camera-ready/fig/diagnostics_coordination_wait_robofactory.pdf` |
+| `docs/static/images/paper/diagnostics_slo_violation_meta_habitat_paper.png` | 32K (28890B) | `fcea573527fb3712dde25f5ba87bc70f2e1e6814e8c07999ff767464a3f615d9` | converted from `BRACE-icml2026-camera-ready/fig/diagnostics_slo_violation_meta_habitat.pdf` |
+| `docs/static/images/paper/diagnostics_token_latency_robofactory_paper.png` | 44K (43648B) | `a1250e33082e10232a240b13a67fde0168329ebe2d747dba0cc5d921873aa2f4` | converted from `BRACE-icml2026-camera-ready/fig/diagnostics_token_latency_robofactory.pdf` |
+| `docs/static/images/paper/diagnostics_token_latency_meta_habitat_paper.png` | 44K (43829B) | `ed0fd7f4f987232b4b596101b356f7bdc06a039d9beaa904eef13d98f1d0efac` | converted from `BRACE-icml2026-camera-ready/fig/diagnostics_token_latency_meta_habitat.pdf` |
+
 ## How to update this file
 
 When replacing any committed media:

@@ -38,28 +38,17 @@
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
-  <!-- Template-style optional assets (kept small; compatible with GitHub Pages). -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
   <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
     <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   </noscript>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
 </head>
 <body>
@@ -165,7 +154,7 @@
             <div class="columns is-vcentered overview-layout">
               <div class="column is-7">
                 <figure class="image paper-figure figure-overview">
-                  <img class="paper-media overview-media" src="static/images/paper/brace_workflow_clean.png" alt="BRACE overview figure from the paper" loading="lazy">
+                  <img class="paper-media overview-media" src="static/images/paper/overview_paper.png" alt="BRACE overview figure from the paper" loading="lazy">
                 </figure>
               </div>
               <div class="column is-5">
@@ -194,8 +183,8 @@
             <h2 class="title is-3 has-text-left">Method</h2>
             <div class="columns is-vcentered">
               <div class="column is-6">
-                <figure class="image paper-figure figure-wide">
-                  <img class="paper-media" src="static/images/paper/erecap_method_architecture.png" alt="E-RECAP token pruning module overview" loading="lazy">
+                <figure class="image paper-figure figure-method">
+                  <img class="paper-media" src="static/images/paper/erecap_method_architecture_paper.png" alt="E-RECAP token pruning module overview" loading="lazy">
                 </figure>
               </div>
               <div class="column is-6">
@@ -237,8 +226,8 @@
 
             <div class="columns is-centered">
               <div class="column is-10">
-                <figure class="image paper-figure figure-wide">
-                  <img class="paper-media" src="static/images/paper/habitat_spnoise_nobrace_contact.png" alt="Meta Habitat motivating example" loading="lazy">
+                <figure class="image paper-figure figure-motivation">
+                  <img class="paper-media" src="static/images/paper/habitat_spnoise_nobrace_contact_paper.png" alt="Meta Habitat motivating example" loading="lazy">
                 </figure>
                 <p class="hf-caption caption-wide">Figure 3. Qualitative motivating example on Meta Habitat. As replanning history accumulates, the context grows and produces tail-latency spikes, motivating budgeted context compression.</p>
               </div>
@@ -348,47 +337,52 @@
 
             <div class="figure-grid">
               <figure class="paper-figure">
-                <img src="static/images/paper/latency_cdf_meta_habitat.png" alt="Tail latency CDF with SLO threshold" loading="lazy">
+                <img src="static/images/paper/latency_cdf_meta_habitat_paper.png" alt="Tail latency CDF with SLO threshold" loading="lazy">
                 <figcaption>Figure 4. Tail latency on Meta Habitat: CDF with the SLO threshold.</figcaption>
               </figure>
               <figure class="paper-figure">
-                <img src="static/images/paper/slo_violation_bar.png" alt="Cross-platform SLO violation rates" loading="lazy">
+                <img src="static/images/paper/slo_violation_bar_paper.png" alt="Cross-platform SLO violation rates" loading="lazy">
                 <figcaption>Figure 5. Cross-platform SLO violation rates.</figcaption>
               </figure>
             </div>
 
             <div class="figure-grid">
               <figure class="paper-figure">
-                <img src="static/images/paper/robofactory_example_baseline.jpg" alt="RoboFactory baseline qualitative example" loading="lazy">
+                <img src="static/images/paper/robofactory_example_baseline_paper.jpg" alt="RoboFactory baseline qualitative example" loading="lazy">
                 <figcaption>Figure 6a. RoboFactory TakePhoto baseline.</figcaption>
               </figure>
               <figure class="paper-figure">
-                <img src="static/images/paper/robofactory_example_method.jpg" alt="RoboFactory BRACE qualitative example" loading="lazy">
+                <img src="static/images/paper/robofactory_example_method_paper.jpg" alt="RoboFactory BRACE qualitative example" loading="lazy">
                 <figcaption>Figure 6b. RoboFactory TakePhoto with BRACE.</figcaption>
               </figure>
             </div>
 
-            <figure class="paper-figure figure-wide">
-              <img class="paper-media" src="static/images/paper/airsimnh_retained_collage_main.jpg" alt="AirSimNH qualitative comparison storyboard" loading="lazy">
+            <figure class="paper-figure figure-strip">
+              <img class="paper-media" src="static/images/paper/airsimnh_retained_collage_main_paper.png" alt="AirSimNH qualitative comparison storyboard" loading="lazy">
               <figcaption>Figure 7. Qualitative comparison on AirSimNH. The baseline accumulates delayed replanning decisions within the same trigger window, whereas BRACE shortens the effective replanning path and completes the interaction with fewer deadline misses.</figcaption>
+            </figure>
+
+            <figure class="paper-figure figure-strip">
+              <img class="paper-media" src="static/images/paper/take_fruit_real_paper.png" alt="Real robot PickFruit rollout pair" loading="lazy">
+              <figcaption>Figure 8. Real-robot PickFruit rollout pair on a banana instance. BRACE replans after an intermediate execution failure and recovers, while the underlying LLM+VLA stack fails to recover from a comparable failure.</figcaption>
             </figure>
 
             <div class="figure-grid diagnostics-grid">
               <figure class="paper-figure">
-                <img src="static/images/paper/diagnostics_coordination_wait_robofactory.png" alt="Coordination wait diagnostic on RoboFactory" loading="lazy">
-                <figcaption>Figure 8a. Coordination wait on RoboFactory.</figcaption>
+                <img src="static/images/paper/diagnostics_coordination_wait_robofactory_paper.png" alt="Coordination wait diagnostic on RoboFactory" loading="lazy">
+                <figcaption>Figure 9a. Coordination wait on RoboFactory.</figcaption>
               </figure>
               <figure class="paper-figure">
-                <img src="static/images/paper/diagnostics_slo_violation_meta_habitat.png" alt="SLO violation diagnostic on Habitat" loading="lazy">
-                <figcaption>Figure 8b. SLO violation on Habitat.</figcaption>
+                <img src="static/images/paper/diagnostics_slo_violation_meta_habitat_paper.png" alt="SLO violation diagnostic on Habitat" loading="lazy">
+                <figcaption>Figure 9b. SLO violation on Habitat.</figcaption>
               </figure>
               <figure class="paper-figure">
-                <img src="static/images/paper/diagnostics_token_latency_robofactory.png" alt="Token-latency diagnostic on RoboFactory" loading="lazy">
-                <figcaption>Figure 8c. Token-latency tradeoff on RoboFactory.</figcaption>
+                <img src="static/images/paper/diagnostics_token_latency_robofactory_paper.png" alt="Token-latency diagnostic on RoboFactory" loading="lazy">
+                <figcaption>Figure 9c. Token-latency tradeoff on RoboFactory.</figcaption>
               </figure>
               <figure class="paper-figure">
-                <img src="static/images/paper/diagnostics_token_latency_meta_habitat.png" alt="Token-latency diagnostic on Habitat" loading="lazy">
-                <figcaption>Figure 8d. Token-latency tradeoff on Habitat.</figcaption>
+                <img src="static/images/paper/diagnostics_token_latency_meta_habitat_paper.png" alt="Token-latency diagnostic on Habitat" loading="lazy">
+                <figcaption>Figure 9d. Token-latency tradeoff on Habitat.</figcaption>
               </figure>
             </div>
           </div>
