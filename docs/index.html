@@ -68,10 +68,10 @@
               </div>
 
               <div class="is-size-5 publication-authors">
-                <span class="author-block">Shuaijun Liu, Feiyang You, Xingwei Chen, Ningxin Su</span>
+                <span class="author-block">Shuaijun Liu, Feiyang You, Xingwei Chen, Ningxin Su<sup class="cor-marker">†</sup></span>
               </div>
               <div class="is-size-6 publication-institutions">
-                <span>IoT, Information Hub, The Hong Kong University of Science and Technology (Guangzhou) ｜ ICML 2026</span>
+                <span>IoT, Information Hub, The Hong Kong University of Science and Technology (Guangzhou) ｜ <span class="corresponding-note"><sup class="cor-marker">†</sup> <a href="mailto:ningxinsu@hkust-gz.edu.cn">ningxinsu@hkust-gz.edu.cn</a></span></span>
               </div>
 
               <div class="column has-text-centered">
@@ -94,10 +94,16 @@
                       <span>Figures</span>
                     </a>
                   </span>
+                  <span class="link-block">
+                    <a href="https://icml.cc/virtual/2026/poster/63603" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-icml">
+                      <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                      <span>ICML 2026</span>
+                    </a>
+                  </span>
                 </div>
               </div>
 
-              <p class="is-size-6" style="margin-top: 14px; color: var(--text-secondary);">
+              <p class="is-size-6 project-url" style="margin-top: 14px;">
                 Website: <a href="https://nebulis-lab.com/BRACE" target="_blank" rel="noopener">nebulis-lab.com/BRACE</a>
               </p>
             </div>
@@ -152,12 +158,13 @@
           <div class="column is-11">
             <h2 class="title is-3 has-text-left">Overview</h2>
             <div class="columns is-vcentered overview-layout">
-              <div class="column is-7">
-                <figure class="image paper-figure figure-overview">
+              <div class="column is-8">
+                <figure class="paper-figure figure-overview">
                   <img class="paper-media overview-media" src="static/images/paper/overview_paper.png" alt="BRACE overview figure from the paper" loading="lazy">
+                  <figcaption>Figure 1. Overview of BRACE: a closed-loop controller that determines whether to invoke replanning and selects the per-call token budget and latency SLO, with E-RECAP as a composable token-pruning module on the replanning call path.</figcaption>
                 </figure>
               </div>
-              <div class="column is-5">
+              <div class="column is-4">
                 <div class="content">
                   <p class="has-text-justified">
                     BRACE treats each potential replanning point as a controller decision. When a trigger fires, the controller decides whether to invoke replanning, selects the replanning mode, and assigns a planner-input token budget and latency SLO for the end-to-end call path.
@@ -168,7 +175,6 @@
                     <li><strong>Accounting:</strong> phase logs attribute tail events to compression, retrieval, planning, or execution dispatch.</li>
                   </ul>
                 </div>
-                <p class="hf-caption caption-text">Figure 1. Overview of BRACE: a closed-loop controller that determines whether to invoke replanning and selects the per-call token budget and latency SLO, with E-RECAP as a composable token-pruning module on the replanning call path.</p>
               </div>
             </div>
           </div>
@@ -182,12 +188,13 @@
           <div class="column is-five-sixths">
             <h2 class="title is-3 has-text-left">Method</h2>
             <div class="columns is-vcentered">
-              <div class="column is-6">
-                <figure class="image paper-figure figure-method">
+              <div class="column is-7">
+                <figure class="paper-figure figure-method">
                   <img class="paper-media" src="static/images/paper/erecap_method_architecture_paper.png" alt="E-RECAP token pruning module overview" loading="lazy">
+                  <figcaption>Figure 2. E-RECAP module. A lightweight predictor scores context tokens using intermediate hidden states, and pruning is applied progressively at selected layers.</figcaption>
                 </figure>
               </div>
-              <div class="column is-6">
+              <div class="column is-5">
                 <div class="content">
                   <h3 class="title is-5">E-RECAP: Cost-Aware Progressive Pruning</h3>
                   <p class="has-text-justified">
@@ -202,7 +209,6 @@
                     <li><strong>Auditable:</strong> pruning overhead is logged as a separate call-path phase.</li>
                   </ul>
                 </div>
-                <p class="hf-caption caption-text">Figure 2. E-RECAP module. A lightweight predictor scores context tokens using intermediate hidden states, and pruning is applied progressively at selected layers.</p>
               </div>
             </div>
           </div>
@@ -215,21 +221,22 @@
         <div class="columns is-centered">
           <div class="column is-five-sixths">
             <h2 class="title is-3 has-text-left">Motivation</h2>
-            <div class="content">
-              <p class="has-text-justified">
-                A replanning call is not a lightweight query: prompts include task specifications, recent histories, failure traces, and multi-agent coordination summaries. As the context grows, transformer planners become slow and bursty; in a closed loop, slow calls delay execution and can trigger more replanning.
-              </p>
-              <p class="has-text-justified">
-                In Meta Habitat navigation with shortest-path-noise execution and a replanning SLO of 2500 ms, No BRACE violates the SLO on 85.5% of replanning calls despite 100.0% success. With E-RECAP on the replanning call path, the violation rate drops to 4.7% without reducing success.
-              </p>
-            </div>
-
-            <div class="columns is-centered">
-              <div class="column is-10">
-                <figure class="image paper-figure figure-motivation">
+            <div class="columns is-vcentered motivation-layout">
+              <div class="column is-7">
+                <div class="content">
+                  <p class="has-text-justified">
+                    A replanning call is not a lightweight query: prompts include task specifications, recent histories, failure traces, and multi-agent coordination summaries. As the context grows, transformer planners become slow and bursty; in a closed loop, slow calls delay execution and can trigger more replanning.
+                  </p>
+                  <p class="has-text-justified">
+                    In Meta Habitat navigation with shortest-path-noise execution and a replanning SLO of 2500 ms, No BRACE violates the SLO on 85.5% of replanning calls despite 100.0% success. With E-RECAP on the replanning call path, the violation rate drops to 4.7% without reducing success.
+                  </p>
+                </div>
+              </div>
+              <div class="column is-5">
+                <figure class="paper-figure figure-motivation">
                   <img class="paper-media" src="static/images/paper/habitat_spnoise_nobrace_contact_paper.png" alt="Meta Habitat motivating example" loading="lazy">
+                  <figcaption>Figure 3. Qualitative motivating example on Meta Habitat. As replanning history accumulates, the context grows and produces tail-latency spikes, motivating budgeted context compression.</figcaption>
                 </figure>
-                <p class="hf-caption caption-wide">Figure 3. Qualitative motivating example on Meta Habitat. As replanning history accumulates, the context grows and produces tail-latency spikes, motivating budgeted context compression.</p>
               </div>
             </div>
           </div>
@@ -335,16 +342,10 @@
               </p>
             </div>
 
-            <div class="figure-grid">
-              <figure class="paper-figure">
-                <img src="static/images/paper/latency_cdf_meta_habitat_paper.png" alt="Tail latency CDF with SLO threshold" loading="lazy">
-                <figcaption>Figure 4. Tail latency on Meta Habitat: CDF with the SLO threshold.</figcaption>
-              </figure>
-              <figure class="paper-figure">
-                <img src="static/images/paper/slo_violation_bar_paper.png" alt="Cross-platform SLO violation rates" loading="lazy">
-                <figcaption>Figure 5. Cross-platform SLO violation rates.</figcaption>
-              </figure>
-            </div>
+            <figure class="paper-figure figure-composite">
+              <img class="paper-media" src="static/images/paper/quantitative_summary_paper.png" alt="Four-panel quantitative summary: tail latency, SLO violations, coordination wait, and token-latency tradeoff" loading="lazy">
+              <figcaption>Quantitative summary. Left to right: Figure 4 tail latency on Meta Habitat, Figure 5 cross-platform SLO violation rates, Figure 9a coordination wait on RoboFactory, and Figure 9d token-latency tradeoff on Meta Habitat.</figcaption>
+            </figure>
 
             <div class="figure-grid">
               <figure class="paper-figure">
@@ -367,24 +368,6 @@
               <figcaption>Figure 8. Real-robot PickFruit rollout pair on a banana instance. BRACE replans after an intermediate execution failure and recovers, while the underlying LLM+VLA stack fails to recover from a comparable failure.</figcaption>
             </figure>
 
-            <div class="figure-grid diagnostics-grid">
-              <figure class="paper-figure">
-                <img src="static/images/paper/diagnostics_coordination_wait_robofactory_paper.png" alt="Coordination wait diagnostic on RoboFactory" loading="lazy">
-                <figcaption>Figure 9a. Coordination wait on RoboFactory.</figcaption>
-              </figure>
-              <figure class="paper-figure">
-                <img src="static/images/paper/diagnostics_slo_violation_meta_habitat_paper.png" alt="SLO violation diagnostic on Habitat" loading="lazy">
-                <figcaption>Figure 9b. SLO violation on Habitat.</figcaption>
-              </figure>
-              <figure class="paper-figure">
-                <img src="static/images/paper/diagnostics_token_latency_robofactory_paper.png" alt="Token-latency diagnostic on RoboFactory" loading="lazy">
-                <figcaption>Figure 9c. Token-latency tradeoff on RoboFactory.</figcaption>
-              </figure>
-              <figure class="paper-figure">
-                <img src="static/images/paper/diagnostics_token_latency_meta_habitat_paper.png" alt="Token-latency diagnostic on Habitat" loading="lazy">
-                <figcaption>Figure 9d. Token-latency tradeoff on Habitat.</figcaption>
-              </figure>
-            </div>
           </div>
         </div>
       </div>

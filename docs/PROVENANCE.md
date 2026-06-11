@@ -69,6 +69,7 @@ These assets are the current website-facing versions generated from the exact fi
 | `docs/static/images/paper/diagnostics_slo_violation_meta_habitat_paper.png` | 32K (28890B) | `fcea573527fb3712dde25f5ba87bc70f2e1e6814e8c07999ff767464a3f615d9` | converted from `BRACE-icml2026-camera-ready/fig/diagnostics_slo_violation_meta_habitat.pdf` |
 | `docs/static/images/paper/diagnostics_token_latency_robofactory_paper.png` | 44K (43648B) | `a1250e33082e10232a240b13a67fde0168329ebe2d747dba0cc5d921873aa2f4` | converted from `BRACE-icml2026-camera-ready/fig/diagnostics_token_latency_robofactory.pdf` |
 | `docs/static/images/paper/diagnostics_token_latency_meta_habitat_paper.png` | 44K (43829B) | `ed0fd7f4f987232b4b596101b356f7bdc06a039d9beaa904eef13d98f1d0efac` | converted from `BRACE-icml2026-camera-ready/fig/diagnostics_token_latency_meta_habitat.pdf` |
+| `docs/static/images/paper/quantitative_summary_paper.png` | 319K (326692B) | `a5eeb15e1716e5679e64ab72c4bffef92ed3131c46b7cdf9a8c0aece8dceb470` | composed from `latency_cdf_meta_habitat_paper.png`, `slo_violation_bar_paper.png`, `diagnostics_coordination_wait_robofactory_paper.png`, and `diagnostics_token_latency_meta_habitat_paper.png` |
 
 ## How to update this file
 

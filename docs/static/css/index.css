@@ -91,7 +91,7 @@ a:hover {
 }
 
 .publication-authors {
-  color: var(--primary-color);
+  color: var(--accent-color);
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -99,6 +99,23 @@ a:hover {
 .publication-institutions,
 .project-url {
   color: var(--text-secondary);
+}
+
+.cor-marker {
+  color: var(--accent-color);
+  font-weight: 800;
+}
+
+.corresponding-note,
+.corresponding-note a,
+.project-url a {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.corresponding-note a:hover,
+.project-url a:hover {
+  color: var(--primary-color);
 }
 
 .publication-links {
@@ -125,6 +142,18 @@ a:hover {
 
 .button.is-dark:hover {
   background: var(--primary-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.button.is-icml {
+  background: var(--accent-color) !important;
+  color: #ffffff !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.button.is-icml:hover {
+  background: #1f5ec4 !important;
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -212,7 +241,8 @@ a:hover {
   font-size: 0.93rem;
 }
 
-.overview-layout {
+.overview-layout,
+.motivation-layout {
   align-items: center;
 }
 
@@ -231,18 +261,27 @@ a:hover {
 }
 
 .figure-overview {
-  width: min(640px, 100%);
+  width: min(780px, 100%);
   margin: 0 auto;
 }
 
 .figure-method {
-  width: min(900px, 100%);
+  width: min(820px, 100%);
   margin: 0 auto;
 }
 
 .figure-motivation {
-  width: min(780px, 100%);
+  width: min(430px, 100%);
   margin: 0 auto;
+}
+
+.figure-composite {
+  width: min(1120px, 100%);
+  margin: 1.35rem auto 1.5rem;
+}
+
+.figure-composite img {
+  width: 100%;
 }
 
 .figure-strip {
