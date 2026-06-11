@@ -158,13 +158,13 @@
           <div class="column is-11">
             <h2 class="title is-3 has-text-left">Overview</h2>
             <div class="columns is-vcentered overview-layout">
-              <div class="column is-8">
-                <figure class="paper-figure figure-overview">
+              <div class="column is-9">
+                <figure class="figure-overview figure-unframed">
                   <img class="paper-media overview-media" src="static/images/paper/overview_paper.png" alt="BRACE overview figure from the paper" loading="lazy">
                   <figcaption>Figure 1. Overview of BRACE: a closed-loop controller that determines whether to invoke replanning and selects the per-call token budget and latency SLO, with E-RECAP as a composable token-pruning module on the replanning call path.</figcaption>
                 </figure>
               </div>
-              <div class="column is-4">
+              <div class="column is-3">
                 <div class="content">
                   <p class="has-text-justified">
                     BRACE treats each potential replanning point as a controller decision. When a trigger fires, the controller decides whether to invoke replanning, selects the replanning mode, and assigns a planner-input token budget and latency SLO for the end-to-end call path.
@@ -201,7 +201,7 @@
                     E-RECAP is a context-compression module for long-horizon replanning prompts. It predicts token utility from intermediate hidden states and prunes progressively across selected transformer layers.
                   </p>
                   <p class="has-text-justified">
-                    The kept set preserves fixed head and tail tokens for task specification and recent context, then fills the remaining budget with top-scoring tokens. The resulting context satisfies the planner-input budget while keeping task-, state-, safety-, and coordination-relevant information.
+                    It preserves fixed head and tail tokens, then fills the remaining budget with top-scoring context tokens so each replanning call satisfies the planner-input budget.
                   </p>
                   <ul class="has-text-left">
                     <li><strong>Drop-in:</strong> operates on the replanning context before the planner call.</li>
@@ -231,11 +231,11 @@
                     In Meta Habitat navigation with shortest-path-noise execution and a replanning SLO of 2500 ms, No BRACE violates the SLO on 85.5% of replanning calls despite 100.0% success. With E-RECAP on the replanning call path, the violation rate drops to 4.7% without reducing success.
                   </p>
                 </div>
+                <p class="hf-caption caption-text">Figure 3. Qualitative motivating example on Meta Habitat. As replanning history accumulates, the context grows and produces tail-latency spikes, motivating budgeted context compression.</p>
               </div>
               <div class="column is-5">
                 <figure class="paper-figure figure-motivation">
                   <img class="paper-media" src="static/images/paper/habitat_spnoise_nobrace_contact_paper.png" alt="Meta Habitat motivating example" loading="lazy">
-                  <figcaption>Figure 3. Qualitative motivating example on Meta Habitat. As replanning history accumulates, the context grows and produces tail-latency spikes, motivating budgeted context compression.</figcaption>
                 </figure>
               </div>
             </div>
@@ -343,29 +343,46 @@
             </div>
 
             <figure class="paper-figure figure-composite">
-              <img class="paper-media" src="static/images/paper/quantitative_summary_paper.png" alt="Four-panel quantitative summary: tail latency, SLO violations, coordination wait, and token-latency tradeoff" loading="lazy">
-              <figcaption>Quantitative summary. Left to right: Figure 4 tail latency on Meta Habitat, Figure 5 cross-platform SLO violation rates, Figure 9a coordination wait on RoboFactory, and Figure 9d token-latency tradeoff on Meta Habitat.</figcaption>
+              <div class="composite-grid">
+                <div class="subfigure-panel">
+                  <img src="static/images/paper/slo_violation_bar_paper.png" alt="Cross-platform SLO violation rates" loading="lazy">
+                  <p>(a) Cross-platform SLO violation.</p>
+                </div>
+                <div class="subfigure-panel">
+                  <img src="static/images/paper/latency_cdf_meta_habitat_paper.png" alt="Tail latency CDF with SLO threshold" loading="lazy">
+                  <p>(b) Meta Habitat tail latency CDF.</p>
+                </div>
+                <div class="subfigure-panel">
+                  <img src="static/images/paper/diagnostics_coordination_wait_robofactory_paper.png" alt="Coordination wait diagnostic on RoboFactory" loading="lazy">
+                  <p>(c) RoboFactory coordination wait.</p>
+                </div>
+                <div class="subfigure-panel">
+                  <img src="static/images/paper/diagnostics_token_latency_meta_habitat_paper.png" alt="Token-latency diagnostic on Meta Habitat" loading="lazy">
+                  <p>(d) Meta Habitat token-latency tradeoff.</p>
+                </div>
+              </div>
+              <figcaption>Figure 4. Quantitative summary of replanning stability and cost. (a) Cross-platform SLO violations, (b) Meta Habitat tail-latency CDF, (c) RoboFactory coordination wait, and (d) Meta Habitat token-latency tradeoff.</figcaption>
             </figure>
 
             <div class="figure-grid">
               <figure class="paper-figure">
                 <img src="static/images/paper/robofactory_example_baseline_paper.jpg" alt="RoboFactory baseline qualitative example" loading="lazy">
-                <figcaption>Figure 6a. RoboFactory TakePhoto baseline.</figcaption>
+                <figcaption>Figure 5a. RoboFactory TakePhoto baseline.</figcaption>
               </figure>
               <figure class="paper-figure">
                 <img src="static/images/paper/robofactory_example_method_paper.jpg" alt="RoboFactory BRACE qualitative example" loading="lazy">
-                <figcaption>Figure 6b. RoboFactory TakePhoto with BRACE.</figcaption>
+                <figcaption>Figure 5b. RoboFactory TakePhoto with BRACE.</figcaption>
               </figure>
             </div>
 
             <figure class="paper-figure figure-strip">
               <img class="paper-media" src="static/images/paper/airsimnh_retained_collage_main_paper.png" alt="AirSimNH qualitative comparison storyboard" loading="lazy">
-              <figcaption>Figure 7. Qualitative comparison on AirSimNH. The baseline accumulates delayed replanning decisions within the same trigger window, whereas BRACE shortens the effective replanning path and completes the interaction with fewer deadline misses.</figcaption>
+              <figcaption>Figure 6. Qualitative comparison on AirSimNH. The baseline accumulates delayed replanning decisions within the same trigger window, whereas BRACE shortens the effective replanning path and completes the interaction with fewer deadline misses.</figcaption>
             </figure>
 
             <figure class="paper-figure figure-strip">
               <img class="paper-media" src="static/images/paper/take_fruit_real_paper.png" alt="Real robot PickFruit rollout pair" loading="lazy">
-              <figcaption>Figure 8. Real-robot PickFruit rollout pair on a banana instance. BRACE replans after an intermediate execution failure and recovers, while the underlying LLM+VLA stack fails to recover from a comparable failure.</figcaption>
+              <figcaption>Figure 7. Real-robot PickFruit rollout pair on a banana instance. BRACE replans after an intermediate execution failure and recovers, while the underlying LLM+VLA stack fails to recover from a comparable failure.</figcaption>
             </figure>
 
           </div>
