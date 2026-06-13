@@ -310,11 +310,20 @@ a:hover {
   color: var(--text-primary);
 }
 
+.content strong {
+  color: var(--primary-color);
+}
+
+:root[data-theme="dark"] .content strong {
+  color: var(--accent-color);
+}
+
 .content ul {
   margin-top: 1rem;
 }
 
 .content li {
+  color: var(--text-primary);
   margin-bottom: 0.45rem;
 }
 
@@ -367,6 +376,18 @@ a:hover {
 .key-card span {
   color: var(--text-secondary);
   font-size: 0.93rem;
+}
+
+:root[data-theme="dark"] .key-label {
+  color: var(--accent-color) !important;
+}
+
+:root[data-theme="dark"] .key-card strong {
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] .key-card span {
+  color: var(--text-secondary);
 }
 
 .overview-layout,
