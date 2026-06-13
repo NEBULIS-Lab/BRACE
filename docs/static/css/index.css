@@ -160,15 +160,11 @@ a:hover {
 }
 
 .publication-logo {
-  width: min(300px, 62vw);
+  width: min(420px, 76vw);
   height: auto;
   display: block;
   margin: 0 auto;
   border-radius: var(--border-radius);
-}
-
-:root[data-theme="dark"] .publication-logo {
-  width: min(420px, 76vw);
 }
 
 .publication-title {
