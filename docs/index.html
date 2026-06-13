@@ -31,6 +31,18 @@
 
   <title>When Replanning Becomes the Bottleneck: Budgeted Replanning for Embodied Agents</title>
 
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('brace-theme') === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (error) {
+        // Keep the default light theme when storage is unavailable.
+      }
+    })();
+  </script>
+
   <link rel="icon" type="image/svg+xml" href="static/images/logo_mini.svg">
   <link rel="icon" type="image/png" href="static/images/logo.png">
   <link rel="apple-touch-icon" href="static/images/logo.png">
@@ -52,6 +64,12 @@
   <script defer src="static/js/index.js"></script>
 </head>
 <body>
+  <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+    <span class="theme-toggle-track">
+      <span class="theme-toggle-thumb"></span>
+    </span>
+  </button>
+
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
@@ -63,7 +81,7 @@
           <div class="columns is-centered">
             <div class="column has-text-centered">
               <div class="title-with-logo">
-                <img src="static/images/logo.png" alt="Logo" class="publication-logo">
+                <img src="static/images/logo.png" data-light-src="static/images/logo.png" data-dark-src="static/images/logo_dark.png" alt="Logo" class="publication-logo">
                 <h1 class="title is-1 publication-title">When Replanning Becomes the Bottleneck: Budgeted Replanning for Embodied Agents</h1>
               </div>
 

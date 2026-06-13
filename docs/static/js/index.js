@@ -1,5 +1,56 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
+function applyTheme(theme) {
+    const isDark = theme === 'dark';
+    if (isDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+
+    const toggle = document.querySelector('.theme-toggle');
+    if (toggle) {
+        toggle.setAttribute('aria-pressed', String(isDark));
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+
+    const logo = document.querySelector('.publication-logo');
+    if (logo) {
+        const lightSrc = logo.getAttribute('data-light-src');
+        const darkSrc = logo.getAttribute('data-dark-src');
+        logo.src = isDark && darkSrc ? darkSrc : lightSrc;
+    }
+
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) {
+        themeMeta.setAttribute('content', isDark ? '#000000' : '#0b1f4d');
+    }
+}
+
+function setupThemeToggle() {
+    const toggle = document.querySelector('.theme-toggle');
+    if (!toggle) return;
+
+    let savedTheme = 'light';
+    try {
+        savedTheme = localStorage.getItem('brace-theme') || 'light';
+    } catch (error) {
+        savedTheme = 'light';
+    }
+
+    applyTheme(savedTheme);
+
+    toggle.addEventListener('click', function() {
+        const nextTheme = document.documentElement.hasAttribute('data-theme') ? 'light' : 'dark';
+        try {
+            localStorage.setItem('brace-theme', nextTheme);
+        } catch (error) {
+            // Theme still changes for the current page even without storage.
+        }
+        applyTheme(nextTheme);
+    });
+}
+
 // More Works Dropdown Functionality
 function toggleMoreWorks() {
     const dropdown = document.getElementById('moreWorksDropdown');
@@ -235,6 +286,7 @@ function fixVideoSizing() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    setupThemeToggle();
     setupLazyVideoLoading();
     setupVideoCarouselAutoplay();
     fixVideoSizing();
