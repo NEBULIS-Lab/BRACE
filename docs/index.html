@@ -119,10 +119,10 @@
             <h2 class="title is-3 has-text-left">Abstract</h2>
             <div class="content">
               <p class="has-text-justified">
-                Embodied agents replan frequently to recover from execution drift, partial observability, and coordination hazards, but each LLM-based replanning call can consume an accumulated textual context that grows over time and across agents. Once this context becomes large, replanning latency develops heavy tails and can miss real-time deadlines even when task success remains high, a failure mode that is hard to detect from average latency or success alone. We present <strong>BRACE</strong>, a controller that formulates replanning as a budgeted control loop by deciding whether to replan, selecting a replanning mode, and allocating an explicit token budget and latency service-level objective (SLO) while accounting for optional efficiency modules.
+                Embodied agents replan frequently to recover from execution drift, partial observability, and coordination hazards, but each LLM-based replanning call can consume an accumulated textual context that grows over time and across agents. Once this context becomes large, replanning latency develops heavy tails and can miss real-time deadlines even when task success remains high. <strong>BRACE</strong> reframes replanning in embodied intelligence from simply improving planning ability into a systematic control problem: when to replan, how to replan, and at what cost.
               </p>
               <p class="has-text-justified">
-                As a reusable component, we introduce <strong>E-RECAP</strong>, a cost-aware progressive token pruning method that predicts token utility and prunes replanning contexts across transformer layers while preserving critical head and tail tokens. Across Meta Habitat, RoboFactory, and AirSim, BRACE with E-RECAP reduces replanning-call token counts by <strong>62-92%</strong> and SLO violation rates from <strong>85.5-100.0%</strong> to <strong>4.7-50.0%</strong> in settings where task success is already saturated. In a harder RoboFactory setting where open-loop, frozen-plan, and No BRACE all fail, BRACE + E-RECAP reaches <strong>80.0%</strong> success with <strong>4.6%</strong> SLO violations, demonstrating that tail-aware per-call budgeting is effective across embodied platforms.
+                The controller decides whether to invoke replanning, selects the replanning mode, and allocates an explicit token budget and latency service-level objective (SLO) while accounting for optional modules on the replanning call path. We instantiate one such module, <strong>E-RECAP</strong>, to show how BRACE can compose compression, retrieval, caching, or other efficiency mechanisms to change replanning real-time behavior and closed-loop performance. Across Meta Habitat, RoboFactory, and AirSim, BRACE with E-RECAP reduces replanning-call token counts by <strong>62-92%</strong> and SLO violation rates from <strong>85.5-100.0%</strong> to <strong>4.7-50.0%</strong>; in a harder RoboFactory setting, it reaches <strong>80.0%</strong> success with <strong>4.6%</strong> SLO violations.
               </p>
               <div class="key-grid">
                 <div class="key-card">
@@ -167,12 +167,12 @@
               <div class="column is-3">
                 <div class="content">
                   <p class="has-text-justified">
-                    BRACE treats each potential replanning point as a controller decision. When a trigger fires, the controller decides whether to invoke replanning, selects the replanning mode, and assigns a planner-input token budget and latency SLO for the end-to-end call path.
+                    BRACE treats each potential replanning point as a controller decision, shifting the question from only improving the planner to controlling when, how, and at what cost replanning should occur.
                   </p>
                   <ul class="has-text-left">
                     <li><strong>Admission:</strong> trigger evaluation plus cooldown and commit windows prevent rapid replanning churn.</li>
                     <li><strong>Budgeting:</strong> per-call token and latency budgets make planner cost explicit and comparable.</li>
-                    <li><strong>Accounting:</strong> phase logs attribute tail events to compression, retrieval, planning, or execution dispatch.</li>
+                    <li><strong>Composition:</strong> compression, retrieval, caching, or other modules can be inserted into the replanning call path and accounted for explicitly.</li>
                   </ul>
                 </div>
               </div>
@@ -225,15 +225,15 @@
               <div class="column is-5">
                 <div class="content">
                   <p class="has-text-justified">
-                    E-RECAP is a context-compression module for long-horizon replanning prompts. It predicts token utility from intermediate hidden states and prunes progressively across selected transformer layers.
+                    E-RECAP is a context-compression module for long-horizon replanning prompts and serves as one concrete efficiency module inside BRACE. Its role is to demonstrate that the framework can plug in call-path modules and make their real-time effect measurable.
                   </p>
                   <p class="has-text-justified">
-                    It preserves fixed head and tail tokens, then fills the remaining budget with top-scoring context tokens so each replanning call satisfies the planner-input budget.
+                    The module predicts token utility from intermediate hidden states, preserves fixed head and tail tokens, and fills the remaining budget with top-scoring context tokens so each replanning call satisfies the planner-input budget.
                   </p>
                   <ul class="has-text-left">
                     <li><strong>Drop-in:</strong> operates on the replanning context before the planner call.</li>
-                    <li><strong>Budget-aligned:</strong> enforces explicit token budgets after compression.</li>
-                    <li><strong>Auditable:</strong> pruning overhead is logged as a separate call-path phase.</li>
+                    <li><strong>Composable:</strong> represents the same interface that can host compression, retrieval, caching, or future efficiency modules.</li>
+                    <li><strong>Auditable:</strong> overhead and latency impact are logged as separate call-path phases.</li>
                   </ul>
                 </div>
               </div>
