@@ -272,6 +272,10 @@ a:hover {
   margin: 0 auto;
 }
 
+.figure-overview img {
+  border-radius: 4px;
+}
+
 .figure-method {
   width: min(820px, 100%);
   margin: 0 auto;

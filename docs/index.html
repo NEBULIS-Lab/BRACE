@@ -155,7 +155,7 @@
     <section class="section hero is-light" id="overview">
       <div class="container is-max-widescreen">
         <div class="columns is-centered">
-          <div class="column is-11">
+          <div class="column is-five-sixths">
             <h2 class="title is-3 has-text-left">Overview</h2>
             <div class="columns is-vcentered overview-layout">
               <div class="column is-9">
@@ -182,41 +182,7 @@
       </div>
     </section>
 
-    <section class="section" id="method">
-      <div class="container is-max-widescreen">
-        <div class="columns is-centered">
-          <div class="column is-five-sixths">
-            <h2 class="title is-3 has-text-left">Method</h2>
-            <div class="columns is-vcentered">
-              <div class="column is-7">
-                <figure class="paper-figure figure-method">
-                  <img class="paper-media" src="static/images/paper/erecap_method_architecture_paper.png" alt="E-RECAP token pruning module overview" loading="lazy">
-                  <figcaption>Figure 2. E-RECAP module. A lightweight predictor scores context tokens using intermediate hidden states, and pruning is applied progressively at selected layers.</figcaption>
-                </figure>
-              </div>
-              <div class="column is-5">
-                <div class="content">
-                  <h3 class="title is-5">E-RECAP: Cost-Aware Progressive Pruning</h3>
-                  <p class="has-text-justified">
-                    E-RECAP is a context-compression module for long-horizon replanning prompts. It predicts token utility from intermediate hidden states and prunes progressively across selected transformer layers.
-                  </p>
-                  <p class="has-text-justified">
-                    It preserves fixed head and tail tokens, then fills the remaining budget with top-scoring context tokens so each replanning call satisfies the planner-input budget.
-                  </p>
-                  <ul class="has-text-left">
-                    <li><strong>Drop-in:</strong> operates on the replanning context before the planner call.</li>
-                    <li><strong>Budget-aligned:</strong> enforces explicit token budgets after compression.</li>
-                    <li><strong>Auditable:</strong> pruning overhead is logged as a separate call-path phase.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hero is-light" id="motivation">
+    <section class="section" id="motivation">
       <div class="container is-max-widescreen">
         <div class="columns is-centered">
           <div class="column is-five-sixths">
@@ -244,7 +210,99 @@
       </div>
     </section>
 
-    <section class="section" id="results">
+    <section class="section hero is-light" id="method">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-five-sixths">
+            <h2 class="title is-3 has-text-left">E-RECAP: Cost-Aware Progressive Pruning</h2>
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <figure class="paper-figure figure-method">
+                  <img class="paper-media" src="static/images/paper/erecap_method_architecture_paper.png" alt="E-RECAP token pruning module overview" loading="lazy">
+                  <figcaption>Figure 2. E-RECAP module. A lightweight predictor scores context tokens using intermediate hidden states, and pruning is applied progressively at selected layers.</figcaption>
+                </figure>
+              </div>
+              <div class="column is-5">
+                <div class="content">
+                  <p class="has-text-justified">
+                    E-RECAP is a context-compression module for long-horizon replanning prompts. It predicts token utility from intermediate hidden states and prunes progressively across selected transformer layers.
+                  </p>
+                  <p class="has-text-justified">
+                    It preserves fixed head and tail tokens, then fills the remaining budget with top-scoring context tokens so each replanning call satisfies the planner-input budget.
+                  </p>
+                  <ul class="has-text-left">
+                    <li><strong>Drop-in:</strong> operates on the replanning context before the planner call.</li>
+                    <li><strong>Budget-aligned:</strong> enforces explicit token budgets after compression.</li>
+                    <li><strong>Auditable:</strong> pruning overhead is logged as a separate call-path phase.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="figures">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-11">
+            <h2 class="title is-3 has-text-left">Figures</h2>
+            <div class="content">
+              <p class="has-text-justified">
+                These figures mirror the paper's visual evidence: distribution-level SLO behavior, qualitative platform comparisons, a focused physical robot example, and diagnostic views of the cost-stability tradeoff.
+              </p>
+            </div>
+
+            <figure class="paper-figure figure-composite">
+              <div class="composite-grid">
+                <div class="subfigure-panel">
+                  <img src="static/images/paper/slo_violation_bar_paper.png" alt="Cross-platform SLO violation rates" loading="lazy">
+                  <p>(a) Cross-platform SLO violation.</p>
+                </div>
+                <div class="subfigure-panel">
+                  <img src="static/images/paper/latency_cdf_meta_habitat_paper.png" alt="Tail latency CDF with SLO threshold" loading="lazy">
+                  <p>(b) Meta Habitat tail latency CDF.</p>
+                </div>
+                <div class="subfigure-panel">
+                  <img src="static/images/paper/diagnostics_coordination_wait_robofactory_paper.png" alt="Coordination wait diagnostic on RoboFactory" loading="lazy">
+                  <p>(c) RoboFactory coordination wait.</p>
+                </div>
+                <div class="subfigure-panel">
+                  <img src="static/images/paper/diagnostics_token_latency_meta_habitat_paper.png" alt="Token-latency diagnostic on Meta Habitat" loading="lazy">
+                  <p>(d) Meta Habitat token-latency tradeoff.</p>
+                </div>
+              </div>
+              <figcaption>Figure 4. Quantitative summary of replanning stability and cost. (a) Cross-platform SLO violations, (b) Meta Habitat tail-latency CDF, (c) RoboFactory coordination wait, and (d) Meta Habitat token-latency tradeoff.</figcaption>
+            </figure>
+
+            <div class="figure-grid">
+              <figure class="paper-figure">
+                <img src="static/images/paper/robofactory_example_baseline_paper.jpg" alt="RoboFactory baseline qualitative example" loading="lazy">
+                <figcaption>Figure 5a. RoboFactory TakePhoto baseline.</figcaption>
+              </figure>
+              <figure class="paper-figure">
+                <img src="static/images/paper/robofactory_example_method_paper.jpg" alt="RoboFactory BRACE qualitative example" loading="lazy">
+                <figcaption>Figure 5b. RoboFactory TakePhoto with BRACE.</figcaption>
+              </figure>
+            </div>
+
+            <figure class="paper-figure figure-strip">
+              <img class="paper-media" src="static/images/paper/airsimnh_retained_collage_main_paper.png" alt="AirSimNH qualitative comparison storyboard" loading="lazy">
+              <figcaption>Figure 6. Qualitative comparison on AirSimNH. The baseline accumulates delayed replanning decisions within the same trigger window, whereas BRACE shortens the effective replanning path and completes the interaction with fewer deadline misses.</figcaption>
+            </figure>
+
+            <figure class="paper-figure figure-strip">
+              <img class="paper-media" src="static/images/paper/take_fruit_real_paper.png" alt="Real robot PickFruit rollout pair" loading="lazy">
+              <figcaption>Figure 7. Real-robot PickFruit rollout pair on a banana instance. BRACE replans after an intermediate execution failure and recovers, while the underlying LLM+VLA stack fails to recover from a comparable failure.</figcaption>
+            </figure>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="results">
       <div class="container is-max-widescreen">
         <div class="columns is-centered">
           <div class="column is-11">
@@ -326,65 +384,6 @@
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hero is-light" id="figures">
-      <div class="container is-max-widescreen">
-        <div class="columns is-centered">
-          <div class="column is-11">
-            <h2 class="title is-3 has-text-left">Paper Figures</h2>
-            <div class="content">
-              <p class="has-text-justified">
-                These figures mirror the paper's visual evidence: distribution-level SLO behavior, qualitative platform comparisons, a focused physical robot example, and diagnostic views of the cost-stability tradeoff.
-              </p>
-            </div>
-
-            <figure class="paper-figure figure-composite">
-              <div class="composite-grid">
-                <div class="subfigure-panel">
-                  <img src="static/images/paper/slo_violation_bar_paper.png" alt="Cross-platform SLO violation rates" loading="lazy">
-                  <p>(a) Cross-platform SLO violation.</p>
-                </div>
-                <div class="subfigure-panel">
-                  <img src="static/images/paper/latency_cdf_meta_habitat_paper.png" alt="Tail latency CDF with SLO threshold" loading="lazy">
-                  <p>(b) Meta Habitat tail latency CDF.</p>
-                </div>
-                <div class="subfigure-panel">
-                  <img src="static/images/paper/diagnostics_coordination_wait_robofactory_paper.png" alt="Coordination wait diagnostic on RoboFactory" loading="lazy">
-                  <p>(c) RoboFactory coordination wait.</p>
-                </div>
-                <div class="subfigure-panel">
-                  <img src="static/images/paper/diagnostics_token_latency_meta_habitat_paper.png" alt="Token-latency diagnostic on Meta Habitat" loading="lazy">
-                  <p>(d) Meta Habitat token-latency tradeoff.</p>
-                </div>
-              </div>
-              <figcaption>Figure 4. Quantitative summary of replanning stability and cost. (a) Cross-platform SLO violations, (b) Meta Habitat tail-latency CDF, (c) RoboFactory coordination wait, and (d) Meta Habitat token-latency tradeoff.</figcaption>
-            </figure>
-
-            <div class="figure-grid">
-              <figure class="paper-figure">
-                <img src="static/images/paper/robofactory_example_baseline_paper.jpg" alt="RoboFactory baseline qualitative example" loading="lazy">
-                <figcaption>Figure 5a. RoboFactory TakePhoto baseline.</figcaption>
-              </figure>
-              <figure class="paper-figure">
-                <img src="static/images/paper/robofactory_example_method_paper.jpg" alt="RoboFactory BRACE qualitative example" loading="lazy">
-                <figcaption>Figure 5b. RoboFactory TakePhoto with BRACE.</figcaption>
-              </figure>
-            </div>
-
-            <figure class="paper-figure figure-strip">
-              <img class="paper-media" src="static/images/paper/airsimnh_retained_collage_main_paper.png" alt="AirSimNH qualitative comparison storyboard" loading="lazy">
-              <figcaption>Figure 6. Qualitative comparison on AirSimNH. The baseline accumulates delayed replanning decisions within the same trigger window, whereas BRACE shortens the effective replanning path and completes the interaction with fewer deadline misses.</figcaption>
-            </figure>
-
-            <figure class="paper-figure figure-strip">
-              <img class="paper-media" src="static/images/paper/take_fruit_real_paper.png" alt="Real robot PickFruit rollout pair" loading="lazy">
-              <figcaption>Figure 7. Real-robot PickFruit rollout pair on a banana instance. BRACE replans after an intermediate execution failure and recovers, while the underlying LLM+VLA stack fails to recover from a comparable failure.</figcaption>
-            </figure>
-
           </div>
         </div>
       </div>
