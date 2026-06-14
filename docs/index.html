@@ -64,11 +64,14 @@
   <script defer src="static/js/index.js"></script>
 </head>
 <body>
-  <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
-    <span class="theme-toggle-track">
-      <span class="theme-toggle-thumb"></span>
-    </span>
-  </button>
+  <div class="theme-control" aria-label="Theme switch">
+    <span class="theme-label">Theme</span>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-thumb"></span>
+      </span>
+    </button>
+  </div>
 
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
@@ -107,15 +110,15 @@
                     </a>
                   </span>
                   <span class="link-block">
-                    <a href="#figures" class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon"><i class="fas fa-images"></i></span>
-                      <span>Figures</span>
-                    </a>
-                  </span>
-                  <span class="link-block">
                     <a href="https://shuaijun-liu.github.io/BRACE-Animation/" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon"><i class="fas fa-play-circle"></i></span>
                       <span>Animation Demo</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="#figures" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fas fa-images"></i></span>
+                      <span>Figures</span>
                     </a>
                   </span>
                   <span class="link-block">
