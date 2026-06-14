@@ -151,26 +151,40 @@
               <p class="has-text-justified">
                 The controller decides whether to invoke replanning, selects the replanning mode, and allocates an explicit token budget and latency service-level objective (SLO) while accounting for optional modules on the replanning call path. We instantiate one such module, <strong>E-RECAP</strong>, to show how BRACE can compose compression, retrieval, caching, or other efficiency mechanisms to change replanning real-time behavior and closed-loop performance. Across Meta Habitat, RoboFactory, and AirSim, BRACE with E-RECAP reduces replanning-call token counts by <strong>62-92%</strong> and SLO violation rates from <strong>85.5-100.0%</strong> to <strong>4.7-50.0%</strong>; in a harder RoboFactory setting, it reaches <strong>80.0%</strong> success with <strong>4.6%</strong> SLO violations.
               </p>
-              <div class="key-grid">
-                <div class="key-card">
-                  <span class="key-label">Tokens</span>
-                  <strong>62-92%</strong>
-                  <span>fewer replanning-call tokens across main platforms</span>
+              <div class="abstract-media-layout">
+                <div class="abstract-key-panel">
+                  <div class="key-grid">
+                    <div class="key-card">
+                      <span class="key-label">Tokens</span>
+                      <strong>62-92%</strong>
+                      <span>fewer replanning-call tokens across main platforms</span>
+                    </div>
+                    <div class="key-card">
+                      <span class="key-label">SLO</span>
+                      <strong>4.7-50.0%</strong>
+                      <span>violation rates after BRACE + E-RECAP</span>
+                    </div>
+                    <div class="key-card">
+                      <span class="key-label">Habitat</span>
+                      <strong>2.1-2.6x</strong>
+                      <span>replanning-latency speedup under context growth</span>
+                    </div>
+                    <div class="key-card">
+                      <span class="key-label">Harder RF</span>
+                      <strong>80.0%</strong>
+                      <span>success when open-loop, frozen-plan, and No BRACE fail</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="key-card">
-                  <span class="key-label">SLO</span>
-                  <strong>4.7-50.0%</strong>
-                  <span>violation rates after BRACE + E-RECAP</span>
-                </div>
-                <div class="key-card">
-                  <span class="key-label">Habitat</span>
-                  <strong>2.1-2.6x</strong>
-                  <span>replanning-latency speedup under context growth</span>
-                </div>
-                <div class="key-card">
-                  <span class="key-label">Harder RF</span>
-                  <strong>80.0%</strong>
-                  <span>success when open-loop, frozen-plan, and No BRACE fail</span>
+                <div class="video-embed-card">
+                  <div class="video-embed-shell">
+                    <iframe
+                      src="https://www.youtube.com/embed/jNQXAC9IVRw"
+                      title="BRACE video placeholder"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+                  </div>
                 </div>
               </div>
             </div>
