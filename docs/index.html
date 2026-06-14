@@ -151,12 +151,6 @@
           <div class="column is-five-sixths">
             <h2 class="title is-3 has-text-left">Abstract</h2>
             <div class="content">
-              <p class="has-text-justified">
-                Embodied agents replan frequently to recover from execution drift, partial observability, and coordination hazards, but each LLM-based replanning call can consume an accumulated textual context that grows over time and across agents. Once this context becomes large, replanning latency develops heavy tails and can miss real-time deadlines even when task success remains high. <strong>BRACE</strong> reframes replanning in embodied intelligence from simply improving planning ability into a systematic control problem: when to replan, how to replan, and at what cost.
-              </p>
-              <p class="has-text-justified">
-                The controller decides whether to invoke replanning, selects the replanning mode, and allocates an explicit token budget and latency service-level objective (SLO) while accounting for optional modules on the replanning call path. We instantiate one such module, <strong>E-RECAP</strong>, to show how BRACE can compose compression, retrieval, caching, or other efficiency mechanisms to change replanning real-time behavior and closed-loop performance. Across Meta Habitat, RoboFactory, and AirSim, BRACE with E-RECAP reduces replanning-call token counts by <strong>62-92%</strong> and SLO violation rates from <strong>85.5-100.0%</strong> to <strong>4.7-50.0%</strong>; in a harder RoboFactory setting, it reaches <strong>80.0%</strong> success with <strong>4.6%</strong> SLO violations.
-              </p>
               <div class="abstract-media-layout">
                 <div class="abstract-key-panel">
                   <div class="key-grid">
@@ -192,6 +186,14 @@
                     </button>
                   </div>
                 </div>
+              </div>
+              <div class="abstract-copy">
+                <p class="has-text-justified">
+                  Embodied agents replan frequently to recover from execution drift, partial observability, and coordination hazards, but each LLM-based replanning call can consume an accumulated textual context that grows over time and across agents. Once this context becomes large, replanning latency develops heavy tails and can miss real-time deadlines even when task success remains high. <strong>BRACE</strong> reframes replanning in embodied intelligence from simply improving planning ability into a systematic control problem: when to replan, how to replan, and at what cost.
+                </p>
+                <p class="has-text-justified">
+                  The controller decides whether to invoke replanning, selects the replanning mode, and allocates an explicit token budget and latency service-level objective (SLO) while accounting for optional modules on the replanning call path. We instantiate one such module, <strong>E-RECAP</strong>, to show how BRACE can compose compression, retrieval, caching, or other efficiency mechanisms to change replanning real-time behavior and closed-loop performance. Across Meta Habitat, RoboFactory, and AirSim, BRACE with E-RECAP reduces replanning-call token counts by <strong>62-92%</strong> and SLO violation rates from <strong>85.5-100.0%</strong> to <strong>4.7-50.0%</strong>; in a harder RoboFactory setting, it reaches <strong>80.0%</strong> success with <strong>4.6%</strong> SLO violations.
+                </p>
               </div>
             </div>
           </div>
