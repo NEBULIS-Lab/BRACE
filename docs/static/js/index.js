@@ -285,9 +285,35 @@ function fixVideoSizing() {
     });
 }
 
+function setupDeferredYouTubeEmbeds() {
+    const embedShells = document.querySelectorAll('.video-embed-shell[data-video-src]');
+
+    embedShells.forEach(shell => {
+        const button = shell.querySelector('.video-placeholder-button');
+        if (!button) return;
+
+        button.addEventListener('click', function() {
+            const videoSrc = shell.getAttribute('data-video-src');
+            const videoTitle = shell.getAttribute('data-video-title') || 'Embedded video';
+            if (!videoSrc) return;
+
+            const iframe = document.createElement('iframe');
+            iframe.src = videoSrc;
+            iframe.title = videoTitle;
+            iframe.loading = 'lazy';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+
+            shell.replaceChildren(iframe);
+            shell.removeAttribute('data-video-src');
+        }, { once: true });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     setupThemeToggle();
     setupLazyVideoLoading();
     setupVideoCarouselAutoplay();
     fixVideoSizing();
+    setupDeferredYouTubeEmbeds();
 });
