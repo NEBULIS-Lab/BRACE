@@ -363,7 +363,17 @@ h2 {
 }
 
 .story-card {
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 0;
+  padding: 18px;
+  font-size: 16px;
+  line-height: 1.5;
   animation-delay: 40ms;
+}
+
+.story-card > * {
+  flex-shrink: 0;
 }
 
 .context-card {
@@ -416,8 +426,9 @@ h2 {
 }
 
 .story-card h2 {
-  margin: 4px 0 0;
-  font-size: 22px;
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.2;
 }
 
 .story-card > p,
@@ -2119,6 +2130,62 @@ h2 {
 .framework-details[open] summary { color: var(--blue); }
 .framework-details summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .framework-details[open] .contribution-grid { margin-top: 9px; }
+
+/* One readable type scale throughout the narrative sidebar. */
+.story-card > p,
+.story-card .thesis-strip strong,
+.story-card .control-question p,
+.story-card .decision-stack strong,
+.story-card .takeaway p,
+.story-card .contribution-grid strong,
+.story-card .contribution-grid p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.story-card > p,
+.story-card .takeaway p {
+  margin: 0;
+}
+
+.story-card .thesis-strip strong,
+.story-card .control-question p,
+.story-card .decision-stack strong,
+.story-card .contribution-grid strong {
+  font-weight: 650;
+}
+
+.story-card .section-label,
+.story-card .thesis-strip span,
+.story-card .control-question span,
+.story-card .decision-stack span,
+.story-card .contribution-grid span,
+.story-card .takeaway > strong {
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.story-card .thesis-strip,
+.story-card .control-question,
+.story-card .decision-stack > div,
+.story-card .takeaway,
+.story-card .framework-details,
+.story-card .contribution-grid > div {
+  padding: 12px;
+}
+
+.story-card .decision-stack,
+.story-card .contribution-grid {
+  gap: 10px;
+}
+
+.story-card .framework-details summary {
+  font-size: 16px;
+  line-height: 1.5;
+}
 
 /* Keep background modules still while the current operation is in focus. */
 .work-module:not(.active) .pressure-meter div::after { animation: none; }
