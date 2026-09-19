@@ -1,5 +1,3 @@
-window.HELP_IMPROVE_VIDEOJS = false;
-
 function applyTheme(theme) {
     const isDark = theme === 'dark';
     if (isDark) {
@@ -39,6 +37,9 @@ function setupThemeToggle() {
     }
 
     applyTheme(savedTheme);
+    window.addEventListener('storage', function(event) {
+        if (event.key === 'brace-theme') applyTheme(event.newValue === 'dark' ? 'dark' : 'light');
+    });
 
     toggle.addEventListener('click', function() {
         const nextTheme = document.documentElement.hasAttribute('data-theme') ? 'light' : 'dark';
@@ -143,177 +144,26 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Lazy load videos - only load video source when it enters viewport
-function setupLazyVideoLoading() {
-    const lazyVideos = document.querySelectorAll('video[data-src]');
-    
-    if (lazyVideos.length === 0) return;
-    
-    // Check if IntersectionObserver is supported
-    if (typeof IntersectionObserver === 'undefined') {
-        // Fallback: load all videos immediately for older browsers
-        lazyVideos.forEach(video => {
-            const videoSrc = video.getAttribute('data-src');
-            if (videoSrc) {
-                const source = document.createElement('source');
-                source.src = videoSrc;
-                source.type = 'video/mp4';
-                video.appendChild(source);
-                video.removeAttribute('data-src');
-                video.load();
-            }
+// Same-origin animation embed: resize to the scene and pause when offscreen.
+function setupAnimationEmbed() {
+    const frame = document.getElementById('brace-animation');
+    if (!frame) return;
+    window.addEventListener('message', function(event) {
+        if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
+        if (event.data?.type !== 'brace-animation-height') return;
+        const height = Number(event.data.height);
+        if (Number.isFinite(height) && height >= 300 && height <= 4000) frame.style.height = Math.ceil(height) + 'px';
+    });
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function(entries) {
+            document.body.classList.toggle('animation-in-view', entries[0].isIntersecting);
+            if (!entries[0].isIntersecting) frame.contentWindow?.postMessage({ type: 'brace-animation-pause' }, location.origin);
         });
-        return;
+        observer.observe(frame);
     }
-    
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const video = entry.target;
-                const videoSrc = video.getAttribute('data-src');
-                
-                if (videoSrc && !video.querySelector('source')) {
-                    // Create source element and add to video
-                    const source = document.createElement('source');
-                    source.src = videoSrc;
-                    source.type = 'video/mp4';
-                    video.appendChild(source);
-                    
-                    // Remove data-src to prevent reloading
-                    video.removeAttribute('data-src');
-                    
-                    // Load the video
-                    video.load();
-                }
-                
-                // Stop observing this video
-                videoObserver.unobserve(video);
-            }
-        });
-    }, {
-        rootMargin: '100px', // Start loading 100px before video enters viewport
-        threshold: 0.01 // Trigger even if only 1% is visible
-    });
-    
-    lazyVideos.forEach(video => {
-        videoObserver.observe(video);
-    });
-    
-    // Also load videos on click/interaction to ensure they work
-    lazyVideos.forEach(video => {
-        video.addEventListener('click', function() {
-            const videoSrc = video.getAttribute('data-src');
-            if (videoSrc && !video.querySelector('source')) {
-                const source = document.createElement('source');
-                source.src = videoSrc;
-                source.type = 'video/mp4';
-                video.appendChild(source);
-                video.removeAttribute('data-src');
-                video.load();
-            }
-        });
-        
-        // Also trigger on play attempt
-        video.addEventListener('play', function() {
-            const videoSrc = video.getAttribute('data-src');
-            if (videoSrc && !video.querySelector('source')) {
-                const source = document.createElement('source');
-                source.src = videoSrc;
-                source.type = 'video/mp4';
-                video.appendChild(source);
-                video.removeAttribute('data-src');
-                video.load();
-            }
-        }, { once: true });
-    });
-}
-
-// Video carousel autoplay when in view
-function setupVideoCarouselAutoplay() {
-    const carouselVideos = document.querySelectorAll('.results-carousel video');
-    
-    if (carouselVideos.length === 0) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const video = entry.target;
-            if (entry.isIntersecting) {
-                // Video is in view, play it
-                video.play().catch(e => {
-                    // Autoplay failed, probably due to browser policy
-                    console.log('Autoplay prevented:', e);
-                });
-            } else {
-                // Video is out of view, pause it
-                video.pause();
-            }
-        });
-    }, {
-        threshold: 0.5 // Trigger when 50% of the video is visible
-    });
-    
-    carouselVideos.forEach(video => {
-        observer.observe(video);
-    });
-}
-
-// Fix video sizing: ensure poster box matches video box before playback
-function fixVideoSizing() {
-    const demoVideos = document.querySelectorAll('#demos video');
-    demoVideos.forEach(video => {
-        // Set size immediately if metadata is already loaded
-        if (video.readyState >= 1) {
-            video.style.width = video.offsetWidth + 'px';
-            video.style.height = video.offsetHeight + 'px';
-        }
-        
-        // Lock size when metadata loads
-        video.addEventListener('loadedmetadata', function() {
-            const computedWidth = window.getComputedStyle(video).width;
-            const computedHeight = window.getComputedStyle(video).height;
-            video.style.width = computedWidth;
-            video.style.height = computedHeight;
-        }, { once: true });
-        
-        // Also lock on canplay to catch early loads
-        video.addEventListener('canplay', function() {
-            const computedWidth = window.getComputedStyle(video).width;
-            const computedHeight = window.getComputedStyle(video).height;
-            video.style.width = computedWidth;
-            video.style.height = computedHeight;
-        }, { once: true });
-    });
-}
-
-function setupDeferredYouTubeEmbeds() {
-    const embedShells = document.querySelectorAll('.video-embed-shell[data-video-src]');
-
-    embedShells.forEach(shell => {
-        const button = shell.querySelector('.video-placeholder-button');
-        if (!button) return;
-
-        button.addEventListener('click', function() {
-            const videoSrc = shell.getAttribute('data-video-src');
-            const videoTitle = shell.getAttribute('data-video-title') || 'Embedded video';
-            if (!videoSrc) return;
-
-            const iframe = document.createElement('iframe');
-            iframe.src = videoSrc;
-            iframe.title = videoTitle;
-            iframe.loading = 'lazy';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            iframe.allowFullscreen = true;
-
-            shell.replaceChildren(iframe);
-            shell.removeAttribute('data-video-src');
-        }, { once: true });
-    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     setupThemeToggle();
-    setupLazyVideoLoading();
-    setupVideoCarouselAutoplay();
-    fixVideoSizing();
-    setupDeferredYouTubeEmbeds();
+    setupAnimationEmbed();
 });

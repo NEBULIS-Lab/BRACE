@@ -1,0 +1,32 @@
+name: Validate animation
+on:
+  push:
+    branches: [main]
+    paths: ['animation/**', 'docs/**', 'README.md', '.github/workflows/animation.yml']
+  pull_request:
+    paths: ['animation/**', 'docs/**', 'README.md', '.github/workflows/animation.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: animation/package-lock.json
+      - run: npm ci
+        working-directory: animation
+      - run: npm test && npm run build
+        working-directory: animation
+      - name: Check committed site build
+        run: |
+          git diff --exit-code -- docs/animation
+          test -z "$(git ls-files --others --exclude-standard docs/animation)"
+      - run: npx playwright install --with-deps chromium
+        working-directory: animation
+      - run: npm run test:browser
+        working-directory: animation

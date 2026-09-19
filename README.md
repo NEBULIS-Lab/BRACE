@@ -9,7 +9,7 @@
 <div align="center">
   <a href="docs/static/main.pdf"><img src="https://img.shields.io/badge/Paper-PDF-2563EB.svg" alt="Paper"></a>
   <a href="https://nebulis-lab.com/BRACE"><img src="https://img.shields.io/badge/Website-Page%20URL-0EA5E9.svg" alt="Website"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Video-Coming%20Soon-F97316.svg" alt="Video"></a>
+  <a href="https://nebulis-lab.com/BRACE/animation/"><img src="https://img.shields.io/badge/Animation-Interactive%20Demo-2459D3.svg" alt="Interactive animation"></a>
   <a href="docs/"><img src="https://img.shields.io/badge/Docs-Guide-7C3AED.svg" alt="Docs"></a>
 </div>
 
@@ -34,8 +34,24 @@ and composes with efficiency modules (e.g., **E-RECAP** token pruning, optional 
 
 > **Note:** This repository accompanies our ICML 2026 paper.
 
+## Interactive animation
+
+[**Explore the BRACE animation →**](https://nebulis-lab.com/BRACE/animation/)
+
+[![BRACE animation: trace protected and selected tokens into a budgeted planner input](docs/animation/preview.png)](https://nebulis-lab.com/BRACE/animation/)
+
+Follow one context through the replanning bottleneck, the stability gate, a token
+budget and phase accounting, then compare the paper’s results across platforms.
+Use Play/Pause, chapter navigation and the timeline; inspect individual tokens
+or switch gate scenarios to see the mechanism change.
+
+The [animation source](animation/) and its [deployed build](docs/animation/) are
+maintained in this repository. The [project website](https://nebulis-lab.com/BRACE/#animation)
+embeds the same interactive app.
+
 ## Repo map
 
+- **`animation/`**: interactive method animation, build scripts and browser checks
 - **`brace/`**: BRACE controller core (budgeting + stability mechanisms)
 - **`experiments/`**: domain runners (Habitat / RoboFactory / AirSim / proxy + stubs)
   - Includes benchmark helpers under `experiments/robosuite/` and `experiments/libero/`
@@ -122,5 +138,5 @@ Coming soon.
 
 This repository is **code + configs + docs only**.
 
-- Do not commit large weights/datasets/videos; keep them under your `BRACE_MODELS_ROOT` / `BRACE_DATA_ROOT` and reference via env vars.
+- Do not commit large weights/datasets; keep them under your `BRACE_MODELS_ROOT` / `BRACE_DATA_ROOT` and reference via env vars.
 - Local outputs are generated at runtime (e.g., `runs/`, `artifacts/`, `data/`) and are **not** shipped in this repo. See `docs/LOCAL_OUTPUTS.md`.
