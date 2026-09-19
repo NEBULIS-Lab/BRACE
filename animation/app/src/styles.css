@@ -492,6 +492,7 @@ h2 {
 .control-question {
   padding: 9px;
   border: 1px solid #e0c586;
+  border-left: 3px solid #c29042;
   border-radius: 8px;
   background: linear-gradient(180deg, #fff4d7, #fffdf8);
 }
@@ -503,7 +504,7 @@ h2 {
 .control-question p {
   margin: 5px 0 0;
   color: #6d552b;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 720;
   line-height: 1.34;
 }

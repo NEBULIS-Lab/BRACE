@@ -380,16 +380,6 @@ function App() {
               Project site
             </a>
           </div>
-          <div className="title-summary">
-            <div>
-              <span>When Replanning Becomes the Bottleneck</span>
-              <strong>Budgeted controller, context compression, and SLO-aware audit signals.</strong>
-            </div>
-            <p>
-              A loop-based walkthrough of how a replanning controller gates triggers, budgets context,
-              compresses tokens with E-RECAP, and audits latency against real-time deadlines.
-            </p>
-          </div>
         </div>
       </header>
 
@@ -465,11 +455,6 @@ function App() {
           <div className="takeaway">
             <strong>Takeaway</strong>
             <p>{step.takeaway}</p>
-          </div>
-          <div className="step-facts">
-            <span>{`trigger: ${step.triggerType}`}</span>
-            <span>{`gate: ${gateLabel(step.gate)}`}</span>
-            <span>{`B_t: ${budgetLabel(step)}`}</span>
           </div>
         </article>
 
