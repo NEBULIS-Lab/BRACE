@@ -34,23 +34,8 @@ and composes with efficiency modules (e.g., **E-RECAP** token pruning, optional 
 
 > **Note:** This repository accompanies our ICML 2026 paper.
 
-## Interactive animation
-
-[**Explore the BRACE animation →**](https://nebulis-lab.com/BRACE/animation/)
-
-[![BRACE animation: interactive replanning loop preview](docs/animation/preview.png)](https://nebulis-lab.com/BRACE/animation/)
-
-Step through context pressure, BRACE gating, budget selection, E-RECAP compression,
-phase accounting and cross-platform evidence in the interactive animation.
-Use **Next**, **Back**, or the step navigation to explore the original walkthrough.
-
-The [animation source](animation/) and its [deployed build](docs/animation/) are
-maintained in this repository. The [project website](https://nebulis-lab.com/BRACE/#animation)
-shows a small preview; click it to open the dedicated animation page.
-
 ## Repo map
 
-- **`animation/`**: interactive method animation, build scripts and browser checks
 - **`brace/`**: BRACE controller core (budgeting + stability mechanisms)
 - **`experiments/`**: domain runners (Habitat / RoboFactory / AirSim / proxy + stubs)
   - Includes benchmark helpers under `experiments/robosuite/` and `experiments/libero/`
@@ -137,5 +122,5 @@ Coming soon.
 
 This repository is **code + configs + docs only**.
 
-- Do not commit large weights/datasets; keep them under your `BRACE_MODELS_ROOT` / `BRACE_DATA_ROOT` and reference via env vars.
+- Do not commit large weights/datasets/videos; keep them under your `BRACE_MODELS_ROOT` / `BRACE_DATA_ROOT` and reference via env vars.
 - Local outputs are generated at runtime (e.g., `runs/`, `artifacts/`, `data/`) and are **not** shipped in this repo. See `docs/LOCAL_OUTPUTS.md`.
