@@ -250,7 +250,7 @@ h2 {
 
 .guide-actions {
   display: grid;
-  grid-template-columns: 82px 268px;
+  grid-template-columns: 82px 124px;
   gap: 10px;
   align-items: center;
 }
@@ -275,7 +275,7 @@ h2 {
 
 .next-action {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 124px;
+  grid-template-columns: 1fr;
   gap: 10px;
   align-items: center;
   min-width: 0;
@@ -293,7 +293,7 @@ h2 {
     0 0 0 1px rgba(255, 255, 255, 0.2) inset,
     inset 0 1px 0 rgba(255, 255, 255, 0.28);
   font-size: 15px;
-  animation: nextGradientFlow 4.2s ease-in-out infinite;
+  animation: none;
 }
 
 .next-primary:hover {
@@ -302,7 +302,7 @@ h2 {
     linear-gradient(120deg, rgba(255, 255, 255, 0.28), transparent 38%),
     linear-gradient(115deg, #1f68d6 0%, #18b4c8 44%, #7898f8 100%);
   background-size: 170% 170%, 210% 210%;
-  animation-duration: 2.6s;
+  animation: nextGradientFlow 2.6s ease-in-out infinite;
 }
 
 .next-cue {
@@ -630,7 +630,7 @@ h2 {
   background: linear-gradient(90deg, transparent, rgba(79, 126, 219, 0.46), transparent);
   content: "";
   transform: translateX(-100%);
-  animation: headerSweep 3.2s ease-in-out infinite;
+  animation: none;
 }
 
 .workbench-header strong {
@@ -678,7 +678,7 @@ h2 {
   border-radius: 50%;
   background: var(--blue);
   box-shadow: 0 0 0 7px rgba(79, 126, 219, 0.14);
-  transition: left 340ms ease;
+  transition: left 460ms cubic-bezier(0.22, 1, 0.36, 1);
   animation: pulseGlow 1.6s ease-in-out infinite;
 }
 
@@ -808,7 +808,7 @@ h2 {
   content: "";
   pointer-events: none;
   transform: translateX(-120%);
-  animation: moduleSweep 2.6s ease-in-out infinite;
+  animation: moduleSweep 2.6s ease-in-out 2;
 }
 
 .work-module.active {
@@ -2099,6 +2099,34 @@ h2 {
   .callpath-slots div {
     grid-template-columns: 1fr;
   }
+}
+
+.framework-details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: #fbfcff;
+}
+
+.framework-details summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.framework-details summary:hover,
+.framework-details[open] summary { color: var(--blue); }
+.framework-details summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.framework-details[open] .contribution-grid { margin-top: 9px; }
+
+/* Keep background modules still while the current operation is in focus. */
+.work-module:not(.active) .pressure-meter div::after { animation: none; }
+.work-module:not(.active) .token-chip.middle.selected {
+  animation-name: chipSettle;
+  animation-duration: 420ms;
+  animation-delay: var(--delay);
+  animation-iteration-count: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -101,7 +101,7 @@ const stepStates: GuidedStep[] = [
     title: "The loop starts by collecting a live replanning context.",
     narrative:
       "Task anchors, plan history, messages, observations, and the newest state all enter the same replanning buffer before the planner can act.",
-    takeaway: "The page should make C_t feel like a growing runtime object, not a static prompt.",
+    takeaway: "Context accumulates across observations and planning steps.",
     controlQuestion: "What state has accumulated enough to justify a replanning call?",
     controlAction: "Observe C_t as a system variable before spending a planner call.",
     moduleRole: "Compression and retrieval are idle until the controller decides the context should enter the call path.",
@@ -205,7 +205,7 @@ const stepStates: GuidedStep[] = [
     title: "E-RECAP scores tokens, protects anchors, and prunes progressively.",
     narrative:
       "The utility predictor scores middle tokens from hidden states. Head and tail windows stay pinned while low-utility middle tokens are removed across layers.",
-    takeaway: "This step must show actual token processing: score, select, prune, and pass kept tokens forward.",
+    takeaway: "Protect task anchors and pass useful context to the planner within the budget.",
     controlQuestion: "How should the admitted context be made planner-ready under the budget?",
     controlAction: "Run E-RECAP as a call-path module that protects anchors and prunes low-utility middle context.",
     moduleRole: "The contribution is the modular efficiency slot; E-RECAP is the concrete compression instance.",
@@ -257,7 +257,7 @@ const stepStates: GuidedStep[] = [
     title: "The same loop explains navigation, manipulation, traffic, and robot results.",
     narrative:
       "The mechanism remains visible while evidence expands: token reduction maps to E-RECAP, deadline reduction maps to budgeting/accounting, and churn reduction maps to the gate.",
-    takeaway: "Metrics should read as evidence for the loop, not as unrelated cards below the animation.",
+    takeaway: "Read token load, deadline violations, and stability together.",
     controlQuestion: "Does call-path control change closed-loop behavior across embodied domains?",
     controlAction: "Connect tokens, latency violations, and stability back to the same controlled replanning loop.",
     moduleRole: "E-RECAP is evidence that the framework can compose efficiency modules to alter real-time replanning.",
@@ -409,10 +409,6 @@ function App() {
             Back
           </button>
           <div className="next-action">
-            <span className="next-cue" aria-hidden="true">
-              {isFinalStep ? "replay" : "keep going"}
-              <i />
-            </span>
             <button className="primary next-primary" onClick={advance} type="button">
               {isFinalStep ? "Restart" : "Next"}
             </button>
@@ -429,15 +425,18 @@ function App() {
             <span>Central contribution</span>
             <strong>Replanning becomes a control problem: when, how, and at what cost.</strong>
           </div>
-          <div className="contribution-grid">
-            {contributionFrame.map((item) => (
-              <div key={item.label}>
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
-                <p>{item.detail}</p>
-              </div>
-            ))}
-          </div>
+          <details className="framework-details">
+            <summary>Framework overview</summary>
+            <div className="contribution-grid">
+              {contributionFrame.map((item) => (
+                <div key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                  <p>{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          </details>
           <div className="control-question">
             <span>Question in this step</span>
             <p>{step.controlQuestion}</p>
@@ -458,7 +457,7 @@ function App() {
           </div>
         </article>
 
-        <LoopWorkbench key={`workbench-${step.id}`} keptTokens={keptTokens} platform={platform} step={step} tokens={tokens} />
+        <LoopWorkbench keptTokens={keptTokens} platform={platform} step={step} tokens={tokens} />
 
         <aside className={`context-card focus-${step.focus}`} key={`scene-${step.id}`}>
           <span className="section-label">Current scene</span>
