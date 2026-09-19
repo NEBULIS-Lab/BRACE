@@ -7,7 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc && vite build && node scripts/publish.mjs",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "tsc app/src/model.ts --outDir .test-build --module esnext --target es2020 --skipLibCheck && node --test tests/model.test.mjs",
+    "test": "tsc --noEmit",
     "test:browser": "playwright test"
   },
   "dependencies": {

@@ -38,16 +38,15 @@ and composes with efficiency modules (e.g., **E-RECAP** token pruning, optional 
 
 [**Explore the BRACE animation →**](https://nebulis-lab.com/BRACE/animation/)
 
-[![BRACE animation: trace protected and selected tokens into a budgeted planner input](docs/animation/preview.png)](https://nebulis-lab.com/BRACE/animation/)
+[![BRACE animation: interactive replanning loop preview](docs/animation/preview.png)](https://nebulis-lab.com/BRACE/animation/)
 
-Follow one context through the replanning bottleneck, the stability gate, a token
-budget and phase accounting, then compare the paper’s results across platforms.
-Use Play/Pause, chapter navigation and the timeline; inspect individual tokens
-or switch gate scenarios to see the mechanism change.
+Step through context pressure, BRACE gating, budget selection, E-RECAP compression,
+phase accounting and cross-platform evidence in the interactive animation.
+Use **Next**, **Back**, or the step navigation to explore the original walkthrough.
 
 The [animation source](animation/) and its [deployed build](docs/animation/) are
 maintained in this repository. The [project website](https://nebulis-lab.com/BRACE/#animation)
-embeds the same interactive app.
+shows a small preview; click it to open the dedicated animation page.
 
 ## Repo map
 

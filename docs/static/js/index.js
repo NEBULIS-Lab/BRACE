@@ -144,26 +144,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Same-origin animation embed: resize to the scene and pause when offscreen.
-function setupAnimationEmbed() {
-    const frame = document.getElementById('brace-animation');
-    if (!frame) return;
-    window.addEventListener('message', function(event) {
-        if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
-        if (event.data?.type !== 'brace-animation-height') return;
-        const height = Number(event.data.height);
-        if (Number.isFinite(height) && height >= 300 && height <= 4000) frame.style.height = Math.ceil(height) + 'px';
-    });
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(function(entries) {
-            document.body.classList.toggle('animation-in-view', entries[0].isIntersecting);
-            if (!entries[0].isIntersecting) frame.contentWindow?.postMessage({ type: 'brace-animation-pause' }, location.origin);
-        });
-        observer.observe(frame);
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     setupThemeToggle();
-    setupAnimationEmbed();
 });

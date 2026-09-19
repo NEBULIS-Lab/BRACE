@@ -367,7 +367,7 @@ a:hover {
 
 .abstract-media-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(280px, 0.78fr) minmax(360px, 1.22fr);
   gap: 1.25rem;
   align-items: stretch;
   margin-top: 1.5rem;
@@ -383,7 +383,7 @@ a:hover {
 }
 
 #abstract .key-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 209px));
   gap: 0.75rem;
   align-content: start;
   justify-content: start;
@@ -460,25 +460,26 @@ a:hover {
   color: var(--text-secondary);
 }
 
-.animation-card {
+.animation-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-lg);
   background: var(--background-primary);
+  color: var(--text-primary);
   box-shadow: var(--shadow-sm);
   scroll-margin-top: 24px;
+  text-decoration: none !important;
 }
-.animation-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; border-bottom: 1px solid var(--border-color); }
-.animation-kicker { color: var(--text-secondary); text-transform: uppercase; letter-spacing: .08em; font-size: 11px; font-weight: 700; }
-.content .animation-heading h3 { margin: 5px 0 0; font-size: 20px; color: var(--text-primary); }
-.animation-heading > a { font-size: 12px; white-space: nowrap; }
-#brace-animation { display: block; width: 100%; border: 0; min-height: 680px; }
-@media (max-width: 520px) {
-  .animation-heading { padding: 16px; align-items: flex-start; }
-  .content .animation-heading h3 { font-size: 16px; }
-  .animation-heading > a { font-size: 11px; }
-  #brace-animation { min-height: 840px; }
-}
+.animation-preview:hover { border-color: var(--accent-color); box-shadow: var(--shadow-md); }
+.animation-preview:focus-visible { outline: 3px solid var(--accent-color); outline-offset: 4px; }
+.animation-preview img { display: block; width: 100%; height: 220px; object-fit: cover; object-position: top; background: #f7f9fd; }
+.animation-preview-caption { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-top: 1px solid var(--border-color); }
+.animation-preview-caption strong { display: block; color: var(--text-primary); font-size: 15px; }
+.animation-preview-caption > span > span { display: block; color: var(--text-secondary); font-size: 11px; margin-top: 3px; }
+.animation-preview-open { color: var(--accent-color); font-size: 12px; white-space: nowrap; font-weight: 600; }
 
 .overview-layout,
 .motivation-layout {
@@ -975,7 +976,3 @@ code {
 /* Keep wide result tables inside their own scroll containers. */
 .section > .container { width: 100%; min-width: 0; }
 .section .column { min-width: 0; }
-@media (max-width: 760px) {
-  .animation-in-view .theme-control,
-  .animation-in-view .scroll-to-top { visibility: hidden; pointer-events: none; }
-}
